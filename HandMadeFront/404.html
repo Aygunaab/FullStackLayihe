@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/images/favicon/favicon.ico" type="image/png">
+    <link rel="stylesheet" href="assets/css/vendor/vendor.min.css">
+    <link rel="stylesheet" href="assets/plugins/Slick/css/slick.css">
+    <link rel="stylesheet" href="assets/plugins/Slick/css/slick-theme.css">
+    <link rel="stylesheet" href="assets/scss/style.css">
+    <title>404</title>
+</head>
+
+<body>
+    <!--Navbar start-->
+    <header class="header" style="background-color: #fff8f4;;">
+        <div class="header-nav">
+            <div class="container">
+                <div class="row">
+                    <div class="col-auto align-self-center">
+                        <div class="logo">
+                            <a href=""><img src="/assets/images/logo/logo.png" alt=""></a>
+                        </div>
+                    </div>
+                    <div class="col align-self-center d-none d-lg-block">
+                        <nav class="main-nav ">
+                            <ul class="nav justify-content-center">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Shop</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Blog</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">Contact</a>
+                                </li>
+
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col col-lg-auto align-self-center pl-0">
+                        <div class="action d-flex ">
+                            <div class="search-btn">
+                                <a href="#" class="action-btn"></a>
+                                <i class="pe-7s-search"></i>
+                            </div>
+                            <div class="user-btn">
+
+                                <div class="btn-group">
+                                    <a type="button" class="btn  dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="pe-7s-users"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="#">My account</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Checkout</a></li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        <li><a class="dropdown-item" href="#">Sing in</a></li>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <a class="action-btn"><i class="pe-7s-like " data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvaswishlist" aria-controls="offcanvaswishlist"></i></a>
+
+                            <div class="offcanvas offcanvas-end wishlist-canvas" tabindex="-1" id="offcanvaswishlist"
+                                aria-labelledby="offcanvasRightLabel">
+                                <div class="inner">
+                                    <div class="offcanvas-header">
+                                        <h5 id="offcanvasRightLabel title">Wishlist</h5>
+
+                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body body customScroll">
+                                        <ul class="minicart-product">
+                                            <li>
+                                                <a href="#" class="image-box"><img
+                                                        src="assets/images/product-image/1.jpg"
+                                                        alt="Cart product Image"></a>
+                                                <div class="content">
+                                                    <a href="#" class="title">Hand-Made Garlic Mortar</a>
+                                                    <span class="quantity-price">1 x <span
+                                                            class="amount">$21.86</span></span>
+                                                    <a href="#" class="remove">×</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="image-box"><img
+                                                        src="assets/images/product-image/2.jpg"
+                                                        alt="Cart product Image"></a>
+                                                <div class="content">
+                                                    <a href="#" class="title">Handmade Ceramic Pottery</a>
+                                                    <span class="quantity-price">1 x <span
+                                                            class="amount">$13.28</span></span>
+                                                    <a href="#" class="remove">×</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="image-box"><img
+                                                        src="assets/images/product-image/3.jpg"
+                                                        alt="Cart product Image"></a>
+                                                <div class="content">
+                                                    <a href="#" class="title">Hand Painted Bowls</a>
+                                                    <span class="quantity-price">1 x <span
+                                                            class="amount">$17.34</span></span>
+                                                    <a href="#" class="remove">×</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="ofcanvas-buttons">
+                                            <div class="buttons">
+                                                <a href="wishlist.html" class="btn btn-dark mt-5">view wishlist</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <a class="action-btn cart-btn"><i class="pe-7s-shopbag" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i> <span
+                                    class="header-action-num">01</span></a>
+
+
+                            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
+                                aria-labelledby="offcanvasRightLabel">
+                                <div class="inner">
+                                    <div class="offcanvas-header">
+                                        <h5 id="offcanvasRightLabel title">Cart</h5>
+
+                                        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="offcanvas-body body customScroll">
+                                        <ul class="minicart-product">
+                                            <li>
+                                                <a href="#" class="image-box"><img
+                                                        src="assets/images/product-image/1.jpg"
+                                                        alt="Cart product Image"></a>
+                                                <div class="content">
+                                                    <a href="#" class="title">Hand-Made Garlic Mortar</a>
+                                                    <span class="quantity-price">1 x <span
+                                                            class="amount">$21.86</span></span>
+                                                    <a href="#" class="remove">×</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="image-box"><img
+                                                        src="assets/images/product-image/2.jpg"
+                                                        alt="Cart product Image"></a>
+                                                <div class="content">
+                                                    <a href="#" class="title">Handmade Ceramic Pottery</a>
+                                                    <span class="quantity-price">1 x <span
+                                                            class="amount">$13.28</span></span>
+                                                    <a href="#" class="remove">×</a>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <a href="#" class="image-box"><img
+                                                        src="assets/images/product-image/3.jpg"
+                                                        alt="Cart product Image"></a>
+                                                <div class="content">
+                                                    <a href="#" class="title">Hand Painted Bowls</a>
+                                                    <span class="quantity-price">1 x <span
+                                                            class="amount">$17.34</span></span>
+                                                    <a href="#" class="remove">×</a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <div class="ofcanvas-buttons">
+                                            <div class="buttons">
+                                                <a href="cart.html" class="btn btn-dark mt-5">view cart</a>
+                                                <a href="cart.html" class="btn btn-checkout mt-5">checkout</a>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <a class="action-btn  d-lg-none"><i class="pe-7s-menu" data-bs-toggle="offcanvas"
+                                    data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i></a>
+
+                            <div class="offcanvas mobil-menu offcanvas-start" tabindex="-1" id="offcanvasExample"
+                                aria-labelledby="offcanvasExampleLabel">
+                                <div class="offcanvas-header">
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+
+                                    <div class="inner ">
+
+                                        <div class="offcanvas-menu mb-4">
+                                            <ul>
+                                                <li><a href="#">Home</span></a>
+                                                </li>
+                                                <li><a href="about.html">About</a></li>
+                                                <li><a href="shop.html">Shop</a></li>
+                                                <li><a href="blog.html">Blog</a></li>
+                                                <li><a href="contact.html">Contact Us</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Mobil Menu End -->
+                                        <div class="mobil-social">
+                                            <ul class="d-flex mobil-social-list ">
+                                                <li>
+                                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-google"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!--Navbar end-->
+    <main>
+        <!--breadcrumb section start-->
+        <section class="breadcrumb-section">
+            <div class="container">
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-12 text-center">
+                        <h1 class="page-name "> 404</h1>
+                        <nav class="d-flex justify-content-center" aria-label="breadcrumb">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">404</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--breadcrumb section end-->
+        <!--404 section start-->
+        <section class="section-style-one notfound-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div class="page-not-found text-center">
+                            <h2 >Oops!</h2>
+                            <p >Sorry,Page Not Found.</p>
+                            <a href="index.html">Back To Home <i class="fa fa-home"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--404 section end-->
+    </main>
+    <!--Footer start-->
+    <footer>
+        <div class="newsletter-area ">
+            <div class="container  line-bottom">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="newsletter-content">
+                            <i class="pe-7s-mail-open-file"></i>
+                            <div class="newsletter-text">
+                                <h3 class="title bg-gif">Newsletter &amp; Get Updates</h3>
+                                <p>Sign up for our newsletter to get update from us</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 position-relative martop-sm-20">
+                        <form class="row ">
+                            <input type="email" class="form-control" id="inputEmail4"
+                                placeholder="Enter Your Mail Here ...">
+                            <button type="submit" class="btn submit-button">Submit</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-area">
+            <div class="footer-container">
+                <div class="footer-top ">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Start footer card -->
+                            <div class="col-md-6 col-sm-6 col-lg-3 mb-md-5 mb-sm-5">
+                                <div class="footer-card">
+                                    <h4 class="footer-heading">Information</h4>
+                                    <div class="footer-links">
+                                        <div class="footer-row">
+                                            <ul class="align-items-center">
+                                                <li class="li"><a class="footer-link" href="about.html">About us</a>
+                                                </li>
+                                                <li class="li"><a class="footer-link" href="#">Delivery information</a>
+                                                </li>
+                                                <li class="li"><a class="footer-link" href="#">Privacy
+                                                        Policy</a></li>
+                                                <li class="li"><a class="footer-link" href="#">Sales</a></li>
+                                                <li class="li"><a class="footer-link" href="#">Terms &amp;
+                                                        Conditions</a></li>
+                                                <li class="li"><a class="footer-link" href="#">Shipping Policy</a></li>
+                                                <li class="li"><a class="footer-link" href="#">EMI Payment</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End footer card -->
+                            <!-- Start footer card  -->
+                            <div class="col-md-6 col-lg-3 col-sm-6 mb-sm-5">
+                                <div class="footer-card">
+                                    <h4 class="footer-heading">Account</h4>
+                                    <div class="footer-links">
+                                        <div class="footer-row">
+                                            <ul class="align-items-center">
+                                                <li class="li"><a class="footer-link" href="account.html"> My
+                                                        account</a>
+                                                </li>
+                                                <li class="li"><a class="footer-link" href="cart.html">My orders</a>
+                                                </li>
+                                                <li class="li"><a class="footer-link" href="#">Returns</a></li>
+                                                <li class="li"><a class="footer-link" href="#">Shipping</a></li>
+                                                <li class="li"><a class="footer-link" href="wishlist.html">Wishlist</a>
+                                                </li>
+                                                <li class="li"><a class="footer-link" href="#">How Does It Work</a></li>
+                                                <li class="li"><a class="footer-link" href="#">Merchant Sign Up</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End  footer card-->
+                            <!-- Start  footer card  -->
+                            <div class="col-md-6 col-lg-2 col-sm-6 mb-sm-5">
+                                <div class="footer-card">
+                                    <h4 class="footer-heading">Store </h4>
+                                    <div class="footer-links">
+                                        <div class="footer-row">
+                                            <ul class="align-items-center">
+                                                <li class="li"><a class="footer-link" href="index.html">Affiliate</a>
+                                                </li>
+                                                <li class="li"><a class="footer-link" href="#">Bestsellers</a></li>
+                                                <li class="li"><a class="footer-link" href="#">Discount</a></li>
+                                                <li class="li"><a class="footer-link" href="#">Latest products</a></li>
+                                                <li class="li"><a class="footer-link" href="#">Sale</a></li>
+                                                <li class="li"><a class="footer-link" href="#">All Collection</a></li>
+                                                <li class="li"><a class="footer-link" href="contact.html">Contact Us</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End footer card  -->
+                            <!-- Start footer card  -->
+                            <div class="col-md-6 col-lg-4 col-md-6 col-sm-6 paddin-left-120 line-left">
+                                <div class="footer-card ">
+
+                                    <h4 class="footer-heading">Contact Us</h4>
+                                    <div class="footer-links">
+                                        <!-- News letter area -->
+                                        <p class="mail">If you have any question.please <br>
+                                            contact us at <a href="#">demo@example.com</a> </p>
+                                        <p class="address"><i class="pe-7s-map-marker"></i> <span>Your address goes
+                                                here.
+                                                <br>
+                                                123, Address.</span> </p>
+                                        <p class="phone m-0"><i class="pe-7s-phone"></i><span><a href="tel:0123456789">+
+                                                    0 123
+                                                    456 789</a> <br> <a href="tel:0123456789">+ 0 123 456 789</a></span>
+                                        </p>
+
+                                        <!-- News letter area  End -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End footer card -->
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="line-top">
+                            <div class="row flex-md-row-reverse align-items-center">
+                                <div class="col-md-6 text-center text-md-end">
+                                    <div class="payment"><a href="#"><img class="img img-fluid"
+                                                src="assets/images/icons/payment.png" alt="payment-image"></a></div>
+                                </div>
+                                <div class="col-md-6 text-center text-md-start">
+                                    <p class="copy-text"> © 2022 <strong>Mioca.</strong> Made With <i
+                                            class="fa fa-heart" aria-hidden="true"></i> By <a class="company-name"
+                                            href="#">
+                                            <strong> Aygun@ab</strong></a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--Footer end-->
+
+
+
+
+    <!-- Modal -->
+    <div class="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Understood</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="assets/js/vendor/vendor.min.js"></script>
+    <script src="assets/plugins/Slick/js/slick.js"></script>
+    <script src="assets/plugins/isotope/isotope.min.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
