@@ -1,8 +1,6 @@
-.header{
+.header {
 	@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
-		
-			padding: 10px 0;
-		
+		padding: 10px 0;
 	}
 }
 .header-nav {
@@ -46,8 +44,7 @@
 		justify-content: flex-end;
 		align-items: center;
 		@media only screen and (max-width: 575px) {
-			 
-				margin-left: 15px;			
+			margin-left: 15px;
 		}
 		@media only screen and (max-width: 479px) {
 			margin-top: 10px;
@@ -216,81 +213,73 @@
 		}
 	}
 }
-.offcanvas{
-	.inner{
+.offcanvas {
+	.inner {
 		position: relative;
 		z-index: 9;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		.offcanvas-header{
+		.offcanvas-header {
 			margin-top: 10px;
 			margin-left: 20px;
 			padding: 0;
-			.title{
+			.title {
 				font-size: 20px;
 			}
-			
-		
 		}
-		.offcanvas-body{
-			.minicart-product{
-			margin: 0;
-    padding-left: 0;
-    list-style: none;
-	li{
-		display: flex;
-		flex-wrap: wrap;
-		margin-bottom: 30px;
-		padding-bottom: 30px;
-		border-bottom: 1px solid #ebebeb;
-		.image-box{
-	
-			flex: 1 0 75px;
-			img{
-				max-width: 100%;
-				border: 1px solid #ebebeb;
-			}
-			
-		
-		}
-		.content{
-			position: relative;
-			flex: 1 0 calc(100% - 150px);
-			padding-left: 15px;
-		
-			.title{
-				color: #000;
-				font-weight: 500;
-			}
-			.quantity-price{
-				font-size: 14px;
-				display: block;
-				margin-top: 10px;
-				.amount{
-					color: #eaaa85;
-					font-weight: 500;
-					font-size: 18px;
+		.offcanvas-body {
+			.minicart-product {
+				margin: 0;
+				padding-left: 0;
+				list-style: none;
+				li {
+					display: flex;
+					flex-wrap: wrap;
+					margin-bottom: 30px;
+					padding-bottom: 30px;
+					border-bottom: 1px solid #ebebeb;
+					.image-box {
+						flex: 1 0 75px;
+						img {
+							max-width: 100%;
+							border: 1px solid #ebebeb;
+						}
+					}
+					.content {
+						position: relative;
+						flex: 1 0 calc(100% - 150px);
+						padding-left: 15px;
+
+						.title {
+							color: #000;
+							font-weight: 500;
+						}
+						.quantity-price {
+							font-size: 14px;
+							display: block;
+							margin-top: 10px;
+							.amount {
+								color: #eaaa85;
+								font-weight: 500;
+								font-size: 18px;
+							}
+						}
+						.remove {
+							line-height: 1.5;
+							position: absolute;
+							top: 0;
+							right: 0;
+							padding: 0 3px;
+							color: #000;
+							font-size: 16px;
+						}
+					}
 				}
-			
 			}
-			.remove{
-				line-height: 1.5;
-				position: absolute;
-				top: 0;
-				right: 0;
-				padding: 0 3px;
-				color: #000;
-				font-size: 16px;
-			
-			}
-		}
-	
-	}
-			}
-			.ofcanvas-buttons{
-				.buttons{
-					a{
+			.ofcanvas-buttons {
+				.buttons {
+					a {
 						display: block;
 						text-transform: capitalize;
 						font-weight: 500;
@@ -305,22 +294,16 @@
 						border-radius: 0;
 						width: auto;
 						height: auto;
-						&:hover{
+						&:hover {
 							background-color: #eaaa85;
 							color: #fff;
-						
 						}
-						&.btn-checkout{
+						&.btn-checkout {
 							background-color: #e29f78;
 						}
-					
 					}
 				}
 			}
-
 		}
-		
-		
-	
 	}
 }

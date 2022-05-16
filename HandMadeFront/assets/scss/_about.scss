@@ -1,195 +1,184 @@
-.about-section{
-    .about-image-box{
-        position: relative;
-        z-index: 1;
-    
-        .about-image{
-            max-width: 100%;
-            display: block;
-            border-radius: 50%;
-            @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px){
-                margin: auto;
-            }
-        
-        }
-        .about-image-2{
-            position: absolute;
-            left: auto;
-            right: 25px;
-            z-index: -1;
-            top: 25px;
-            @media only screen and (min-width: 992px) and (max-width: 1199px){
-                top: 0;
-                right: 0;
-                width: 85%;
-                max-width: 100%;
-            }
-            @media only screen and (min-width: 768px) and (max-width: 991px){
-                top: 23px;
-                right: 15%;
-                max-width: 100%;
-            }
-            @media only screen and (max-width: 575px){
-                display: none;
-            }
-        }
-        .about-video{
-            border-radius: 50%;
-    position: relative;
-            .about-video-link{
-                width: 98px;
-                height: 98px;
-                transition: all .3s ease;
-                position: absolute;
-                left: 40px;
-                top: -70px;
-                @media only screen and (min-width: 768px) and (max-width: 991px){
-                    left:35%;
-                }
-                span{
-                    position: absolute;
-                    width: 98px;
-                    height: 98px;
-                    left: 50%;
-                    top: 50%;
-                    z-index: 10;
-                    color: #fff;
-                    font-weight: 400;
-                    font-size: 38px;
-                    border-radius: 50%;
-                    margin-top: -49px;
-                    margin-left: -49px;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    transition: all .9s ease;
-                    background-color: #eaaa85;
-                    @media only screen and (max-width: 479px){
-                        width: 60px;
-                        height: 60px;
-                        margin-top: -30px;
-                        margin-left: -30px;
-                        font-size: 14px;
-                    }
-                
-                }
-                .ripple ,.ripple::after,.ripple::before{
-                    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 98px;
-    height: 98px;
-    transform: translate(-50%,-50%);
-    border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(230, 167, 131 ,0.8);
-    animation: ripple 3s infinite;
-    @media only screen and (max-width: 479px){
-        width: 60px;
-        height: 60px;
-    }
+.about-section {
+	.about-image-box {
+		position: relative;
+		z-index: 1;
 
-                }
-                .ripple{
-                    &::before{
-                        animation-delay: .9s;
-                        content: "";
-                        position: absolute;        
-                    }
-                    &::after{
-    animation-delay: .6s;
-    content: "";
-    position: absolute;
+		.about-image {
+			max-width: 100%;
+			display: block;
+			border-radius: 50%;
+			@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
+				margin: auto;
+			}
+		}
+		.about-image-2 {
+			position: absolute;
+			left: auto;
+			right: 25px;
+			z-index: -1;
+			top: 25px;
+			@media only screen and (min-width: 992px) and (max-width: 1199px) {
+				top: 0;
+				right: 0;
+				width: 85%;
+				max-width: 100%;
+			}
+			@media only screen and (min-width: 768px) and (max-width: 991px) {
+				top: 23px;
+				right: 15%;
+				max-width: 100%;
+			}
+			@media only screen and (max-width: 575px) {
+				display: none;
+			}
+		}
+		.about-video {
+			border-radius: 50%;
+			position: relative;
+			.about-video-link {
+				width: 98px;
+				height: 98px;
+				transition: all .3s ease;
+				position: absolute;
+				left: 40px;
+				top: -70px;
+				@media only screen and (min-width: 768px) and (max-width: 991px) {
+					left: 35%;
+				}
+				span {
+					position: absolute;
+					width: 98px;
+					height: 98px;
+					left: 50%;
+					top: 50%;
+					z-index: 10;
+					color: #fff;
+					font-weight: 400;
+					font-size: 38px;
+					border-radius: 50%;
+					margin-top: -49px;
+					margin-left: -49px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					transition: all .9s ease;
+					background-color: #eaaa85;
+					@media only screen and (max-width: 479px) {
+						width: 60px;
+						height: 60px;
+						margin-top: -30px;
+						margin-left: -30px;
+						font-size: 14px;
+					}
+				}
+				.ripple,
+				.ripple::after,
+				.ripple::before {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					width: 98px;
+					height: 98px;
+					transform: translate(-50%, -50%);
+					border-radius: 50%;
+					box-shadow: 0 0 0 0 rgba(230, 167, 131, 0.8);
+					animation: ripple 3s infinite;
+					@media only screen and (max-width: 479px) {
+						width: 60px;
+						height: 60px;
+					}
+				}
+				.ripple {
+					&::before {
+						animation-delay: .9s;
+						content: "";
+						position: absolute;
+					}
+					&::after {
+						animation-delay: .6s;
+						content: "";
+						position: absolute;
+					}
+				}
+			}
+		}
+	}
 
-                    }
-                }
-            
-            }
-        }
-    }
-
-    .about-content{
-        @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
-            margin-top: 80px;
-        }
-        .about-title{
-            font-size: 36px;
-            color: $title-color;
-            font-weight: 500;
-            margin: 0 0 30px;
-            line-height: 50px;
-            @media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px){
-                font-size: 24px;
-                line-height: 36px;
-            }
-        }
-        .des-1{
-            color: #5e5e5e;
-            font-weight: 500;
-            font-size: 18px;
-            line-height: 30px;
-            margin: 0 0 25px;
-        
-        }
-        .des-2{
-            color: #5e5e5e;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 28px;
-            margin: 0 0 45px;
-        
-        }
-        .our-mision{
-           
-        
-            .mision{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                @media only screen and (max-width: 575px){
-                    flex-direction: column;
-                    align-items: flex-start;
-                
-                }
-                .heading{
-                    flex: 0 0 auto;
-                    width: 235px;
-                    font-size: 30px;
-                    color: $title-color;
-                    padding-left: 20px;
-                    position: relative;
-                    &::after{
-                        position: absolute;
-                        top: 50%;
-                        left: 0;
-                        width: 10px;
-                        height: 4px;
-                        content: "";
-                        background-color: #000;
-                        margin-top: -2.5px;
-                    
-                    }
-                
-                }
-                .mision-desc{
-                    flex: 0 0 auto;
-                    width: calc(100% - 235px);
-                    color: $title-color;
-                    line-height: 30px;
-                    @media only screen and (max-width: 575px){
-                        width: 100%;
-                    }
-                
-                }
-            }
-        }
-    }
+	.about-content {
+		@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
+			margin-top: 80px;
+		}
+		.about-title {
+			font-size: 36px;
+			color: $title-color;
+			font-weight: 500;
+			margin: 0 0 30px;
+			line-height: 50px;
+			@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
+				font-size: 24px;
+				line-height: 36px;
+			}
+		}
+		.des-1 {
+			color: #5e5e5e;
+			font-weight: 500;
+			font-size: 18px;
+			line-height: 30px;
+			margin: 0 0 25px;
+		}
+		.des-2 {
+			color: #5e5e5e;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 28px;
+			margin: 0 0 45px;
+		}
+		.our-mision {
+			.mision {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				@media only screen and (max-width: 575px) {
+					flex-direction: column;
+					align-items: flex-start;
+				}
+				.heading {
+					flex: 0 0 auto;
+					width: 235px;
+					font-size: 30px;
+					color: $title-color;
+					padding-left: 20px;
+					position: relative;
+					&::after {
+						position: absolute;
+						top: 50%;
+						left: 0;
+						width: 10px;
+						height: 4px;
+						content: "";
+						background-color: #000;
+						margin-top: -2.5px;
+					}
+				}
+				.mision-desc {
+					flex: 0 0 auto;
+					width: calc(100% - 235px);
+					color: $title-color;
+					line-height: 30px;
+					@media only screen and (max-width: 575px) {
+						width: 100%;
+					}
+				}
+			}
+		}
+	}
 }
 
 @keyframes ripple {
-    70% {
-        box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-    }
+	70% {
+		box-shadow: 0 0 0 70px rgba(255, 255, 255, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+	}
 }

@@ -1,15 +1,12 @@
 .hero {
-	
-	.image-block{
-		
-		img{
+	.image-block {
+		img {
 			width: 100%;
 		}
-		@media only screen and (max-width: 575px)
- {
-    margin-top: 50px;
-    text-align: center;
-}
+		@media only screen and (max-width: 575px) {
+			margin-top: 50px;
+			text-align: center;
+		}
 	}
 	position: relative;
 	&:hover {
@@ -38,12 +35,11 @@
 	.next {
 		position: absolute;
 		right: 0px;
-		top:50%;
-		
+		top: 50%;
 	}
 	.prev {
 		position: absolute;
-		top:50%;
+		top: 50%;
 		z-index: 9;
 	}
 
@@ -55,24 +51,22 @@
 			text-align: center;
 			z-index: 9;
 			text-transform: uppercase;
-			.btn{
-			@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
-				
+			.btn {
+				@media only screen and (min-width: 768px) and (max-width: 991px), only screen and (max-width: 767px) {
 					width: 166px;
 					height: 50px;
-					font-size: 14px;	
+					font-size: 14px;
+				}
 			}
-		}
 			.slider-title {
 				font-size: 60px;
 				font-weight: 500;
 				margin-bottom: 22px;
 				color: #4a4a4a;
-				@media only screen and (max-width:767px){
-font-size: 30px;
-margin-bottom: 15px;
+				@media only screen and (max-width: 767px) {
+					font-size: 30px;
+					margin-bottom: 15px;
 				}
-       
 			}
 			.product-price {
 				font-size: 36px;
@@ -88,7 +82,6 @@ margin-bottom: 15px;
 					font-size: 24px;
 					margin-bottom: 25px;
 				}
-				
 			}
 		}
 	}
