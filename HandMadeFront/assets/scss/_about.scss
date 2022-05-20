@@ -62,7 +62,7 @@
 					align-items: center;
 					justify-content: center;
 					transition: all .9s ease;
-					background-color: #eaaa85;
+					background-color: $first-color;
 					@media only screen and (max-width: 479px) {
 						width: 60px;
 						height: 60px;
@@ -120,14 +120,14 @@
 			}
 		}
 		.des-1 {
-			color: #5e5e5e;
+			color: $second-desc-color;
 			font-weight: 500;
 			font-size: 18px;
 			line-height: 30px;
 			margin: 0 0 25px;
 		}
 		.des-2 {
-			color: #5e5e5e;
+			color: $second-desc-color;
 			font-weight: 400;
 			font-size: 16px;
 			line-height: 28px;
@@ -156,7 +156,7 @@
 						width: 10px;
 						height: 4px;
 						content: "";
-						background-color: #000;
+						background-color: $black-color;
 						margin-top: -2.5px;
 					}
 				}

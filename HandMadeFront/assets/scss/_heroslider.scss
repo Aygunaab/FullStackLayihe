@@ -9,39 +9,6 @@
 		}
 	}
 	position: relative;
-	&:hover {
-		.next,
-		.prev {
-			visibility: visible;
-		}
-	}
-	.next,
-	.prev {
-		visibility: hidden;
-		font-size: 35px;
-		color: #fff;
-
-		i {
-			color: #4a4a4a;
-			border-radius: 100%;
-		}
-		&:hover {
-			i {
-				background-color: $first-color;
-				color: #fff;
-			}
-		}
-	}
-	.next {
-		position: absolute;
-		right: 0px;
-		top: 50%;
-	}
-	.prev {
-		position: absolute;
-		top: 50%;
-		z-index: 9;
-	}
 
 	.hero-slider {
 		position: relative;

@@ -24,7 +24,7 @@
 				margin-left: 10px;
 				&:hover {
 					.nav-link {
-						color: #eaaa85 !important;
+						color: $first-color !important;
 					}
 				}
 				.nav-link {
@@ -59,7 +59,7 @@
 			font-size: 26px;
 			margin-left: 18px;
 			&:hover {
-				color: #eaaa85;
+				color: $first-color;
 			}
 		}
 
@@ -67,10 +67,10 @@
 			position: relative;
 			display: flex;
 			text-decoration: none;
-			color: #000;
+			color: $black-color;
 			transition: all .3s ease 0s;
 			&:hover {
-				color: #eaaa85;
+				color: $first-color;
 			}
 			.header-action-num {
 				font-size: 11px;
@@ -85,7 +85,7 @@
 				align-items: center;
 				color: #fff;
 				border-radius: 50%;
-				background-color: #eaaa85;
+				background-color: $first-color;
 				width: 21px;
 				height: 21px;
 			}
@@ -118,6 +118,35 @@
 				}
 			}
 		}
+		.search-btn {
+			.dropdown-toggle {
+				&::after {
+					content: none !important;
+				}
+			}
+			.dropdown-menu {
+				width: 200px;
+				top: 20px !important;
+				right: 0;
+				border-radius: 20px;
+				height: 40px;
+				padding: 0;
+				input {
+					border: none;
+					height: 40px;
+					padding: 0;
+					padding-left: 10px;
+					width: 100%;
+				}
+				button {
+					background-color: transparent;
+					padding-right: 15px;
+				}
+				.dropdown-item {
+					padding: 0px;
+				}
+			}
+		}
 	}
 	.mobil-menu {
 		width: 350px;
@@ -131,7 +160,7 @@
 			border: 0;
 			right: 50px;
 			top: 15px;
-			background-color: #e29f78;
+			background-color: $first-color;
 			border-radius: 50%;
 			color: white !important;
 			background-image: none;
@@ -171,8 +200,7 @@
 						display: block;
 						padding: 10px 0;
 						text-transform: capitalize;
-						color: #474747;
-						border-top: 1px solid #eee;
+						color: $title-color;
 						font-size: 16px;
 						font-weight: 600;
 					}
@@ -192,7 +220,7 @@
 				display: inline-block;
 				vertical-align: middle;
 				color: #fff;
-				background: #eaaa85;
+				background: $first-color;
 				padding: 0;
 				line-height: 40px;
 				width: 40px;
@@ -260,7 +288,7 @@
 							display: block;
 							margin-top: 10px;
 							.amount {
-								color: #eaaa85;
+								color: $first-color;
 								font-weight: 500;
 								font-size: 18px;
 							}
@@ -268,10 +296,10 @@
 						.remove {
 							line-height: 1.5;
 							position: absolute;
-							top: 0;
-							right: 0;
+							top: 12px;
+							right: -10px;
 							padding: 0 3px;
-							color: #000;
+							color: $black-color;
 							font-size: 16px;
 						}
 					}
@@ -290,16 +318,16 @@
 						padding: 10px 15px;
 						line-height: 26px;
 						border: none;
-						background: #000;
+						background: $black-color;
 						border-radius: 0;
 						width: auto;
 						height: auto;
 						&:hover {
-							background-color: #eaaa85;
+							background-color: $first-color;
 							color: #fff;
 						}
 						&.btn-checkout {
-							background-color: #e29f78;
+							background-color: $first-color;
 						}
 					}
 				}

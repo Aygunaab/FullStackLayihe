@@ -47,9 +47,24 @@
                     </div>
                     <div class="col col-lg-auto align-self-center pl-0">
                         <div class="action d-flex ">
-                            <div class="search-btn">
-                                <a href="#" class="action-btn"></a>
-                                <i class="pe-7s-search"></i>
+                            <div class="search-btn user-btn">
+                                <div class="btn-group">
+                                    <a type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <i class="pe-7s-search"></i>
+                                    </a>
+                                    <div class="dropdown-menu">
+
+                                        <a class="dropdown-item" href="#">
+                                            <form class="form-inline d-flex">
+                                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                                    aria-label="Search">
+                                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit"> <i
+                                                        class="pe-7s-search"></i></button>
+                                            </form>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
                             <div class="user-btn">
 
@@ -247,9 +262,8 @@
     </header>
     <!--Navbar end-->
     <main>
-        <section class="hero"
+        <section class="hero arrow"
             style="background-image: url(assets/images/slider-image/slider-bg-1.jpg); padding-top: 100px;padding-bottom: 100px;">
-            <button type="button" class="prev"> <i class="pe-7s-angle-left-circle"></i></button>
             <div class="hero-slider">
 
                 <div class="single-slider">
@@ -310,7 +324,6 @@
                 </div>
 
             </div>
-            <button type="button" class="next"><i class="pe-7s-angle-right-circle"></i></button>
 
         </section>
         <section class="banner-section section-style-one">
@@ -374,8 +387,7 @@
                                 et dolore magna aliqua. </p>
                         </div>
                     </div>
-                    <div class="col-12 mb-5 slick-slider-arrow filter">
-                        <button type="button" class="prev "> <i class="pe-7s-angle-left-circle"></i></button>
+                    <div class="col-12 mb-5 arrow arrow-style-one filter">
                         <ul class="slider multiple-items button-group filter-button-group">
                             <li class="active" data-filter=".fabric"><a> <img src="assets/images/icons/fabric-icon.png"
                                         alt=""><span>Fabric</span></a></li>
@@ -394,7 +406,6 @@
                             <li data-filter=".jewelry"><a> <img src="assets/images/icons/jewelry-icon.png"
                                         alt=""><span>Jewelry</span></a></li>
                         </ul>
-                        <button type="button" class="next"><i class="pe-7s-angle-right-circle"></i></button>
                     </div>
                 </div>
                 <div class=" row shoping-items">
@@ -828,6 +839,7 @@
             </div>
         </section>
         <!--Feature section end-->
+        <!--Deal section start-->
         <section class="area-deal section-style-one">
             <div class="container ">
                 <div class="row">
@@ -852,6 +864,7 @@
                     </div>
                 </div>
         </section>
+        <!--Deal section end-->
         <section class="bestseller-section section-style-one pb-0">
             <div class="container">
                 <div class="row">
@@ -861,7 +874,7 @@
 
                         </div>
                     </div>
-                    <div class="col-12 mb-2 filter  d-flex justify-content-center ">
+                    <div class="col-12 mb-2 filter arrow arrow-style-one  d-flex justify-content-center ">
                         <ul class="sliderbestseller  multiple-items button-group filter-button-group">
                             <li class="active" data-filter=".fabric"><a> <span>Fabric</span></a></li>
                             <li data-filter=".paintings"><a> <span>Paintings</span></a></li>
@@ -1073,6 +1086,7 @@
                 </div>
             </div>
         </section>
+        <!--Banner  section start-->
         <section class="banner-section-two section-style-one">
             <div class="banner">
                 <div class="container">
@@ -1119,6 +1133,7 @@
                 </div>
             </div>
         </section>
+        <!--Banner  section end-->
         <section class="blog-section section-style-one pt-0">
             <div class="container">
                 <div class="row">
@@ -1197,8 +1212,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 position-relative martop-sm-20">
-                        <form class="row ">
+                    <div class="col-lg-6 position-relative martop-sm-40">
+                        <form>
                             <input type="email" class="form-control" id="inputEmail4"
                                 placeholder="Enter Your Mail Here ...">
                             <button type="submit" class="btn submit-button">Submit</button>
@@ -1335,21 +1350,138 @@
 
 
     <!-- Modal -->
-    <div class="modal  " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+    <div class="modal bd-example-modal-lg " id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <div class="row">
+
+                        <div class="col-lg-6 col-sm-12 col-xs-12 ">
+                            <div class="product-images">
+                                <div class="img-display">
+                                    <div class="img-shopcase">
+                                        <img src="assets/images/product-image/1.jpg" alt="product image">
+                                        <img src="assets/images/product-image/2.jpg" alt="product image">
+                                        <img src="assets/images/product-image/3.jpg" alt="product image">
+                                        <img src="assets/images/product-image/4.jpg" alt="product image">
+                                        <img src="assets/images/product-image/5.jpg" alt="product image">
+                                    </div>
+                                    <div class="img-select">
+                                        <div class="img-item">
+                                            <a href="#" data-id="1">
+                                                <img src="assets/images/product-image/1.jpg" alt="shop-img">
+                                            </a>
+                                        </div>
+                                        <div class="img-item">
+                                            <a href="#" data-id="2">
+                                                <img src="assets/images/product-image/2.jpg" alt="shop-img">
+                                            </a>
+                                        </div>
+                                        <div class="img-item">
+                                            <a href="#" data-id="3">
+                                                <img src="assets/images/product-image/3.jpg" alt="shop-img">
+                                            </a>
+                                        </div>
+                                        <div class="img-item">
+                                            <a href="#" data-id="4">
+                                                <img src="assets/images/product-image/4.jpg" alt="shop-img">
+                                            </a>
+                                        </div>
+                                        <div class="img-item">
+                                            <a href="#" data-id="5">
+                                                <img src="assets/images/product-image/5.jpg" alt="shop-img">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-sm-12 col-xs-12">
+                            <div class="product-details-content marleft-25">
+                                <h2>Hand-Made Garlic Mortar</h2>
+                                <div class="pricing-box">
+                                    <ul class="d-flex">
+                                        <li class="new-price">$20.90</li>
+                                        <li class="old-price"><del>$30.90</del></li>
+                                    </ul>
+                                </div>
+                                <div class="details-rating-wrap">
+                                    <div class="rating-product">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                    <span class="read-review"><a class="reviews" href="#">( 2 Review )</a></span>
+                                </div>
+                                <div class="stock martop-30">
+                                    <span class="avallabillty">Availability: <span class="in-stock"><i
+                                                class="fa fa-check"></i>In Stock</span></span>
+                                </div>
+                                <p class="martop-30 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+                                    do
+                                    eiusmodol tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veni
+                                    nostrud
+                                    exercitation ullamco laboris </p>
+                                <div class="details-quality">
+                                    <div class="cart-plus-minus">
+                                        <div class="minus plmin">-</div>
+                                        <input class="cart-plus-minus-box" type="text" value="1">
+                                        <div class="plus plmin">+</div>
+                                    </div>
+                                    <div class="details-cart">
+                                        <button class="addcart"> Add To
+                                            Cart</button>
+                                    </div>
+                                    <div class="details-wishlist ">
+                                        <a href="wishlist.html"><i class="pe-7s-like"></i></a>
+                                    </div>
+                                </div>
+                                <div class="details-categories-info details-style d-flex">
+                                    <span>Categories: </span>
+                                    <ul class="d-flex">
+                                        <li>
+                                            <a href="#">Handmade, </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Furniture, </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Decore</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="details-social-info details-style d-flex">
+                                    <span>Share: </span>
+                                    <ul class="d-flex">
+                                        <li>
+                                            <a href="#"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-twitter"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-google"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-youtube"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-instagram"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
+
             </div>
         </div>
     </div>

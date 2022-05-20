@@ -7,7 +7,7 @@
 		span {
 			color: #adadad;
 			.blog-author {
-				color: #eaaa85;
+				color: $first-color;
 				font-weight: 400;
 				display: inline-block;
 				font-size: 16px;
@@ -80,7 +80,7 @@
 	}
 	.blog-content {
 		p {
-			color: #525252;
+			color: $desc-color;
 			line-height: 30px;
 			margin-bottom: 40px;
 		}
@@ -89,7 +89,7 @@
 			font-weight: 500;
 			margin: 15px 0 35px;
 			line-height: 1.4;
-			color: #2d2d2d;
+			color: $title-color;
 			@media only screen and (max-width: 767px) {
 				font-size: 24px;
 			}
@@ -477,7 +477,7 @@
 					line-height: 1;
 					span {
 						font-size: 16px;
-						color: #eaaa85;
+						color: $first-color;
 						display: block;
 						margin: 0 0 10px;
 					}
@@ -485,7 +485,7 @@
 						a {
 							font-size: 17px !important;
 							font-weight: 400;
-							color: #424242;
+							color: $desc-color;
 							line-height: 26px;
 						}
 					}
