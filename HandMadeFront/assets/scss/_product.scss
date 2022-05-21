@@ -151,8 +151,12 @@
 	@media only screen and (min-width: 768px) and (max-width: 991px) {
 		height: 500px;
 	}
-	@media only screen and (max-width: 479px) {
-		height: 550px;
+	
+	@media only screen and (max-width: 576px) {
+		height: 750px;
+	}
+	@media only screen and (max-width: 478px) {
+		height: 570px;
 	}
 
 	.product-item {
@@ -306,6 +310,9 @@
 						left: 0;
 						overflow: hidden;
 						color: #ffde00;
+						&.empty{
+							color: #ccc;
+						}
 						&::before {
 							font-family: FontAwesome;
 							content: "    ";
@@ -444,6 +451,9 @@
 			i {
 				color: #ffde00;
 				font-size: 14px;
+				&.empty{
+					color: #ccc;
+				}
 			}
 		}
 		.read-review {
