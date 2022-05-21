@@ -1,0 +1,150 @@
+.ui-widget.ui-widget-content {
+	border: none !important;
+}
+.ui-tabs-vertical {
+	width: 100%;
+	.ui-tabs-panel {
+		padding: 1em;
+		height: auto;
+	}
+	.ui-tabs-nav {
+		padding: .2em .1em .2em .2em;
+		float: left;
+		width: 100%;
+		background: white;
+		border: none;
+		li {
+			clear: left;
+			width: 100%;
+			border: none;
+			background-color: #000;
+			margin-bottom: 10px;
+			height: 40px;
+
+			&.ui-tabs-active {
+				padding-bottom: 0;
+				padding-right: .1em;
+				border-right-width: 1px;
+				background-color: #eaaa85;
+				margin-bottom: 10px;
+			}
+			a {
+				display: block;
+				font-weight: 500;
+				color: #fff;
+
+				font-size: 16px;
+				text-transform: uppercase;
+			}
+		}
+	}
+}
+
+.dashboard {
+	h4 {
+		font-size: 24px;
+		text-transform: capitalize;
+		font-weight: 500;
+		margin-bottom: 15px;
+	}
+	p {
+		font-size: 16px;
+		line-height: 26px;
+		a {
+			color: #eaaa85;
+			font-weight: 500;
+		}
+	}
+
+	.table-page {
+		tbody {
+			tr {
+				td {
+					border-right: 1px solid #ededed;
+					font-weight: 500;
+					text-transform: capitalize;
+					font-size: 14px;
+					text-align: center;
+					min-width: 150px;
+				}
+			}
+		}
+		table {
+			width: 100%;
+			caption-side: bottom;
+			border-collapse: collapse;
+			thead {
+				background: #f2f2f2;
+				tr {
+					th {
+						color: #24262b;
+						border-bottom: 3px solid #eaaa85;
+						border-right: 1px solid #ededed;
+						font-size: 16px;
+						font-weight: 600;
+						text-transform: capitalize;
+						padding: 10px;
+						text-align: center;
+					}
+				}
+			}
+			tbody {
+				tr {
+					td {
+						border-bottom: 1px solid #ededed;
+						border-right: 1px solid #ededed;
+						text-align: center;
+						padding: 10px;
+					}
+				}
+			}
+		}
+	}
+	h5 {
+		font-size: 20px;
+		text-transform: capitalize;
+		font-weight: 500;
+		margin-bottom: 10px;
+		margin-top: 10px;
+	}
+	.input-radio {
+		span {
+			font-weight: 500;
+			padding-right: 10px;
+		}
+	}
+	.default-form-box {
+		margin-bottom: 20px;
+		label {
+			font-weight: 400;
+			font-size: 16px;
+			margin-bottom: 10px;
+			display: block;
+		}
+		input {
+			display: block;
+			width: 100%;
+			height: 45px;
+			padding: 0 10px 0 20px;
+			font-size: 16px;
+			font-weight: 400;
+			color: $title-color;
+			border-radius: 3px;
+			background-color: #fff;
+			border: 1px solid #e2e2e2;
+			line-height: 45px;
+		}
+	}
+	.save-button {
+		.btn {
+			background-color: #3b3b3b;
+			border-color: #3b3b3b;
+			color: #fff;
+			font-weight: 400;
+			font-size: 14px;
+			width: 130px;
+			height: 45px;
+			line-height: 45px;
+		}
+	}
+}
