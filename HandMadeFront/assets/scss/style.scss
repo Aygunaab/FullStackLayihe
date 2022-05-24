@@ -412,4 +412,17 @@ body {
 			}
 		}
 	}
+	.sticky {
+		position: fixed;
+		top: 0;
+		width: 100%;
+		background-color: #fff !important;
+	  }
+	  .rating-number {
+		font-size: 14px;
+		line-height: 1;
+		margin-left: 6px;
+		color: #9f9e9e;
+		display: none;
+	}
 }

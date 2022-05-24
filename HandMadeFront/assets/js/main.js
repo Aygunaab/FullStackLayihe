@@ -343,3 +343,12 @@ $( function() {
       });
     } );
 
+
+    $(window).on("scroll", function (e) {
+      var window_top = $(window).scrollTop() + 1;
+      if (window_top > 250) {
+          $(".header").addClass("sticky");
+      } else {
+          $(".header").removeClass("sticky");
+      }
+  });

@@ -319,12 +319,31 @@
 						}
 					}
 				}
-				.rating-number {
-					font-size: 14px;
-					line-height: 1;
-					margin-left: 6px;
-					color: #9f9e9e;
-					display: none;
+				
+			}
+			.details-rating-wrap {
+				display: flex;
+				line-height: 1;
+				.rating-product {
+					margin-right: 5px;
+					i {
+						color: #ffde00;
+						font-size: 14px;
+						&.empty{
+							color: #ccc;
+						}
+					}
+				}
+				.read-review {
+					a {
+						text-decoration: none;
+						color: $title-color;
+						position: relative;
+						margin-left: 8px;
+						padding: 0;
+						font-size: 16px;
+						display: inline-block;
+					}
 				}
 			}
 			.product-title {
