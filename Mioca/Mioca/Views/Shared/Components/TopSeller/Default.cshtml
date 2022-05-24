@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ProductViewModel>
+    <section class="product-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product-content text-center">
+                        <h2 class="product-title bg-gif ">Ən populyar məhsullar</h2>
+                        <p class="product-description">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                            do eiusmod incididunt ut labore
+                            et dolore magna aliqua.
+                        </p>
+                    </div>
+                </div>
+                <vc:category></vc:category>
+            </div>
+            <div class=" row shoping-items">
+                @foreach (var item in Model)
+                {
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 height-resize @foreach (var cat in item.Categoris)
+                    {
+                        @cat.Category.Name;
+                    }
+                    ">
+                            <partial name="Products/_SingleProduct" model="item"/>
+    
+                        </div>
+
+                }
+
+
+
+
+
+
+
+            </div>
+        </div>
+    </section>

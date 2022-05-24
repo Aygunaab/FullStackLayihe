@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewData["Title"] = "Cart";
+}
+
+<main>
+    <!--Breadcrumb section start-->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 text-center">
+                    <h1 class="page-name ">Cart</h1>
+                    <nav class="d-flex justify-content-center" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">cart</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Breadcrumb section end-->
+    <!--Cart section start-->
+    <section class="section-style-one">
+        <div class="container">
+            <div class="row">
+                <h3 class="cart-page-title">Your cart items</h3>
+                <div class="col-lg-12 col-md-12  col-12">
+                    <form action="#">
+                        <div class="cart-table-content table-responsive ">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Product Name</th>
+                                        <th>Until Price</th>
+                                        <th>Qty</th>
+                                        <th>Subtotal</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="product-img">
+                                            <a href="#">
+                                                <img class="img margin-left-15"
+                                                    src="~/assets/images/product-image/1.jpg" alt="">
+                                            </a>
+                                        </td>
+                                        <td class="product-name td-style"><a href="#">Product Name</a></td>
+                                        <td class="product-price td-style"><span class="amount">$60.00</span></td>
+                                        <td class="product-quantity td-style">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" type="text" value="1">
+                                            </div>
+                                        </td>
+                                        <td class="product-subtotal td-style">$70.00</td>
+                                        <td class="product-remove td-style">
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-img">
+                                            <a href="#">
+                                                <img class="img margin-left-15"
+                                                    src="~/assets/images/product-image/2.jpg" alt="">
+                                            </a>
+                                        </td>
+                                        <td class="product-name td-style"><a href="#">Product Name</a></td>
+                                        <td class="product-price td-style"><span class="amount">$60.00</span></td>
+                                        <td class="product-quantity td-style">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" type="text" value="1">
+                                            </div>
+                                        </td>
+                                        <td class="product-subtotal td-style">$70.00</td>
+                                        <td class="product-remove td-style">
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="product-img">
+                                            <a href="#">
+                                                <img class="img margin-left-15"
+                                                    src="~/assets/images/product-image/3.jpg" alt="">
+                                            </a>
+                                        </td>
+                                        <td class="product-name td-style"><a href="#">Product Name</a></td>
+                                        <td class="product-price td-style"><span class="amount">$60.00</span></td>
+                                        <td class="product-quantity td-style">
+                                            <div class="cart-plus-minus">
+                                                <input class="cart-plus-minus-box" type="text" value="1">
+                                            </div>
+                                        </td>
+                                        <td class="product-subtotal td-style">$70.00</td>
+                                        <td class="product-remove td-style">
+                                            <a href="#"><i class="fa fa-pencil"></i></a>
+                                            <a href="#"><i class="fa fa-times"></i></a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="cart-shiping-update-box">
+                                    <div class="shop-update">
+                                        <a href="#">Continue Shopping</a>
+                                    </div>
+                                    <div class="shop-clear">
+                                        <a class="button-update">Update Shopping Cart</a>
+                                        <a class="clear" href="#">Clear Shopping Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+
+                        <div class="col-lg-12 col-md-12 martop-30">
+                            <div class="grand-total">
+                                <div class="title-box">
+                                    <h4 class="cart-title bg-gray">Cart Total</h4>
+                                </div>
+                                <h5>Total products <span>$260.00</span></h5>
+                                <div class="total-shipping">
+                                    <h5>Total shipping</h5>
+                                    <ul>
+                                        <li><input type="checkbox"> Standard <span>$20.00</span></li>
+                                        <li><input type="checkbox"> Express <span>$30.00</span></li>
+                                    </ul>
+                                </div>
+                                <h4 class="grand-totall-title">Grand Total <span>$260.00</span></h4>
+                                <a asp-controller="checkout" asp-action="index">Proceed to Checkout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Cart section end-->
+</main>

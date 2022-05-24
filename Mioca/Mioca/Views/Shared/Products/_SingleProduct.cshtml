@@ -1,0 +1,87 @@
+﻿
+@model ProductViewModel;
+
+    <div class="product">
+        <div class="product-item  ">
+            <div class="product-image-box">
+                <a href="product-details.html" class="product-img">
+                    <img src="assets/images/product-image/@Model.Photos[0]" alt="Product">
+                @if (Model.Photos.Count > 0)
+                {<img class="hover-img" src="assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">
+                }
+                else
+                {
+                    <img class="hover-img" src="assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">
+                }
+
+
+                </a>
+                <span class="product-price-badges">
+                    @if (Model.Discount != null)
+                    {
+                        <span class="sale">-@Model.Discount.Percentage.ToString("#.##")%</span>
+                    }
+                    @if (Model.Discount == null && Model.Label != null)
+                    {
+                        <span class="new" style="background-color:@Model.Label.Color">New</span>
+                    }
+
+
+
+                </span>
+                <div class="actions">
+                    <a href="wishlist.html" class="action wishlist" title="Wishlist">
+                        <i class="pe-7s-like"></i>
+                    </a>
+                    <a href="#" class="action quickview" title="Quick view" data-bs-toggle="modal"
+                       data-bs-target="#staticBackdrop"><i class="pe-7s-look"></i></a>
+                    <a href="compare.html" class="action compare" title="Compare">
+                        <i class="pe-7s-refresh-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="content">
+                <div class="details-rating-wrap">
+                    <div class="rating-product">
+                        @for (int i = 1; i <= 5; i++)
+                        {
+                            <i class="fa fa-star @(Model.StarCount+1 <=i ?"empty":"" )"></i>
+                        }
+
+
+                    </div>
+                    <span class="rating-number"><a class="reviews" href="#">( 2 Review )</a></span>
+                </div>
+                <h5 class="product-title">
+                    <a href="product-details.html">
+                        @Model.Name
+                    </a>
+                </h5>
+                <span class="price">
+
+                    @if (Model.Discount == null)
+                    {
+                        <span class="new">@Model.Price.ToString("#.00")₼</span>
+                    }
+                    else
+                    {
+                        var price = Model.Price - (Model.Price * Model.Discount.Percentage / 100);
+                        <span class="new">@price.ToString("#.00")</span>
+                        <span class="old">@Model.Price.ToString("#.00")₼</span>
+                    }
+
+
+
+                </span>
+            </div>
+          
+
+            <button title="Add To Cart" class="add-to-cart">
+                Add
+                To Cart
+            </button>
+        </div>
+
+        <!--Product card end  -->
+    </div>

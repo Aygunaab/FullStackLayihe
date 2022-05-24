@@ -1,0 +1,260 @@
+﻿
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<main>
+    <!--breadcrumb section start-->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 text-center">
+                    <h1 class="page-name ">Checkout</h1>
+                    <nav class="d-flex justify-content-center" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--breadcrumb section end-->
+    <section class="section-style-one">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7">
+                    <div class="billing-info-wrap">
+                        <h3>Billing Details</h3>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-4">
+                                    <label>First Name</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-4">
+                                    <label>Last Name</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="billing-info mb-4">
+                                    <label>Company Name</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="billing-select mb-4">
+                                    <label>Country</label>
+                                    <select>
+                                        <option>Select a country</option>
+                                        <option>Azerbaijan</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="billing-info mb-4">
+                                    <label>Street Address</label>
+                                    <input class="billing-address" placeholder="House number and street name"
+                                           type="text">
+                                    <input placeholder="Apartment, suite, unit etc." type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="billing-info mb-4">
+                                    <label>Town / City</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-4">
+                                    <label>State / County</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-4">
+                                    <label>Postcode / ZIP</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-4">
+                                    <label>Phone</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6">
+                                <div class="billing-info mb-4">
+                                    <label>Email Address</label>
+                                    <input type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout-account marbot-30">
+                            <input class="checkout-toggle w-auto h-auto" type="checkbox" id="CheckInput"
+                                   onclick="Cheked()">
+                            <label>Create an account?</label>
+                        </div>
+                        <div id="chec-box" class="checkout-account-toggle marbot-30" style="display:none;">
+                            <input placeholder="Email address" type="email">
+                            <input placeholder="Password" type="password">
+                            <button class="checkout-btn" type="submit">register</button>
+                        </div>
+                        <div class="additional-info-wrap">
+                            <h4>Additional information</h4>
+                            <div class="additional-info">
+                                <label>Order notes</label>
+                                <textarea placeholder="Notes about your order, e.g. special notes for delivery. "
+                                          name="message"></textarea>
+                            </div>
+                        </div>
+                        <div class="checkout-account martop-25">
+                            <input class="checkout-toggle w-auto h-auto" type="checkbox" id="CheckAuthorAdress"
+                                   onclick="ChekedAdress()">
+                            <label>Ship to a different address?</label>
+                        </div>
+                        <div id="different-adress" class="different-address martop-30" style="display:none;">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>First Name</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Last Name</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-4">
+                                        <label>Company Name</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-select mb-4">
+                                        <label>Country</label>
+                                        <select>
+                                            <option>Select a country</option>
+                                            <option>Azerbaijan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-4">
+                                        <label>Street Address</label>
+                                        <input class="billing-address" placeholder="House number and street name"
+                                               type="text">
+                                        <input placeholder="Apartment, suite, unit etc." type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-4">
+                                        <label>Town / City</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>State / County</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Postcode / ZIP</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Phone</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Email Address</label>
+                                        <input type="text">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 mt-lg-0 mt-sm-5 ">
+                    <div class="order-area">
+                        <h3>Your order</h3>
+                        <div class="order-wrap">
+                            <div class="order-product-info">
+                                <div class="order-hr">
+                                    <ul>
+                                        <li>Product</li>
+                                        <li>Total</li>
+                                    </ul>
+                                </div>
+                                <div class="order-product-info">
+                                    <ul>
+                                        <li>
+                                            <span class="order-name">Product Name X 1</span> <span class="order-price">$100 </span>
+                                        </li>
+                                        <li>
+                                            <span class="order-name">Product Name X 1</span> <span class="order-price">$100 </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="order-shipping-box">
+                                    <ul>
+                                        <li class="order-shipping">Shipping</li>
+                                        <li>Free shipping</li>
+                                    </ul>
+                                </div>
+                                <div class="order-total-box">
+                                    <ul>
+                                        <li class="order-total">Total</li>
+                                        <li>$100</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="order">
+                                <h3>Direct bank transfer</h3>
+                                <div>
+                                    <p>
+                                        Please send a check to Store Name, Store Street, Store Town, Store State /
+                                        County, Store Postcode.
+                                    </p>
+                                </div>
+                                <h3>Check payments</h3>
+                                <div>
+                                    <p>
+                                        Please send a check to Store Name, Store Street, Store Town, Store State /
+                                        County, Store Postcode.
+                                    </p>
+                                </div>
+                                <h3>Cash on delivery</h3>
+                                <div>
+                                    <p>
+                                        Please send a check to Store Name, Store Street, Store Town, Store State /
+                                        County, Store Postcode.
+                                    </p>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="place-order martop-25">
+                            <a class="btn-hover" asp-action="confirm">Place Order</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
