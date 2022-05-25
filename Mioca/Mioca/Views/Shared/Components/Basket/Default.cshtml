@@ -1,6 +1,9 @@
 ﻿
 @model IEnumerable<BasketViewModel>
 
+@{ 
+    decimal total = 0;
+}
     <a class="action-btn cart-btn">
         <i class="pe-7s-shopbag" data-bs-toggle="offcanvas"
            data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"></i> <span class="header-action-num">@Model.Count()</span>
@@ -10,7 +13,7 @@
          aria-labelledby="offcanvasRightLabel">
         <div class="inner">
             <div class="offcanvas-header">
-                <h5 id="offcanvasRightLabel title">Cart</h5>
+                <h5 id="offcanvasRightLabel title">Səbət</h5>
 
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                         aria-label="Close"></button>
@@ -27,6 +30,8 @@
                         {
                             price = item.Product.Price - (item.Product.Price * item.Product.Discount.Percentage / 100);
                         }
+
+                        total += (price * item.Count);
                         <li>
                             <a asp-controller="product" asp-action="index" asp-route-id="@item.Product.Id" class="image-box">
                                 <img src="~/assets/images/product-image/@item.Product.Photos.First()"
@@ -37,17 +42,18 @@
                                 <span class="quantity-price">
                                     @item.Count x <span class="amount">@price.ToString("#.00")</span>
                                 </span>
-                                <a href="~/#" class="remove">×</a>
+                                <a asp-controller="cart" asp-action="remove" asp-route-id="@item.Id" class="remove">×</a>
                             </div>
                         </li>
 
                     }
                 </ul>
-                <h4 class="grand-totall-title justify-content-between d-flex" style="color:#eaaa85;font-size:20px;">Grand Total <span>$260.00</span></h4>
+               
+                <h4 class="grand-totall-title justify-content-between d-flex" style="color:#eaaa85;font-size:20px;">Ümumi məbləğ<span>@total.ToString("#.00") ₼</span></h4>
                 <div class="ofcanvas-buttons">
                     <div class="buttons">
-                        <a href="~/cart.html" class="btn btn-dark mt-5">view cart</a>
-                        <a href="~/cart.html" class="btn btn-checkout mt-5">checkout</a>
+                        <a asp-controller="cart" asp-action="index" class="btn btn-dark mt-5">Səbətə bax</a>
+                        <a asp-controller="checkout" asp-action="index" class="btn btn-checkout mt-5">Sifarişi tamamla</a>
                     </div>
                 </div>
 

@@ -9,5 +9,6 @@ namespace Repository.Repositories.ShoppingRepositories
     {
         IEnumerable<Basket> GetBasketByToken(string token);
         Basket CreateBasket(Basket basket);
+        object GetBasketById(int id);
     }
 }

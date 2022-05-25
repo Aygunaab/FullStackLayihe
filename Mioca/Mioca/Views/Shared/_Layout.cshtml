@@ -177,12 +177,12 @@
                                         <div class="offcanvas-menu mb-4">
                                             <ul>
                                                 <li>
-                                                    <a href="~/#">Home</span></a>
+                                                    <a asp-controller="home" asp-action="index">Home</a>
                                                 </li>
-                                                <li><a href="~/about.html">About</a></li>
-                                                <li><a href="~/shop.html">Shop</a></li>
-                                                <li><a href="~/blog.html">Blog</a></li>
-                                                <li><a href="~/contact.html">Contact Us</a></li>
+                                                <li><a asp-controller="about" asp-action="inden">About</a></li>
+                                                <li><a asp-controller="shop" asp-action="index">Shop</a></li>
+                                                <li><a asp-controller="blog" asp-action="index">Blog</a></li>
+                                                <li><a asp-controller="contact" asp-action="index">Contact Us</a></li>
                                             </ul>
                                         </div>
                                         <!-- Mobil Menu End -->
@@ -252,7 +252,7 @@
                                         <div class="footer-row">
                                             <ul class="align-items-center">
                                                 <li class="li">
-                                                    <a class="footer-link" href="~/about.html">About us</a>
+                                                    <a class="footer-link" asp-controller="about" asp-action="index">About us</a>
                                                 </li>
                                                 <li class="li">
                                                     <a class="footer-link" href="~/#">Delivery information</a>

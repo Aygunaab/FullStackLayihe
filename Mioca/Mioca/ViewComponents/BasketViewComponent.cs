@@ -27,5 +27,6 @@ namespace Mioca.ViewComponents
             var model = _mapper.Map<IEnumerable<Basket>, IEnumerable<BasketViewModel>>(basketitem);
             return View(model);
         }
+
     }
 }

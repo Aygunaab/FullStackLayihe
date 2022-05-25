@@ -27,6 +27,11 @@ namespace Repository.Repositories.ShoppingRepositories
             return basket;
         }
 
+        public object GetBasketById(int id)
+        {
+            return _context.Baskets.Find(id);
+        }
+
         public IEnumerable<Basket> GetBasketByToken(string token)
         {
             return _context.Baskets.Include("Product")
