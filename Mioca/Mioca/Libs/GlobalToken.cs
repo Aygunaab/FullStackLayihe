@@ -18,10 +18,10 @@ namespace Mioca.Libs
             context.HttpContext.Request.Cookies.TryGetValue("token", out string token);
             if (string.IsNullOrEmpty(token))
             {
-                context.HttpContext.Response.Cookies.Append("token", Guid.NewGuid().ToString(), new Microsoft.AspNetCore.Http.CookieOptions 
+                context.HttpContext.Response.Cookies.Append("token", Guid.NewGuid().ToString(), new Microsoft.AspNetCore.Http.CookieOptions
                 {
-                    HttpOnly=true,
-                    Expires=DateTime.Now.AddYears(1)
+                    HttpOnly = true,
+                    Expires = DateTime.Now.AddYears(1)
                 });
             }
         }

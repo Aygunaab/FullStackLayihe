@@ -1,18 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Repository.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
 using Repository.Repositories.ShoppingRepositories;
 using Repository.Repositories.ContentRepositories;
+using Repository.Models;
+using Microsoft.AspNetCore.Identity;
+using Mioca.Settings;
+using EduHome.Services;
 using Mioca.Libs;
 
 namespace Mioca
@@ -30,20 +28,33 @@ namespace Mioca
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddControllers(config =>
-            {
-                config.Filters.Add(new GlobalToken());
-            });
+          
+            services.AddMvc(
+                config =>
+                {
+                    config.Filters.Add(new GlobalToken());
 
-            services.AddAutoMapper(typeof(Startup));
+                });
             services.AddDbContext<MiocaDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Default"),
                 x => x.MigrationsAssembly("Repository")));
+            services.AddIdentity<User, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 5;
+                options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedEmail = true;
+
+            }).AddEntityFrameworkStores<MiocaDbContext>().AddDefaultTokenProviders();
+
+            services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+
+            services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IContentRepository, ContentRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IBasketRepository, BasketRepository>();
+            services.AddTransient<IMailService, MailService>();
 
 
         }

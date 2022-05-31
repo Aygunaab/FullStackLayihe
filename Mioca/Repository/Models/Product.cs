@@ -7,6 +7,8 @@ namespace Repository.Models
 {
     public class Product:BaseEntity
     {
+        public int Categoryid { get; set; }
+
         [Required]
         [MaxLength(100)]
         public string Name { get; set; }
@@ -30,10 +32,10 @@ namespace Repository.Models
         public byte StarCount { get; set; }
         public ICollection<ProductPhoto> Photos { get; set; }
         public ICollection<ProductReview> Reviews { get; set; }
-        public ICollection<ProductCategory> Categories { get; set; }
+        public Category Category { get; set; }
         public ICollection<ProductSocial> Socials { get; set; }
         public ICollection<ProductDiscount> Discounts { get; set; }
         public ICollection<Favorite> Favorites { get; set; }
-        public ICollection<Basket> Basket { get; set; }
+        public ICollection<Basket> Baskets { get; set; }
     }
 }

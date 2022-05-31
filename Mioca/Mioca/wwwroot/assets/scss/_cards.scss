@@ -327,7 +327,7 @@
 			font-weight: 400;
 		}
 		.deal-title {
-			font-size: 36px;
+			font-size: 26px;
 			color: $title-color;
 			font-weight: 500;
 			margin: 0;
@@ -1506,5 +1506,60 @@
 		font-size: 24px !important;
 		font-weight: 700;
 		margin: 0 0 30px !important;
+	}
+}
+.filter__menu__container{
+	margin-bottom: 50px;
+
+	.product__menu{
+		text-align: left;
+    width: 50%;
+		.product__list__option{
+			display: flex;
+			label{
+				color: #6c6c6c;;
+				float: left;
+				font-size: 18px;
+				font-weight: 400;
+				margin-bottom: 0;
+				margin-right: 5px;
+			}
+			.order-single-btn{
+				width: 185px;
+select{
+    background-color: transparent;
+    border-radius: 0;
+    border: solid 1px #6c6c6c;;
+    box-sizing: border-box;
+    clear: both;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-family: Rubik,sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    height: 40px;
+    line-height: 40px;
+    outline: 0;
+    padding-left: 10px;
+    padding-right: 30px;
+    position: relative;
+    text-align: left!important;
+    transition: all .2s ease-in-out;
+    user-select: none;
+    white-space: nowrap;
+    max-width: 200px;
+    width: 200px;
+    color: #6c6c6c;
+    display: flex;
+    align-items: center;
+
+option{
+	padding: 0 10px;
+
+}
+}
+			}
+		}
 	}
 }

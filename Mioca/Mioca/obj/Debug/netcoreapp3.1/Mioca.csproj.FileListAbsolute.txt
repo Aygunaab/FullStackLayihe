@@ -242,7 +242,6 @@ C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Index.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Index.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Checkout\Confirm.cshtml.g.cs
-C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Account\Index.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\About\Help.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Cart\Emptycart.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\libman.json
@@ -255,3 +254,9 @@ C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\TopSeller\Default.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Products\_SingleProduct.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Components\Basket\Default.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Basket\_NavbarBasket.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\MailKit.dll
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\MimeKit.dll
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Shared\BredCrumb\_BreadCrumb.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Account\Index.cshtml.g.cs

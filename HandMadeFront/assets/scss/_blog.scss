@@ -583,6 +583,10 @@
 				transition: all .3s ease 0s;
 				border-color: #d5d5d5;
 				font-weight: 500;
+				&.active{
+background-color: $first-color;
+color: #fff;
+				}
 				&:hover {
 					color: #fff;
 					background-color: $first-color;

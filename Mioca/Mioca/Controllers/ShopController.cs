@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Mioca.Models;
+using Repository.Models;
+using Repository.Repositories.ShoppingRepositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +12,35 @@ namespace Mioca.Controllers
 {
     public class ShopController : Controller
     {
-        public IActionResult Index()
+        private readonly IMapper _mapper;
+        private readonly IProductRepository _product;
+        private readonly ICategoryRepository _category;
+
+        public ShopController(IMapper mapper, IProductRepository product, ICategoryRepository category)
         {
-            return View();
+            _mapper = mapper;
+            _product = product;
+            _category = category;
+        }
+        public IActionResult Index(CategorySearchViewModel search)
+        {
+
+            var category = _category.CategoryById(search.Id);
+            if (category == null) return NotFound();
+            var products= _product.GetproductsByCategoryId(category.Id,search.Limit,((search.Page-1)*search.Limit),Repository.Enums.ProductListing.neness);
+            var productCount = _product.GetProductsCountByCategoryid(category.Id);
+           
+            var model = new CategoryListViewModel
+            {
+                Category = _mapper.Map<Category, CategoryViewModel>(category),
+                Products=_mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products),
+                Count=productCount,
+                Page=search.Page,
+                Limit=search.Limit
+        };
+           
+
+            return View(model);
         }
     }
 }

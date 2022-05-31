@@ -13,6 +13,6 @@ namespace Repository.Models
         [Required]
         [MaxLength(100)]
         public string Logo { get; set; }
-        public ICollection<ProductCategory> Products { get; set; }
+        public ICollection<Product> Products { get; set; }
     }
 }

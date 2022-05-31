@@ -1,4 +1,4 @@
-﻿
+﻿@model AccountViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -33,9 +33,12 @@
                         <div id="login">
                             <div class="login-wrapper">
                                 <div class="login-register-form">
-                                    <form action="#" method="post">
-                                        <input type="text" name="user-name" placeholder="Username">
-                                        <input type="password" name="user-password" placeholder="Password">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <form asp-action="login" method="post">
+                                        <input asp-for="Login.UserName" placeholder="Username">
+                                        <span class="text-danger" asp-validation-for="Login.UserName"></span>
+                                        <input asp-for="Login.Password" placeholder="Password">
+                                        <span class="text-danger" asp-validation-for="Login.Password"></span>
                                         <div class="button-box">
                                             <div class="login-btn">
                                                 <input type="checkbox">
@@ -51,10 +54,23 @@
                         <div id="register">
                             <div class="login-wrapper">
                                 <div class="login-register-form">
-                                    <form action="#" method="post">
-                                        <input type="text" name="user-name" placeholder="Username">
-                                        <input type="password" name="user-password" placeholder="Password">
-                                        <input type="email" name="email" placeholder="Email">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <form asp-action="register" method="post">
+                                        <input asp-for="Register.FullName" placeholder="Fullname">
+                                        <span class="text-danger" asp-validation-for="Register.FullName"></span>
+                                        <input asp-for="Register.UserName" placeholder="UserName">
+                                        <span class="text-danger" asp-validation-for="Register.UserName"></span>
+
+                                        <input asp-for="Register.Email" placeholder="Email">
+                                        <span class="text-danger" asp-validation-for="Register.Email"></span>
+
+                                        <input asp-for="Register.Password" placeholder="Password">
+                                        <span class="text-danger" asp-validation-for="Register.Password"></span>
+
+                                        <input asp-for="Register.ConfirmPassword" placeholder="ConfirmPassword">
+                                        <span class="text-danger" asp-validation-for="Register.ConfirmPassword"></span>
+
+
                                         <div class="button-box">
                                             <button type="submit"><span>Register</span></button>
                                         </div>

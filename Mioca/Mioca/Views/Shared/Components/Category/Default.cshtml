@@ -1,6 +1,5 @@
 ﻿@model IEnumerable<CategoryViewModel>
-<div class="col-12 mb-5 arrow arrow-style-one filter">
-    <ul class="slider multiple-items button-group filter-button-group">
+
         @foreach (var item in Model)
         {
             <li data-filter=".@item.Name">
@@ -11,5 +10,4 @@
             </li>
         }
 
-    </ul>
-</div>
+    

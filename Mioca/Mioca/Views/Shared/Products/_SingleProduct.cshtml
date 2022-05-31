@@ -5,13 +5,13 @@
         <div class="product-item  ">
             <div class="product-image-box">
                 <a href="product-details.html" class="product-img">
-                    <img src="assets/images/product-image/@Model.Photos[0]" alt="Product">
+                    <img src="~/assets/images/product-image/@Model.Photos.First()" alt="Product">
                 @if (Model.Photos.Count > 0)
-                {<img class="hover-img" src="assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">
+                {<img class="hover-img" src="~/assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">
                 }
                 else
                 {
-                    <img class="hover-img" src="assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">
+                    <img class="hover-img" src="~/assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">
                 }
 
 
@@ -77,10 +77,10 @@
             </div>
           
 
-            <button title="Add To Cart" class="add-to-cart">
+            <a asp-controller="cart" asp-action="AddBasket" asp-route-id="@Model.Id" title="Add To Cart" class="add-to-cart">
                 Add
                 To Cart
-            </button>
+            </a>
         </div>
 
         <!--Product card end  -->

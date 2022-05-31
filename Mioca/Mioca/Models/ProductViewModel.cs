@@ -15,7 +15,7 @@ namespace Mioca.Models
         public IList<string>Photos { get; set; }
         public LabelViewModel Label { get; set; }
         public DiscountViewModel Discount { get; set; }
-        public IEnumerable< ProductCategory >Categoris { get; set; }
-       
+        public CategoryViewModel Category { get; set; }
+
     }
 }

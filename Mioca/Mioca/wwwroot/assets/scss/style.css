@@ -171,12 +171,13 @@
 }
 
 .header-nav .action .search-btn .dropdown-menu {
-  width: 200px;
+  width: 200px !important;
   top: 20px !important;
-  right: 0;
-  border-radius: 20px;
-  height: 40px;
-  padding: 0;
+  right: 0 !important;
+  border-radius: 20px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  z-index: 99;
 }
 
 .header-nav .action .search-btn .dropdown-menu input {
@@ -194,6 +195,33 @@
 
 .header-nav .action .search-btn .dropdown-menu .dropdown-item {
   padding: 0px;
+}
+
+.header-nav .action .shop .header-action-num {
+  font-size: 11px;
+  font-weight: 700;
+  position: absolute;
+  z-index: 2;
+  top: -10px;
+  right: -7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  border-radius: 50%;
+  background-color: #eaaa85;
+  width: 21px;
+  height: 21px;
 }
 
 .header-nav .mobil-menu {
@@ -408,6 +436,107 @@
 
 .offcanvas .inner .offcanvas-body .ofcanvas-buttons .buttons a.btn-checkout {
   background-color: #eaaa85;
+}
+
+.dropdown-menu {
+  width: 300px;
+  padding: 20px !important;
+  border-top: 2px solid #eaaa85 !important;
+}
+
+.dropdown-menu .minicart-product {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+  margin-top: 0;
+  font-size: 13px;
+}
+
+.dropdown-menu .minicart-product li + li {
+  margin-top: 20px;
+}
+
+.dropdown-menu .minicart-product li {
+  position: relative;
+}
+
+.dropdown-menu .minicart-product li a {
+  color: #2d2d2d;
+  height: auto;
+  line-height: inherit;
+}
+
+.dropdown-menu .minicart-product li a figure {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  position: absolute;
+  margin: 0;
+  left: 0;
+  top: 0;
+  border: 1px solid #ededed;
+}
+
+.dropdown-menu .minicart-product li a figure img {
+  width: auto;
+  height: 50px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(1.1);
+          transform: translate(-50%, -50%) scale(1.1);
+}
+
+.dropdown-menu .minicart-product li a strong {
+  color: #444;
+  margin-top: 5px;
+  display: inline-block;
+  color: #333;
+  font-weight: 700;
+  margin-left: 70px;
+}
+
+.dropdown-menu .minicart-product li a strong span {
+  display: block;
+  font-weight: normal;
+}
+
+.dropdown-menu .total-drop {
+  font-size: 16px;
+}
+
+.dropdown-menu .total-drop strong {
+  float: left;
+}
+
+.dropdown-menu .total-drop span {
+  float: right;
+  font-weight: 600;
+}
+
+.dropdown-menu .total-drop .btn-cart {
+  border: 2px solid #eaaa85;
+  color: #424242;
+  padding: 10px 30px;
+  background: none;
+  margin-top: 20px;
+}
+
+.dropdown-menu .total-drop .btn-cart:hover {
+  background-color: #eaaa85;
+  color: #fff;
+}
+
+.dropdown-menu .total-drop .btn-cart.checkout {
+  border: none;
+  background-color: #eaaa85;
+  color: #fff;
+}
+
+.dropdown-menu .total-drop .btn-cart.checkout:hover {
+  background-color: #fff;
+  color: #424242;
+  border: 2px solid #eaaa85;
 }
 
 .hero {
@@ -929,7 +1058,7 @@
 }
 
 .deal-card-inner .deal-content .deal-title {
-  font-size: 36px;
+  font-size: 26px;
   color: #424242;
   font-weight: 500;
   margin: 0;
@@ -2354,6 +2483,76 @@
   font-size: 24px !important;
   font-weight: 700;
   margin: 0 0 30px !important;
+}
+
+.filter__menu__container {
+  margin-bottom: 50px;
+}
+
+.filter__menu__container .product__menu {
+  text-align: left;
+  width: 50%;
+}
+
+.filter__menu__container .product__menu .product__list__option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.filter__menu__container .product__menu .product__list__option label {
+  color: #6c6c6c;
+  float: left;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-right: 5px;
+}
+
+.filter__menu__container .product__menu .product__list__option .order-single-btn {
+  width: 185px;
+}
+
+.filter__menu__container .product__menu .product__list__option .order-single-btn select {
+  background-color: transparent;
+  border-radius: 0;
+  border: solid 1px #6c6c6c;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  clear: both;
+  cursor: pointer;
+  display: block;
+  float: left;
+  font-family: Rubik,sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  height: 40px;
+  line-height: 40px;
+  outline: 0;
+  padding-left: 10px;
+  padding-right: 30px;
+  position: relative;
+  text-align: left !important;
+  -webkit-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  white-space: nowrap;
+  max-width: 200px;
+  width: 200px;
+  color: #6c6c6c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.filter__menu__container .product__menu .product__list__option .order-single-btn select option {
+  padding: 0 10px;
 }
 
 .product-section {
@@ -4201,6 +4400,11 @@
   font-weight: 500;
 }
 
+.pagination .pages .page-item .page-link.active {
+  background-color: #eaaa85;
+  color: #fff;
+}
+
 .pagination .pages .page-item .page-link:hover {
   color: #fff;
   background-color: #eaaa85;
@@ -5431,5 +5635,43 @@ body .rating-number {
   margin-left: 6px;
   color: #9f9e9e;
   display: none;
+}
+
+body .shop-nav-item .btn-group .dropdown-toggle::after {
+  content: none !important;
+}
+
+body .shop-nav-item .btn-group .dropdown-menu {
+  left: -82px !important;
+}
+
+body .shop-nav-item .btn-group .dropdown-menu.show {
+  -webkit-transform: translate(0px, 95px) !important;
+          transform: translate(0px, 95px) !important;
+}
+
+body .shop-nav-item .btn-group .dropdown-menu .category {
+  display: block;
+}
+
+body .shop-nav-item .btn-group .dropdown-menu .category li {
+  margin-bottom: 20px;
+}
+
+body .shop-nav-item .btn-group .dropdown-menu .category li a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body .shop-nav-item .btn-group .dropdown-menu .category li a img {
+  height: 30px;
+  width: 30px;
+  margin-right: 50px;
+}
+
+body .shop-nav-item .btn-group .dropdown-menu .category li a span {
+  margin-left: 15px;
+  font-size: 17px;
 }
 /*# sourceMappingURL=style.css.map */

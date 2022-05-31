@@ -41,11 +41,36 @@ namespace Repository.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     FullName = table.Column<string>(maxLength: 100, nullable: false),
-                    ProfilImage = table.Column<string>(maxLength: 100, nullable: false)
+                    ProfilImage = table.Column<string>(maxLength: 100, nullable: true),
+                    Token = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Banners",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<bool>(maxLength: 50, nullable: false),
+                    AddedDate = table.Column<DateTime>(maxLength: 50, nullable: false),
+                    ModifiedDate = table.Column<DateTime>(maxLength: 50, nullable: false),
+                    AddedBy = table.Column<string>(maxLength: 50, nullable: true),
+                    ModifiedBy = table.Column<string>(maxLength: 50, nullable: true),
+                    Category = table.Column<string>(maxLength: 50, nullable: false),
+                    Title = table.Column<string>(maxLength: 100, nullable: false),
+                    SubTitle = table.Column<string>(maxLength: 100, nullable: false),
+                    ActionText = table.Column<string>(maxLength: 50, nullable: true),
+                    EndPoint = table.Column<string>(maxLength: 200, nullable: true),
+                    Image = table.Column<string>(maxLength: 100, nullable: false),
+                    CardWidth = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Banners", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -167,8 +192,8 @@ namespace Repository.Migrations
                     Subtitle = table.Column<string>(maxLength: 20, nullable: false),
                     Price = table.Column<decimal>(nullable: false),
                     DiscountPrice = table.Column<decimal>(nullable: true),
-                    ActionText = table.Column<string>(maxLength: 50, nullable: false),
-                    Endpoint = table.Column<string>(maxLength: 200, nullable: false),
+                    ActionText = table.Column<string>(maxLength: 50, nullable: true),
+                    Endpoint = table.Column<string>(maxLength: 200, nullable: true),
                     Image = table.Column<string>(maxLength: 100, nullable: false)
                 },
                 constraints: table =>
@@ -313,6 +338,7 @@ namespace Repository.Migrations
                     ModifiedDate = table.Column<DateTime>(maxLength: 50, nullable: false),
                     AddedBy = table.Column<string>(maxLength: 50, nullable: true),
                     ModifiedBy = table.Column<string>(maxLength: 50, nullable: true),
+                    Categoryid = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
                     Description = table.Column<string>(maxLength: 500, nullable: false),
                     Text = table.Column<string>(type: "ntext", nullable: false),
@@ -328,11 +354,43 @@ namespace Repository.Migrations
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Products_Categories_Categoryid",
+                        column: x => x.Categoryid,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Products_Labels_LabelId",
                         column: x => x.LabelId,
                         principalTable: "Labels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Baskets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Status = table.Column<bool>(maxLength: 50, nullable: false),
+                    AddedDate = table.Column<DateTime>(maxLength: 50, nullable: false),
+                    ModifiedDate = table.Column<DateTime>(maxLength: 50, nullable: false),
+                    AddedBy = table.Column<string>(maxLength: 50, nullable: true),
+                    ModifiedBy = table.Column<string>(maxLength: 50, nullable: true),
+                    Token = table.Column<string>(nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    Count = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Baskets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Baskets_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -364,32 +422,6 @@ namespace Repository.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ProductCategories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(nullable: false),
-                    CategoryId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ProductCategories", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ProductCategories_Categories_CategoryId",
-                        column: x => x.CategoryId,
-                        principalTable: "Categories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_ProductCategories_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -545,6 +577,11 @@ namespace Repository.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Baskets_ProductId",
+                table: "Baskets",
+                column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Favorites_ProductId",
                 table: "Favorites",
                 column: "ProductId");
@@ -553,16 +590,6 @@ namespace Repository.Migrations
                 name: "IX_Favorites_UserId",
                 table: "Favorites",
                 column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductCategories_CategoryId",
-                table: "ProductCategories",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ProductCategories_ProductId",
-                table: "ProductCategories",
-                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ProductDiscounts_DiscountId",
@@ -588,6 +615,11 @@ namespace Repository.Migrations
                 name: "IX_ProductReviews_UserId",
                 table: "ProductReviews",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Products_Categoryid",
+                table: "Products",
+                column: "Categoryid");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Products_LabelId",
@@ -623,10 +655,13 @@ namespace Repository.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Favorites");
+                name: "Banners");
 
             migrationBuilder.DropTable(
-                name: "ProductCategories");
+                name: "Baskets");
+
+            migrationBuilder.DropTable(
+                name: "Favorites");
 
             migrationBuilder.DropTable(
                 name: "ProductDiscounts");
@@ -653,9 +688,6 @@ namespace Repository.Migrations
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Categories");
-
-            migrationBuilder.DropTable(
                 name: "Discounts");
 
             migrationBuilder.DropTable(
@@ -666,6 +698,9 @@ namespace Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "Socials");
+
+            migrationBuilder.DropTable(
+                name: "Categories");
 
             migrationBuilder.DropTable(
                 name: "Labels");

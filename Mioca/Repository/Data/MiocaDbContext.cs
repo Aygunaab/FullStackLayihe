@@ -18,7 +18,6 @@ namespace Repository.Data
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Label> Labels { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<ProductDiscount> ProductDiscounts { get; set; }
         public DbSet<ProductPhoto>ProductPhotos { get; set; }
         public DbSet<ProductReview>ProductReviews { get; set; }

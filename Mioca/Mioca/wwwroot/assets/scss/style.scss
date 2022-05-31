@@ -425,4 +425,42 @@ body {
 		color: #9f9e9e;
 		display: none;
 	}
+
+	.shop-nav-item{
+.btn-group{
+	.dropdown-toggle{
+		&::after{
+			content: none !important;
+		}
+
+	}
+	.dropdown-menu{
+		left: -82px!important;
+		&.show{
+			transform: translate(0px, 95px) !important;
+
+		}
+		.category{
+			display: block;
+li{
+	margin-bottom: 20px;
+	a{
+		display: flex;
+		
+		img{
+			
+			height: 30px;
+			width: 30px;
+			margin-right: 50px;
+		}
+		span{
+			margin-left: 15px;
+			font-size: 17px;
+		}
+	}
+}
+		}
+	}
+}
+	}
 }

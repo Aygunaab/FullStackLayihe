@@ -1,0 +1,56 @@
+﻿
+
+@model IEnumerable<BasketViewModel>
+
+@{
+    decimal total = 0;
+}
+<div class="shop user-btn">
+
+    <div class="btn-group">
+
+        <a class="btn  dropdown-toggle" data-bs-toggle="dropdown"
+           aria-expanded="false">
+            <i class="pe-7s-shopbag"></i><span class="header-action-num">@Model.Count()</span>
+        </a>
+        <div class="dropdown-menu" style="overflow-y: scroll; height:300px">
+            <ul class="minicart-product">
+                @foreach (var item in Model)
+
+                {
+
+                    decimal price = item.Product.Price;
+                    if (item.Product.Discount != null)
+                    {
+                        price = item.Product.Price - (item.Product.Price * item.Product.Discount.Percentage / 100);
+                    }
+
+                    total += (price * item.Count);
+                    <li class="d-flex">
+                        <a asp-controller="product" asp-action="index" asp-route-id="@item.Product.Id">
+                            <figure><img src="~/assets/images/product-image/@item.Product.Photos.First()" alt="" width="50" height="50"></figure>
+                            <strong><span>@item.Product.Name</span> @item.Count x @price.ToString("#.00")₼ </strong>
+
+                        </a>
+                        <a asp-controller="cart" asp-action="remove" asp-route-id="@item.Id" class="remove remove-header-basket-item ms-2">×</a>
+                        <hr class="dropdown-divider">
+                    </li>
+                }
+
+            </ul>
+            <div class="total-drop mt-2">
+                <div class="clearfix"><strong>Total</strong><span>@total.ToString("#.00") ₼</span></div>
+                <a asp-controller="cart" asp-action="index" class="btn btn-cart">View Cart</a>
+                <a asp-controller="checkout" asp-action="index" class="btn btn-cart checkout">Checkout</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+

@@ -12,28 +12,21 @@
                         </p>
                     </div>
                 </div>
-                <vc:category></vc:category>
+                <div class="col-12 mb-5 arrow arrow-style-one filter">
+                    <ul class="slider multiple-items button-group filter-button-group">
+                        <vc:category></vc:category>
+                    </ul>
+                </div>
             </div>
-            <div class=" row shoping-items">
+            <div class="row shoping-items">
                 @foreach (var item in Model)
                 {
-                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 height-resize @foreach (var cat in item.Categoris)
-                    {
-                        @cat.Category.Name;
-                    }
-                    ">
-                            <partial name="Products/_SingleProduct" model="item"/>
-    
-                        </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 height-resize @item.Category.Name">
+                        <partial name="Products/_SingleProduct" model="item" />
+
+                    </div>
 
                 }
-
-
-
-
-
-
-
             </div>
-        </div>
+            </div>
     </section>
