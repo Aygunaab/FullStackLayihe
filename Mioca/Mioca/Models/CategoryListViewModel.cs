@@ -15,6 +15,9 @@ namespace Mioca.Models
         public int Count { get; set; }
         public int Page { get; set; }
         public int Limit { get; set; }
+       public  decimal? MinPrice { get; set; }
+        public decimal? MaxPrice { get; set; }
+      
     }
     public class CategorySearchViewModel
     {
@@ -22,9 +25,14 @@ namespace Mioca.Models
         {
             Page = 1;
             Limit = 15;
+          
         }
         public int Id { get; set; }
         public int Page { get; set; }
         public int Limit { get; set; }
+        public decimal? MinPrice { get; set; }
+        public decimal? MaxPrice { get; set; }
+        
+
     }
 }

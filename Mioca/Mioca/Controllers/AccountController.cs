@@ -4,59 +4,76 @@ using EduHome.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Mioca.Models;
+using Repository.Data;
 using Repository.Models;
-using Repository.Repositories.ShoppingRepositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Mioca.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<User> _userManager;
-        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<CustomUser> _userManager;
+        private readonly SignInManager<CustomUser> _signInManager;
+        private readonly MiocaDbContext _contet;
         private readonly IMailService _mailService;
         private readonly IMapper _mapper;
-        private readonly IBasketRepository _basket;
+     
 
 
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, IMailService mailService, IMapper mapper, IBasketRepository basket)
+        public AccountController(UserManager<CustomUser> userManager, SignInManager<CustomUser> signInManager, IMailService mailService, IMapper mapper, MiocaDbContext contet)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _mailService = mailService;
             _mapper = mapper;
-            _basket = basket;
+            _contet = contet;
         }
 
-        public IActionResult Index()
+        public IActionResult Login()
         {
             return View();
         }
-       
+
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel login)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
+           
             if (!ModelState.IsValid) return View();
-            var user = await _userManager.FindByNameAsync(login.UserName);
+
+            var user = await _userManager.FindByNameAsync(model.Login);
+
+            if (user == null) user = await _userManager.FindByEmailAsync(model.Login);
+
             if (user == null)
             {
-                ModelState.AddModelError(" ", "Invalid credential");
+                ModelState.AddModelError("", "Invalid credentials");
                 return View();
             }
-            var signinResult = await _signInManager.PasswordSignInAsync(user, login.Password, true, false);
+
+            if (!user.IsActive)
+            {
+                ModelState.AddModelError("", "Your account was blocked by admin");
+                return View();
+            }
+
+            var signinResult = await _signInManager.PasswordSignInAsync(model.Login, model.Password, model.RememberMe,false);
             if (!signinResult.Succeeded)
             {
-                ModelState.AddModelError(" ", "Invalid");
+                ModelState.AddModelError("", "Invalid Credentials");
                 return View();
             }
+
             return RedirectToAction("Index", "Home");
+
         }
-       
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel register)
@@ -68,15 +85,19 @@ namespace Mioca.Controllers
                 ModelState.AddModelError("UserName", "Bu adda user movcuddur");
                 return View();
             }
-            var newuser = _mapper.Map<RegisterViewModel, User>(register);
-            IdentityResult identityresult = await _userManager.CreateAsync(newuser, register.Password);
-            if (!identityresult.Succeeded)
+            var newuser = _mapper.Map<RegisterViewModel, CustomUser>(register);
+           var identityresult = await _userManager.CreateAsync(newuser, register.Password);
+            if (identityresult.Succeeded)
+            {
+                await _signInManager.SignInAsync(newuser, false);
+                return RedirectToAction("Index", "Home");
+            }
+            else
             {
                 foreach (var error in identityresult.Errors)
                 {
-                    ModelState.AddModelError(" ", error.Description);
+                    ModelState.AddModelError("", error.Description);
                 }
-                return View();
             }
             var token = await _userManager.GenerateEmailConfirmationTokenAsync(newuser);
             var link = Url.Action(nameof(ConfirmEmail), "Account", new { newuser.UserName, token }, Request.Scheme);
@@ -87,7 +108,7 @@ namespace Mioca.Controllers
                 Body = link
             });
 
-            return RedirectToAction("Index", "Home");
+            return View("Index", "Home");
         }
 
         public async Task<IActionResult> ConfirmEmail(string username, string token)
@@ -99,6 +120,11 @@ namespace Mioca.Controllers
             {
                 return BadRequest();
             }
+            return RedirectToAction("Index", "Home");
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
 

@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Identity;
 using Mioca.Settings;
 using EduHome.Services;
 using Mioca.Libs;
+using System;
 
 namespace Mioca
 {
@@ -29,16 +30,20 @@ namespace Mioca
         {
             services.AddControllersWithViews();
           
-            services.AddMvc(
-                config =>
-                {
-                    config.Filters.Add(new GlobalToken());
+            //services.AddMvc(
+            //    config =>
+            //    {
+            //        config.Filters.Add(new GlobalToken());
 
-                });
+            //    });
             services.AddDbContext<MiocaDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Default"),
                 x => x.MigrationsAssembly("Repository")));
-            services.AddIdentity<User, IdentityRole>(options =>
+
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+            });
+            services.AddIdentity<CustomUser, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 5;
                 options.User.RequireUniqueEmail = true;
@@ -55,7 +60,7 @@ namespace Mioca
             services.AddTransient<IProductRepository, ProductRepository>();
             services.AddTransient<IBasketRepository, BasketRepository>();
             services.AddTransient<IMailService, MailService>();
-
+           
 
         }
 
@@ -76,11 +81,16 @@ namespace Mioca
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllerRoute(
+            name: "areas",
+            pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+          );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Data;
+using Repository.DTO;
 using Repository.Enums;
 using Repository.Models;
 using System;
@@ -13,9 +14,13 @@ namespace Repository.Repositories.ShoppingRepositories
     {
         IEnumerable<Product> GetProductBestSeeling(int limit);
         IEnumerable<Product> GetProductShop(int limit);
-        IEnumerable<Product>GetproductsByCategoryId(int categoryId,int take,int skip, ProductListing orderBy);
+        IEnumerable<Product> GetproductsByCategoryId(int categoryId, int skip, int take, ProductListing orderBy);
        int GetProductsCountByCategoryid(int CategoryId);
-
+        Product GetProductByDetailsId(int id);
+        IEnumerable<Product> GetFilterbyCategoryid(int categoryId ,decimal? MinPrice, decimal? MaxPrice);
+       IEnumerable<Product> SearchProducts(string searchString);
+        IEnumerable<Product> GetProductMaxMinPrice(decimal? MinPrice, decimal? MaxPrice);
+        Product GetProductById(int id);
     }
     public  class ProductRepository:IProductRepository
     {
@@ -24,6 +29,18 @@ namespace Repository.Repositories.ShoppingRepositories
         public ProductRepository(MiocaDbContext context)
         {
             _context = context;
+        }
+
+        public IEnumerable<Product> GetFilterbyCategoryid(int categoryId, decimal? MinPrice, decimal? MaxPrice)
+        {
+            var products = _context.Products.Include("Photos")
+                                      .Include("Label")
+                                      .Include("Discounts")
+                                      .Include("Discounts.Discount")
+                                      .Where(p => (MinPrice != null ? p.Price >= MinPrice : true) && (MaxPrice != null ? p.Price <= MaxPrice : true))
+                                      .Where(p => p.Categoryid == categoryId)
+                                      .Where(p => p.Status);
+            return products;
         }
 
         public IEnumerable<Product> GetProductBestSeeling(int limit)
@@ -40,16 +57,49 @@ namespace Repository.Repositories.ShoppingRepositories
                                     .ToList();
         }
 
-       
-        public IEnumerable<Product> GetproductsByCategoryId(int categoryId, int take, int skip, ProductListing orderBy)
+        public Product GetProductByDetailsId(int id)
         {
-            var products = _context.Products.Include("Photos")
+            return _context.Products.Include("Photos")
                                      .Include("Label")
+                                     .Include("Category")
                                      .Include("Discounts")
                                      .Include("Discounts.Discount")
-                                     .Where(p => p.Categoryid == categoryId)
-                                     .Where(p => p.Status);
+                                     .Include("Category")
+                                     .Include("Reviews")
+                                     .Include("Reviews.User")
+                                     .Include("Specs")
+                                     .Include("Socials")
+                                     .Include("Socials.Social")
 
+                                     .FirstOrDefault(p => p.Status && p.Id == id);
+        }
+
+        public Product GetProductById(int id)
+        {
+            return _context.Products.FirstOrDefault(p => p.Status && p.Id == id);
+        }
+
+        public IEnumerable<Product> GetProductMaxMinPrice(decimal? MinPrice, decimal? MaxPrice)
+        {
+            var filter = _context.Products.Include("Photos")
+                                    .Include("Label")
+                                    .Include("Discounts")
+                                    .Include("Discounts.Discount")
+                                    .Where(p => (MinPrice != null ? p.Price >= MinPrice : true) && (MaxPrice != null ? p.Price <= MaxPrice : true))
+                                    .Where(p => p.Status).ToList();
+                                    
+            return filter;
+        }
+
+        public IEnumerable<Product> GetproductsByCategoryId(int categoryId, int skip, int take, ProductListing orderBy)
+        {
+            var products = _context.Products.Include("Photos")
+                                    .Include("Label")
+                                    .Include("Discounts")
+                                    .Include("Discounts.Discount")
+                                    .Where(p => p.Categoryid == categoryId)
+                                    .Where(p => p.Status);
+           
             switch (orderBy)
             {
                 case ProductListing.neness:
@@ -63,9 +113,11 @@ namespace Repository.Repositories.ShoppingRepositories
                     break;
                 default:
                     break;
-            };
+            }
            
-            return products.Take(take).Skip(skip).ToList();
+
+
+            return products.Skip(skip).Take(take).ToList();
         }
 
         public int GetProductsCountByCategoryid(int CategoryId)
@@ -86,6 +138,11 @@ namespace Repository.Repositories.ShoppingRepositories
                                      .OrderByDescending(p => p.AddedDate)
                                      .Take(limit)
                                      .ToList();
+        }
+
+        public IEnumerable<Product> SearchProducts(string searchString)
+        {
+            return _context.Products.Where(p => p.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
         }
     }
 }

@@ -234,7 +234,6 @@ C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\zh-Hans\Micr
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Shop\Index.cshtml.g.cs
-C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Products\Index.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Blog\Index.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Blog\Details.cshtml.g.cs
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Contact\Index.cshtml.g.cs
@@ -259,4 +258,13 @@ C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\MailKit.dll
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\MimeKit.dll
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll
 C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Shared\BredCrumb\_BreadCrumb.cshtml.g.cs
-C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Account\Index.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Search\_search.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\ProdDetail\Index.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Shared\_Layout.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Home\Index.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Index.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Category\Create.cshtml.g.cs
+C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs

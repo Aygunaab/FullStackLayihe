@@ -17,7 +17,7 @@ namespace Repository.Models
         [Required]
         [MaxLength(500)]
         public string Mesage { get; set; }
-        public User User { get; set; }
+        public CustomUser User { get; set; }
         public Product Product { get; set; }
 
     }

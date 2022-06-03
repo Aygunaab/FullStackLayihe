@@ -27,20 +27,26 @@ namespace Mioca.Controllers
 
             var category = _category.CategoryById(search.Id);
             if (category == null) return NotFound();
-            var products= _product.GetproductsByCategoryId(category.Id,search.Limit,((search.Page-1)*search.Limit),Repository.Enums.ProductListing.neness);
+            var products= _product.GetproductsByCategoryId(category.Id,((search.Page-1)*search.Limit), search.Limit, Repository.Enums.ProductListing.PriceAsc);
             var productCount = _product.GetProductsCountByCategoryid(category.Id);
            
             var model = new CategoryListViewModel
             {
                 Category = _mapper.Map<Category, CategoryViewModel>(category),
                 Products=_mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products),
-                Count=productCount,
-                Page=search.Page,
-                Limit=search.Limit
-        };
+                MinPrice = search.MinPrice,
+                MaxPrice = search.MaxPrice,
+                Count = productCount,
+                Limit = search.Limit,
+                Page = search.Page,
+              
+               
+                
+            };
            
 
             return View(model);
         }
+     
     }
 }

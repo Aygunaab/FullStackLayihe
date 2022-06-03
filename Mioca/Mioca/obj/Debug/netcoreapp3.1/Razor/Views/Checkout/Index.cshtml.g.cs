@@ -28,7 +28,7 @@ using Mioca.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using Repository.Models;
 
 #line default
 #line hidden
@@ -40,8 +40,15 @@ using Repository.Enums;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5ead6df0e9fe41d19efd3bf0eece487358fd0e74", @"/Views/Checkout/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"94991d457a1828761becb784737d0d36be7bb5c3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c16e4871e289cb2a74a5f7660158c90c306208eb", @"/Views/_ViewImports.cshtml")]
     public class Views_Checkout_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("btn-hover"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -131,7 +138,7 @@ using Repository.Enums;
                                     <label>Country</label>
                                     <select>
                                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e746842", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e747018", async() => {
                 WriteLiteral("Select a country");
             }
             );
@@ -145,7 +152,7 @@ using Repository.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e747850", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e748026", async() => {
                 WriteLiteral("Azerbaijan");
             }
             );
@@ -251,7 +258,7 @@ using Repository.Enums;
                                 <div class=""col-lg-12"">
                                  ");
             WriteLiteral("   <div class=\"billing-select mb-4\">\r\n                                        <label>Country</label>\r\n                                        <select>\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e7414410", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e7414586", async() => {
                 WriteLiteral("Select a country");
             }
             );
@@ -265,7 +272,7 @@ using Repository.Enums;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e7415423", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("option", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e7415599", async() => {
                 WriteLiteral("Azerbaijan");
             }
             );
@@ -391,7 +398,7 @@ using Repository.Enums;
                         </div>
                         <div class=""place-order martop-25"">
                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e7422470", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5ead6df0e9fe41d19efd3bf0eece487358fd0e7422646", async() => {
                 WriteLiteral("Place Order");
             }
             );

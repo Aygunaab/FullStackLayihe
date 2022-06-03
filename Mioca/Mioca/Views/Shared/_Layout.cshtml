@@ -1,4 +1,7 @@
 ﻿
+@inject UserManager<CustomUser> UserManager
+@inject SignInManager<CustomUser> SignInManager
+@inject RoleManager<IdentityRole> RoleManager
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +49,7 @@
                                             </a>
                                             <div class="dropdown-menu">
                                                 <ul class="category">
-                                                   <vc:category></vc:category>
+                                                    <vc:category></vc:category>
                                                 </ul>
                                             </div>
                                         </div>
@@ -71,18 +74,17 @@
                                            aria-expanded="false">
                                             <i class="pe-7s-search"></i>
                                         </a>
-                                        <div class="dropdown-menu">
 
-                                            <a class="dropdown-item" href="#">
-                                                <form class="form-inline d-flex">
-                                                    <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                                           aria-label="Search">
-                                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                                                        <i class="pe-7s-search"></i>
-                                                    </button>
-                                                </form>
-                                            </a>
-                                        </div>
+
+                                        <ul class="dropdown-menu" id="search-result" style="height:auto !important;width:auto !important">
+                                            <li>
+                                                <input style="height:40px !important;width:200px !important" id="searchinput" class="form-control mr-sm-2" type="search" placeholder="Search"
+                                                       aria-label="Search">
+                                            </li>
+
+                                        </ul>
+
+
                                     </div>
                                 </div>
                             </li>
@@ -96,23 +98,39 @@
                                         </a>
                                         <div class="dropdown-menu">
                                             <ul>
-                                                <li>
-                                                    <a class="dropdown-item btn" style="background-color: #eaaa85" asp-controller="account"asp-action="index">Daxil ol/Qeydiyyatdan keç</a>
-                                                    <hr class="dropdown-divider">
+                                                @if (SignInManager.IsSignedIn(User))
+                                                {
+                                                    <li>
+                                                        <a class="dropdown-item" href="account.html"> @UserManager.GetUserName(User)</a>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="account.html">My account</a>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
 
-                                                </li>
-                                                <li>
-                                                <li><a class="dropdown-item" href="account.html">My account</a>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                               
-                                                <li><a class="dropdown-item" href="checkout.html">Checkout</a>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                
+                                                    <li>
+                                                        <a class="dropdown-item" href="checkout.html">Checkout</a>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" asp-controller="account" asp-action="logout">Logout</a>
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                }
+                                                else 
+                                                {
+                                                    <li>
+                                                        <a class="dropdown-item btn" style="background-color: #eaaa85" asp-controller="account" asp-action="login">Daxil ol/Qeydiyyatdan keç</a>
+                                                        <hr class="dropdown-divider">
+
+                                                    </li>
+
+
+                                                }
 
                                             </ul>
-                                        </div>
+                                       </div>
                                     </div>
                                 </div>
                             </li>

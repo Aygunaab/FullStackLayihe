@@ -4,7 +4,7 @@
     <div class="product">
         <div class="product-item  ">
             <div class="product-image-box">
-                <a href="product-details.html" class="product-img">
+                <a asp-controller="ProdDetail" asp-action="index" asp-route-id="@Model.Id"  class="product-img">
                     <img src="~/assets/images/product-image/@Model.Photos.First()" alt="Product">
                 @if (Model.Photos.Count > 0)
                 {<img class="hover-img" src="~/assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">

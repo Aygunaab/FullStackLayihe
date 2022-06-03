@@ -37,5 +37,6 @@ namespace Repository.Models
         public ICollection<ProductDiscount> Discounts { get; set; }
         public ICollection<Favorite> Favorites { get; set; }
         public ICollection<Basket> Baskets { get; set; }
+        public ICollection<ProductSpecsification>Specs{ get; set; }
     }
 }

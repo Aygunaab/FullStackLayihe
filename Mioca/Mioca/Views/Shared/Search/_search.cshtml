@@ -1,0 +1,14 @@
+﻿@model List<ProductViewModel>
+
+@if (Model.Count > 0)
+{
+
+    @foreach (var product in Model)
+    {
+        <li style="border-top: 1px solid bisque; margin-left:20px;">@product.Name</li>
+    }
+}
+            else
+            {
+                <li>Nəticə tapılmadı</li>
+            }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Repository.Models;
 using System;
@@ -7,7 +8,7 @@ using System.Text;
 
 namespace Repository.Data
 {
-   public class MiocaDbContext:IdentityDbContext<User>
+   public class MiocaDbContext:IdentityDbContext<CustomUser>
     {
 
         public MiocaDbContext(DbContextOptions<MiocaDbContext> options) : base(options){

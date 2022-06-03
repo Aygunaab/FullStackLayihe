@@ -28,7 +28,7 @@ using Mioca.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using Repository.Models;
 
 #line default
 #line hidden
@@ -40,8 +40,15 @@ using Repository.Enums;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"dcdae9c0ce0496f3bf579cb5d97e3bd58ae2f1e1", @"/Views/Cart/Emptycart.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"94991d457a1828761becb784737d0d36be7bb5c3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c16e4871e289cb2a74a5f7660158c90c306208eb", @"/Views/_ViewImports.cshtml")]
     public class Views_Cart_Emptycart : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         #pragma warning disable 1998

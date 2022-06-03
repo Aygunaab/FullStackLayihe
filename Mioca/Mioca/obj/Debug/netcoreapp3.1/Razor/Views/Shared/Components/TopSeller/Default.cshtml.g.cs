@@ -28,7 +28,7 @@ using Mioca.Models;
 #nullable disable
 #nullable restore
 #line 3 "C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\Views\_ViewImports.cshtml"
-using Microsoft.AspNetCore.Identity;
+using Repository.Models;
 
 #line default
 #line hidden
@@ -40,8 +40,15 @@ using Repository.Enums;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 5 "C:\Users\Admin\OneDrive\Desktop\Mioca\Mioca\Views\_ViewImports.cshtml"
+using Microsoft.AspNetCore.Identity;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"a8b58208debd80007dd75d2586383535daf5a54c", @"/Views/Shared/Components/TopSeller/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"94991d457a1828761becb784737d0d36be7bb5c3", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"c16e4871e289cb2a74a5f7660158c90c306208eb", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_TopSeller_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<ProductViewModel>>
     {
         private global::AspNetCore.Views_Shared_Components_TopSeller_Default.__Generated__CategoryViewComponentTagHelper __CategoryViewComponentTagHelper;
@@ -86,7 +93,7 @@ using Repository.Enums;
                 <div class=""col-12 mb-5 arrow arrow-style-one filter"">
                     <ul class=""slider multiple-items button-group filter-button-group"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("vc:category", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a8b58208debd80007dd75d2586383535daf5a54c4834", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("vc:category", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a8b58208debd80007dd75d2586383535daf5a54c5010", async() => {
             }
             );
             __CategoryViewComponentTagHelper = CreateTagHelper<global::AspNetCore.Views_Shared_Components_TopSeller_Default.__Generated__CategoryViewComponentTagHelper>();
@@ -123,7 +130,7 @@ WriteAttributeValue(" ", 1147, item.Category.Name, 1148, 19, false);
 #nullable disable
             EndWriteAttribute();
             WriteLiteral(">\r\n                        ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a8b58208debd80007dd75d2586383535daf5a54c6959", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("partial", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.SelfClosing, "a8b58208debd80007dd75d2586383535daf5a54c7135", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_TagHelpers_PartialTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper>();

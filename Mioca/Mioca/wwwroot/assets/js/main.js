@@ -1,3 +1,5 @@
+
+
 $('.hero-slider').slick({
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -420,4 +422,19 @@ if ($(".add-to-cart").length) {
       });
   });
 }
+
+$(document).on("keyup", "#searchinput", function () {
+
+    let searchedstring = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "/home/search?searchString=" + searchedstring,
+        success: function (res) {
+            $("#search-result li:not(:first-child)").remove();
+            $("#search-result").append(res);
+        }
+          
+    })
+
+});
 

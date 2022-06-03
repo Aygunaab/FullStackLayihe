@@ -1,0 +1,300 @@
+﻿@model ProductViewModel
+@inject UserManager<CustomUser> UserManager
+@inject SignInManager<CustomUser> SignInManager
+
+@{
+    ViewData["Title"] = "Index";
+    var relatedproduct = ViewBag.RelatedProducts as List<ProductViewModel>;
+}
+
+<main>
+    <!--Breadcrumb section start-->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 text-center">
+                    <h1 class="page-name ">@Model.Category.Name</h1>
+                    <nav class="d-flex justify-content-center" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a asp-controller="shop" asp-action="index" asp-route-id="@Model.Category.Id"></a></li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Breadcrumb section end-->
+    <!--Product details section start-->
+    <section class="section-style-one">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 col-xs-12 ">
+                    <div class="product-images">
+                        <div class="img-display">
+                            <div class="img-shopcase">
+
+                                @foreach (var images in Model.Photos)
+                                {
+                                    <img src="~/assets/images/product-image/@images.ToString()" alt="product image">
+                                }
+
+
+                            </div>
+                            <div class="img-select">
+                                @for (int i = 0; i < Model.Photos.Count; i++)
+                                {
+                                    <div class="img-item">
+                                        <a href="#" data-id="@(i+1)">
+                                            <img src="/assets/images/product-image/@Model.Photos[i]" alt="shop-img">
+                                        </a>
+                                    </div>
+
+                                }
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-6 col-sm-12 col-xs-12">
+                    <div class="product-details-content marleft-25">
+                        <h2>@Model.Name</h2>
+                        <div class="pricing-box">
+                            <ul class="d-flex">
+
+                                @if (Model.Discount == null)
+                                {
+                                    <li class="new-price">@Model.Price.ToString("#.00")₼</li>
+
+                                }
+                                else
+                                {
+                                    var price = Model.Price - (Model.Price * Model.Discount.Percentage / 100);
+
+
+                                    <li class="new-price">@price.ToString("#.00")₼</li>
+                                    <li class="old-price"><del>@Model.Price.ToString("#.00")₼</del></li>
+
+                                }
+
+
+                            </ul>
+                        </div>
+                        <div class="details-rating-wrap">
+                            <div class="rating-product">
+                                @for (int i = 1; i <= 5; i++)
+                                {
+                                    <i class="fa fa-star @(Model.StarCount+1 <=i ?"empty":"" )"></i>
+                                }
+                            </div>
+                            <span class="read-review"><a class="reviews" href="#">( @Model.Reviews.Count() Rəy )</a></span>
+                        </div>
+                        <div class="stock martop-30">
+                            <span class="avallabillty">
+                                Availability: <span class="in-stock">
+                                    <i class="fa fa-check"></i>@Model.Avability
+                                </span>
+                            </span>
+                        </div>
+                        <p class="martop-30 mb-0">
+                            @Model.Description
+                        </p>
+                        <div class="details-quality">
+                            <div class="cart-plus-minus">
+                                <div class="minus plmin">-</div>
+                                <input class="cart-plus-minus-box" type="text" value="1">
+                                <div class="plus plmin">+</div>
+                            </div>
+                            <div class="details-cart">
+                                <a asp-controller="cart" asp-action="AddBasket" asp-route-id="@Model.Id" class="addcart add-to-cart">
+                                    Add To
+                                    Cart
+                                </a>
+                            </div>
+                            <div class="details-cart">
+                                <button class="addcart buy-button"> Buy It Now</button>
+                            </div>
+                            <div class="details-wishlist ">
+                                <a href="wishlist.html"><i class="pe-7s-like"></i></a>
+                            </div>
+                        </div>
+                        <div class="details-categories-info details-style d-flex">
+                            <span>Categories: </span>
+                            <ul class="d-flex">
+
+                                <li>
+                                    <a href="#">@Model.Category.Name </a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div class="details-social-info details-style d-flex">
+                            <span>Share: </span>
+                            <ul class="d-flex">
+                                @foreach (var item in Model.Socials)
+                                {
+                                    <li>
+                                        <a href="@item.Link">@Html.Raw(item.Social.Icon)</a>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Product details section end-->
+    <section class="section-style-one pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div id="product-details-tabs">
+                        <ul>
+                            <li><a href="#information">Information</a></li>
+                            <li><a href="#description">Description</a></li>
+                            <li><a href="#reviews">Rəylər(@Model.Reviews.Count())</a></li>
+                        </ul>
+                        <div id="information">
+                            <div class="productinfo">
+                                <ul>
+                                    @foreach (var item in Model.Specs)
+                                    {
+                                        <li><span>@item.Key</span>@item.Value</li>
+                                    }
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div id="description">
+                            <p>
+                                @Model.Text
+                            </p>
+                        </div>
+                        <div id="reviews">
+                            <div class="coment-form-area ">
+                                <div class="comments mt-0">
+                                    <div class="review-wrapper">
+                                        @foreach (var review in Model.Reviews)
+                                        {
+                                            <div class="review-card">
+                                                <div class="user-img">
+                                                    <img src="~/assets/images/comment-image/@review.User.profilimage" alt="">
+                                                </div>
+                                                <div class="review-content">
+                                                    <div class="review-user-details">
+                                                        <div class="d-flex">
+                                                            <div class="user-name-data">
+                                                                <h4 class="name">@review.User.Fullname</h4>
+                                                                <span class="date">@review.AddedDate.ToString("dd MMMM yyyy")</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="user-comment">
+                                                        <p>
+                                                            @review.Mesage
+                                                        </p>
+                                                        <div class="reply">
+                                                            <a href="#"><i class="fa fa-reply-all"></i> Reply</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+
+                                    </div>
+                                </div>
+                                @if (!SignInManager.IsSignedIn(User))
+                                {
+                                    <div class="comment-form">
+                                        <h2 class="comment-heading">@ViewBag.ProductName üçün rəy yazın</h2>
+                                        <div class="form-inner">
+                                            <form>
+                                                <div class="details-rating-wrap">
+                                                    <div class="rating-product">
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star "></i>
+                                                        <i class="fa fa-star empty"></i>
+                                                        <i class="fa fa-star empty"></i>
+                                                        <i class="fa fa-star empty"></i>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-card">
+                                                            <input type="text" placeholder="Name *">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-card">
+                                                            <input type="email" placeholder="Email *">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-card">
+                                                            <input type="email" placeholder="Rəyinizin başlığı">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <div class="form-card  m-0">
+                                                            <textarea placeholder="Rəyiniz"></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-12">
+                                                        <button class="btn primary-button martop-30" type="submit">
+                                                            rəy yaz
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <h4>Rəy yazmaq üçün daxil olun</h4>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="section-style-one pt-0">
+        <div class="container">
+            <div class="row ">
+                <div class="product-content text-center">
+                    <h2 class="product-title bg-gif ">Oxşar məhsullar</h2>
+                    <p class="product-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                        do eiusmod incididunt ut labore
+                        et dolore magna aliqua.
+                    </p>
+                </div>
+            </div>
+            <div class="row relatedProducts">
+                @foreach (var item in relatedproduct.Where(p => p.Id != Model.Id))
+                {
+                    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 height-resize @item.Category.Name">
+                        <partial name="Products/_SingleProduct" model="item" />
+
+                    </div>
+
+                }
+
+
+            </div>
+        </div>
+    </section>
+</main>
+
+

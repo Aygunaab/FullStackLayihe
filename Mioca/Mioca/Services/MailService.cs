@@ -4,7 +4,6 @@ using MailKit.Net.Smtp;
 using MailKit.Security;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using Mioca.Settings;
 using System;
 using System.Collections.Generic;
 using System.IO;

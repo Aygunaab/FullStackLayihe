@@ -49,7 +49,7 @@
 
 
                     <div class="shop-cart-area">
-                        <div class="row">
+                        <div class=" row">
                             <div class="col-md-12">
                                 <div class="filter__menu__container">
 
@@ -61,15 +61,13 @@
                                                     <option value="@ProductListing.neness">Yenilər</option>
                                                     <option value="@ProductListing.PriceAsc">Əvvəl ucuzlar</option>
                                                     <option value="@ProductListing.PriceDsc">Əvvəl bahalılar</option>
-                                                   
+
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" row">
                             @foreach (var item in Model.Products)
                             {
                                 <div class="col-xl-4 col-lg-4 col-md-6 col-sm-6 height-resize @item.Category.Name">
@@ -79,41 +77,42 @@
 
                             }
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="pagination justify-content-center mt-0 mb-5">
-                            <div class="pages">
-                                <ul>
-                                    @if (Model.Count > Model.Limit)
-                                    {
-                                        @if (Model.Page != 1)
+                        <div class="row">
+                            <div class="pagination justify-content-center mt-0 mb-5">
+                                <div class="pages">
+                                    <ul>
+                                        @if (Model.Count > Model.Limit)
                                         {
-                                            <li class="page-item">
-                                                <a class="page-link" asp-controller="shop" asp-action="index" asp-route-page="@(Model.Page-1)"><i class="fa fa-angle-left"></i></a>
-                                            </li>
+                                            @if (Model.Page != 1)
+                                            {
+                                                <li class="page-item">
+                                                    <a class="page-link" asp-controller="shop" asp-action="index" asp-route-page="@(Model.Page-1)"><i class="fa fa-angle-left"></i></a>
+                                                </li>
+
+                                            }
+
+                                            @for (int i = 0; i < Math.Ceiling(Model.Count / (double)Model.Limit); i++)
+                                            {
+                                                <li class="page-item"><a class="page-link @(i+1==Model.Page?"active":"")" asp-controller="shop" asp-action="index" asp-route-page="@(i+1)">@(i+1)</a></li>
+                                            }
+                                            @if (Model.Page != Math.Ceiling(Model.Count / (double)Model.Limit))
+                                            {
+                                                <li class="page-item">
+                                                    <a class="page-link" asp-controller="shop" asp-action="index" asp-route-page="@(Model.Page+1)">
+                                                        <i class="fa fa-angle-right"></i>
+                                                    </a>
+                                                </li>
+                                            }
 
                                         }
 
-                                        @for (int i = 0; i < Math.Ceiling(Model.Count / (double)Model.Limit); i++)
-                                        {
-                                            <li class="page-item"><a class="page-link @(i+1==Model.Page?"active":"")" asp-controller="shop" asp-action="index" asp-route-page="@(i+1)">@(i+1)</a></li>
-                                        }
-                                        @if (Model.Page != Math.Ceiling(Model.Count / (double)Model.Limit))
-                                        {
-                                            <li class="page-item">
-                                                <a class="page-link" asp-controller="shop" asp-action="index" asp-route-page="@(Model.Page+1)">
-                                                    <i class="fa fa-angle-right"></i>
-                                                </a>
-                                            </li>
-                                        }
 
-                                    }
-
-
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
+                  
                 </div>
                 <div class="col-xl-3 col-lg-4  ">
                     <div class="sidebar-right margin-right-20">
@@ -121,9 +120,20 @@
                         <div class="sidebar-wrap">
                             <h3 class="sidebar-title">Search</h3>
                             <div class="search-widget sidebar-widget">
-                                <form action="#">
-                                    <input placeholder="Search" type="text">
-                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                <form asp-controller="shop" asp-action="index" method="get">
+                                 
+                                        <div class="mb-3">
+                                            <label for="min" class="form-label">Minimum Price</label>
+                                            <input name="MinPrice" type="number" class="form-control" id="min" >
+                                            
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="max" class="form-label">Maximum Price</label>
+                                            <input name="MaxPrice" type="number" class="form-control" id="max">
+                                        </div>
+                                       
+                                        <button type="submit" class="btn btn-primary">Filter</button>
+                                  
                                 </form>
                             </div>
                         </div>

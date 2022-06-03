@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Mioca.Areas.Admin.Models.Shopping;
 using Mioca.Models;
 using Repository.Models;
 using System;
@@ -26,10 +27,12 @@ namespace Mioca.Mapping
 
 
             CreateMap<Basket, BasketViewModel>();
-            CreateMap<RegisterViewModel,User >();
-
-
-
+            CreateMap<RegisterViewModel,CustomUser >();
+            CreateMap<LoginViewModel, CustomUser>();
+            CreateMap<ProductReview, ReviewViewModel>();
+            CreateMap<CustomUser, UserViewModel>();
+            CreateMap<Category, VmCategory>();
+            CreateMap<VmCategory, Category>();
 
 
 

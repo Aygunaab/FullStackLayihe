@@ -12,10 +12,16 @@ namespace Mioca.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
         public int StarCount { get; set; }
+        public string Avability { get; set; }
+        public string Text { get; set; }
+        public string Description { get; set; }
         public IList<string>Photos { get; set; }
         public LabelViewModel Label { get; set; }
         public DiscountViewModel Discount { get; set; }
         public CategoryViewModel Category { get; set; }
+        public ICollection<ProductSocial> Socials { get; set; }
+        public ICollection<ProductSpecsification> Specs { get; set; }
+        public ICollection<ReviewViewModel> Reviews { get; set; }
 
     }
 }

@@ -12,6 +12,7 @@ namespace Repository.Repositories.ShoppingRepositories
     {
         IEnumerable<Category> GetCategories();
         Category CategoryById(int Id);
+        IEnumerable<Category> Getcategory();
     }
     public class CategoryRepository : ICategoryRepository
     {
@@ -29,6 +30,12 @@ namespace Repository.Repositories.ShoppingRepositories
 
         public IEnumerable<Category>GetCategories()
         {
+            return _context.Categories.Where(c=>c.Status).ToList();
+        }
+
+        public IEnumerable<Category> Getcategory()
+        {
+
             return _context.Categories.ToList();
         }
     }
