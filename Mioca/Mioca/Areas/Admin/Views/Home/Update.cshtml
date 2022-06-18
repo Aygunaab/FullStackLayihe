@@ -1,0 +1,83 @@
+﻿
+@model SliderVm
+@{
+    ViewData["Title"] = "UpdateSlider";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Slideri yenile</h4>
+                        <form class="forms-sample" asp-controller="home" asp-action="Update" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Vəziyyəti</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-success me-5">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="true" id="ExampleRadio2" checked="">
+                                            Aktiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-warning">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="false" id="ExampleRadio5" checked="">
+                                            Passiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Sliderin ust başlığı</label>
+                                <input asp-for="Title" class="form-control" placeholder="Sliderin ust başlığı">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Sliderin alt başlığı</label>
+                                <input asp-for="Subtitle" class="form-control" placeholder="Sliderin alt başlığı">
+                                <span asp-validation-for="Subtitle" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Məhsulun qiyməti</label>
+                                <input asp-for="Price" class="form-control" placeholder="Məhsulun qiyməti" />
+                                <span asp-validation-for="Price" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Məhsulun endirimli qiyməti</label>
+                                <input asp-for="DiscountPrice" class="form-control" placeholder="Məhsulun endirimli qiyməti" />
+                                <span asp-validation-for="DiscountPrice" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Slider buttonun adı</label>
+                                <input asp-for="ActionText" class="form-control" placeholder="Slider buttonun adı" />
+                                <span asp-validation-for="ActionText" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Buttonun linki</label>
+                                <input asp-for="Endpoint" class="form-control" placeholder="Buttonun linki" />
+                                <span asp-validation-for="Endpoint" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Əsas şəkil</label>
+                                <input asp-for="ImageFile" accept="image/*" class="form-control" placeholder="Əsas şəkil">
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

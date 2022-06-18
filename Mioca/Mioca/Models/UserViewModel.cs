@@ -7,7 +7,9 @@ namespace Mioca.Models
 {
     public class UserViewModel
     {
-        public string Fullname { get; set; }
-        public string profilimage { get; set; }
+        public string Name { get; set; }
+        public string SurName { get; set; }
+        public string Email { get; set; }
+        public string Image { get; set; }
     }
 }

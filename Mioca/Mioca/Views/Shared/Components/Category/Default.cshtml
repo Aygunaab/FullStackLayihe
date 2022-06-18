@@ -3,8 +3,8 @@
         @foreach (var item in Model)
         {
             <li data-filter=".@item.Name">
-                <a asp-controller="shop" asp-action="index" asp-route-id="@item.Id">
-                    <img src="~/assets/images/icons/@item.Logo"
+                <a >
+                    <img src="~/Uploads/@item.Logo"
                          alt=""><span>@item.Name</span>
                 </a>
             </li>

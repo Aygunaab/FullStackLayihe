@@ -5,11 +5,16 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class BasketViewModel
+    public class BasketViewModel:GeneralViewModel
     {
         public int Id { get; set; }
-        public string Token { get; set; }
-        public int Count { get; set; }
-        public ProductViewModel Product { get; set; }
+        public string MainImage { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal Count { get; set; }
+        public decimal MaxQuantity { get; set; }
     }
+
+   
 }

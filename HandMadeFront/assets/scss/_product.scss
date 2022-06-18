@@ -202,6 +202,16 @@
 					max-width: 100%;
 					transition: all .3s ease 0s;
 					width: 100%;
+					height: 309px;
+					@media only screen and (min-width: 768px) and (max-width: 991px) {
+						height: 360px;
+					}
+					
+					@media only screen and (max-width: 576px) {
+						height: 600px;
+					}
+					
+				
 					&.hover-img {
 						position: absolute;
 						z-index: 2;
@@ -727,9 +737,36 @@
 	}
 }
 .relatedProducts {
+	margin-left: 30px;
 	.product {
 		.product-item {
 			padding: 18px;
 		}
 	}
+}
+.rating_submit{
+.form-group{
+	position: relative;
+    margin-bottom: 1rem;
+.rating{
+	display: inline-block;
+    position: relative;
+.rating-input{
+	display: none;
+&:checked~.rating-star{
+	background-position: 0 0;
+
+}
+}
+.rating-star{
+	cursor: pointer;
+    float: right;
+    display: block;
+    margin-right: 3px;
+    width: 37px;
+    height: 37px;
+    background: url(../images/gif/stars.svg) 0 -38px;
+}
+}
+}
 }

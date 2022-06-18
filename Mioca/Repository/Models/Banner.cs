@@ -25,6 +25,8 @@ namespace Repository.Models
         [MaxLength(100)]
         public string Image { get; set; }
         public BannerCardWidth CardWidth { get; set; }
+        public bool IsTopBanner { get; set; }
+        public bool IsBottomBanner { get; set; }
 
 
     }

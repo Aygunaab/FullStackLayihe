@@ -1,4 +1,5 @@
 ﻿@model CategoryListViewModel
+
 @{
     ViewData["Title"] = "Shop";
 }
@@ -14,7 +15,7 @@
                     <nav class="d-flex justify-content-center" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Ana səhifə</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">@Model.Category.Name</li>
+                            <li class="breadcrumb-item active">@Model.Category.Name</li>
                         </ol>
                     </nav>
                 </div>
@@ -112,7 +113,7 @@
                             </div>
                         </div>
                     </div>
-                  
+
                 </div>
                 <div class="col-xl-3 col-lg-4  ">
                     <div class="sidebar-right margin-right-20">
@@ -121,19 +122,19 @@
                             <h3 class="sidebar-title">Search</h3>
                             <div class="search-widget sidebar-widget">
                                 <form asp-controller="shop" asp-action="index" method="get">
-                                 
-                                        <div class="mb-3">
-                                            <label for="min" class="form-label">Minimum Price</label>
-                                            <input name="MinPrice" type="number" class="form-control" id="min" >
-                                            
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="max" class="form-label">Maximum Price</label>
-                                            <input name="MaxPrice" type="number" class="form-control" id="max">
-                                        </div>
-                                       
-                                        <button type="submit" class="btn btn-primary">Filter</button>
-                                  
+
+                                    <div class="mb-3">
+                                        <label for="min" class="form-label">Minimum Price</label>
+                                        <input name="MinPrice" type="number" class="form-control" id="min">
+
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="max" class="form-label">Maximum Price</label>
+                                        <input name="MaxPrice" type="number" class="form-control" id="max">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary">Filter</button>
+
                                 </form>
                             </div>
                         </div>

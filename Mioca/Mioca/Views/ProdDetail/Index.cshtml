@@ -1,6 +1,7 @@
 ﻿@model ProductViewModel
-@inject UserManager<CustomUser> UserManager
-@inject SignInManager<CustomUser> SignInManager
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
 
 @{
     ViewData["Title"] = "Index";
@@ -93,9 +94,16 @@
                         </div>
                         <div class="stock martop-30">
                             <span class="avallabillty">
-                                Availability: <span class="in-stock">
-                                    <i class="fa fa-check"></i>@Model.Avability
-                                </span>
+                                Availability:@if (Model.Quantity > 0)
+                                {
+                                    <span class="in-stock" style="color: #eaaa85">
+                                        <i class="fa fa-check"></i>In Stock
+                                    </span>
+                                }
+                                else
+                                {
+                                    <strong>On Sale</strong>
+                                }
                             </span>
                         </div>
                         <p class="martop-30 mb-0">
@@ -103,12 +111,11 @@
                         </p>
                         <div class="details-quality">
                             <div class="cart-plus-minus">
-                                <div class="minus plmin">-</div>
-                                <input class="cart-plus-minus-box" type="text" value="1">
-                                <div class="plus plmin">+</div>
+                                <input class="cart-plus-minus-box" type="text" value="@Model.Quantity">
+                               
                             </div>
                             <div class="details-cart">
-                                <a asp-controller="cart" asp-action="AddBasket" asp-route-id="@Model.Id" class="addcart add-to-cart">
+                                <a asp-controller="cart" asp-action="AddBasket" asp-route-id="@Model.Id" class="addcart add_to-cart">
                                     Add To
                                     Cart
                                 </a>
@@ -181,13 +188,13 @@
                                         {
                                             <div class="review-card">
                                                 <div class="user-img">
-                                                    <img src="~/assets/images/comment-image/@review.User.profilimage" alt="">
+                                                    <img src="~/assets/images/comment-image/@review.User.Image" alt="">
                                                 </div>
                                                 <div class="review-content">
                                                     <div class="review-user-details">
                                                         <div class="d-flex">
                                                             <div class="user-name-data">
-                                                                <h4 class="name">@review.User.Fullname</h4>
+                                                                <h4 class="name">@review.User.Name @review.User.SurName </h4>
                                                                 <span class="date">@review.AddedDate.ToString("dd MMMM yyyy")</span>
                                                             </div>
                                                         </div>
@@ -207,58 +214,51 @@
 
                                     </div>
                                 </div>
-                                @if (!SignInManager.IsSignedIn(User))
-                                {
-                                    <div class="comment-form">
-                                        <h2 class="comment-heading">@ViewBag.ProductName üçün rəy yazın</h2>
-                                        <div class="form-inner">
-                                            <form>
-                                                <div class="details-rating-wrap">
-                                                    <div class="rating-product">
-                                                        <i class="fa fa-star "></i>
-                                                        <i class="fa fa-star "></i>
-                                                        <i class="fa fa-star empty"></i>
-                                                        <i class="fa fa-star empty"></i>
-                                                        <i class="fa fa-star empty"></i>
+                                @if (SignInManager.IsSignedIn(User))
+                                    {
+                                        <div class="comment-form">
+                                            <h2 class="comment-heading">@ViewBag.ProductName üçün rəy yazın</h2>
+                                            <div class="form-inner">
+                                                <form asp-controller="ProdDetail" asp-action="AddComment" asp-route-id="@Model.Id" method="post">
+                                                    <div class="rating_submit">
+                                                        <div class="form-group">
+                                                            <label class="d-block">Overall rating</label>
+                                                            <span class="rating mb-0">
+                                                                <input type="radio" class="rating-input" id="5_star" name="rating-input" value="5 Stars"><label for="5_star" class="rating-star"></label>
+                                                                <input type="radio" class="rating-input" id="4_star" name="rating-input" value="4 Stars"><label for="4_star" class="rating-star"></label>
+                                                                <input type="radio" class="rating-input" id="3_star" name="rating-input" value="3 Stars"><label for="3_star" class="rating-star"></label>
+                                                                <input type="radio" class="rating-input" id="2_star" name="rating-input" value="2 Stars"><label for="2_star" class="rating-star"></label>
+                                                                <input type="radio" class="rating-input" id="1_star" name="rating-input" value="1 Star"><label for="1_star" class="rating-star"></label>
+                                                            </span>
+                                                        </div>
                                                     </div>
+                                                    <div class="row">
+                                                        
+                                                        <div class="col-md-12">
+                                                            <div class="form-card  mb-5">
+                                                                <input asp-for="Review.Subject" placeholder="Rəy başlığı">
+                                                                <span class="text-danger" asp-validation-for="Review.Subject"></span>
+                                                            </div>
+                                                            <div class="form-card  m-0">
+                                                                <textarea asp-for="Review.Mesage" placeholder="Rəyiniz"></textarea>
+                                                                <span class="text-danger" asp-validation-for="Review.Mesage"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12">
+                                                            <button class="btn primary-button martop-30" type="submit">
+                                                                rəy yaz
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
 
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-6">
-                                                        <div class="form-card">
-                                                            <input type="text" placeholder="Name *">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-6">
-                                                        <div class="form-card">
-                                                            <input type="email" placeholder="Email *">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-card">
-                                                            <input type="email" placeholder="Rəyinizin başlığı">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <div class="form-card  m-0">
-                                                            <textarea placeholder="Rəyiniz"></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-md-12">
-                                                        <button class="btn primary-button martop-30" type="submit">
-                                                            rəy yaz
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </form>
-
+                                            </div>
                                         </div>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <h4>Rəy yazmaq üçün daxil olun</h4>
-                                }
+                                    }
+                                    else
+                                    {
+                                        <h4>Rəy yazmaq üçün daxil olun</h4>
+                                    }
 
                             </div>
                         </div>

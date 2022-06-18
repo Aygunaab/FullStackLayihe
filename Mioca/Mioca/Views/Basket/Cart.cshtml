@@ -1,0 +1,150 @@
+﻿
+@model List<BasketViewModel>
+@{
+    ViewData["Title"] = "Cart";
+   
+}
+
+<main>
+    <!--Breadcrumb section start-->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 text-center">
+                    <h1 class="page-name ">Cart</h1>
+                    <nav class="d-flex justify-content-center" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">cart</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Breadcrumb section end-->
+    <!--Cart section start-->
+    <section class="section-style-one">
+        <div class="container">
+            <div class="row">
+                <h3 class="cart-page-title">Your cart items</h3>
+                <div class="col-lg-12 col-md-12  col-12">
+                    <form action="#">
+                        <div class="cart-table-content table-responsive cart-basket">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Product Name</th>
+                                        <th>Until Price</th>
+                                        <th>Qty</th>
+                                        <th>Subtotal</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model != null)
+                                    {
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td class="product-img">
+                                                    <a href="#">
+                                                        <img class="img margin-left-15"
+                                                             src="~/assets/images/product-image/@item.MainImage" alt="@item.Name">
+                                                    </a>
+                                                </td>
+                                                <td class="product-name td-style"><a href="#">@item.Name</a></td>
+                                                <td class="product-price td-style"><span class="amount">@item.Price.ToString("0.00")</span></td>
+                                                <td class="product-quantity td-style">
+                                                    <div class="cart-plus-minus">
+                                                        <input type="number"class="cart-plus-minus-box quantityCart" data-price="@item.Price" value="@item.Quantity">
+                                                    </div>
+                                                </td>
+                                                <td class="product-subtotal td-style">@((item.Price * item.Quantity).ToString("0.00"))</td>
+                                                <td class="product-remove td-style">
+
+                                                    <a class="remove-basket" data-id="@item.Id" data-price="@item.Price" data-quantity="@item.Quantity" href="#"><i class="fa fa-times"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    }
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="cart-shiping-update-box">
+                                    <div class="shop-update">
+                                        <a asp-controller="Shop" asp-action="index" asp-route-id="1">Continue Shopping</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-lg-12 col-md-12 martop-30">
+                                <div class="grand-total">
+                                    <div class="title-box">
+                                        <h4 class="cart-title bg-gray">Cart Total</h4>
+                                    </div>
+                                    @{
+                                        decimal subTotal = 0;
+                                        foreach (var item in Model)
+                                        {
+                                            subTotal += item.Price * item.Quantity;
+                                        }
+                                    }
+
+
+                                    <h5>Total products <span class="add-prd-total amount subTotal" id="subTotal">₼ @subTotal.ToString("#.00")</span></h5>
+                                    <div class="total-shipping">
+                                        <h5>Total shipping</h5>
+                                        <ul id="shipping_method">
+
+                                            @if (subTotal >= 100)
+                                            {
+                                                <li>
+                                                    <label>
+                                                        <span class="amount amountShopping">Free</span>
+                                                    </label>
+                                                </li>
+                                            }
+                                            else
+                                            {
+
+                                                <li>
+                                                    <label>
+                                                        <span class="amount amountShopping">20₼</span>
+                                                    </label>
+                                                </li>
+
+                                            }
+
+                                        </ul>
+                                    </div>
+                                    @if (subTotal >= 100)
+                                    {
+                                        <h4 class="grand-totall-title amount finalTotal">Grand Total <span>@subTotal.ToString("0.00")₼</span></h4>
+
+
+                                    }
+                                    else
+                                    {
+                                        <h4 class="grand-totall-title amount finalTotal">Grand Total <span>@((subTotal+20).ToString("0.00"))₼</span></h4>
+
+                                    }
+
+                                    <a asp-controller="basket" asp-action="checkout">Proceed to Checkout</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                   
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Cart section end-->
+</main>

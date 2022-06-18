@@ -1,56 +1,61 @@
-﻿
-
-@model IEnumerable<BasketViewModel>
-
-@{
-    decimal total = 0;
-}
+﻿@model ICollection<BasketViewModel>
 <div class="shop user-btn">
 
     <div class="btn-group">
+        <a class="btn  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="pe-7s-shopbag"></i>
+            @if (Model != null)
+            {
+                <span class="header-action-num">@Model.Count()</span>
+            }
+            else
+            {
+                <span class="header-action-num">0</span>
+            }
 
-        <a class="btn  dropdown-toggle" data-bs-toggle="dropdown"
-           aria-expanded="false">
-            <i class="pe-7s-shopbag"></i><span class="header-action-num">@Model.Count()</span>
+
         </a>
-        <div class="dropdown-menu" style="overflow-y: scroll; height:300px">
+        <div class="dropdown-menu">
             <ul class="minicart-product">
-                @foreach (var item in Model)
-
+                @if (Model != null)
                 {
-
-                    decimal price = item.Product.Price;
-                    if (item.Product.Discount != null)
+                    @foreach (var item in Model)
                     {
-                        price = item.Product.Price - (item.Product.Price * item.Product.Discount.Percentage / 100);
+                        <li>
+                            <a href="product-details.html">
+                                <figure><img src="~/assets/images/product-image/@item.MainImage" alt="" width="50" height="50"></figure>
+                                <strong><span>Hand-Made Garlic Mortar</span>@item.Quantity x @item.Price </strong>
+                            </a><strong><a class="remove-basket" data-id="@item.Id" data-price="@item.Price" data-quantity="@item.Quantity" href="#">×</a></strong>
+
+
+                            <hr class="dropdown-divider">
+                        </li>
                     }
+                }
+                else
+                {
+                    <span>Səbətiniz boşdur</span>
+                }
+            </ul>
 
-                    total += (price * item.Count);
-                    <li class="d-flex">
-                        <a asp-controller="product" asp-action="index" asp-route-id="@item.Product.Id">
-                            <figure><img src="~/assets/images/product-image/@item.Product.Photos.First()" alt="" width="50" height="50"></figure>
-                            <strong><span>@item.Product.Name</span> @item.Count x @price.ToString("#.00")₼ </strong>
+            @if (Model != null)
+            {
 
-                        </a>
-                        <a asp-controller="cart" asp-action="remove" asp-route-id="@item.Id" class="remove remove-header-basket-item ms-2">×</a>
-                        <hr class="dropdown-divider">
-                    </li>
+                decimal subTotal = 0;
+                foreach (var item in Model)
+                {
+                    subTotal += item.Price * item.Quantity;
                 }
 
-            </ul>
-            <div class="total-drop mt-2">
-                <div class="clearfix"><strong>Total</strong><span>@total.ToString("#.00") ₼</span></div>
-                <a asp-controller="cart" asp-action="index" class="btn btn-cart">View Cart</a>
-                <a asp-controller="checkout" asp-action="index" class="btn btn-cart checkout">Checkout</a>
-            </div>
+
+                <div class="total-drop">
+                    <div class="clearfix"><strong>Total</strong><span class="subTotal">₼@subTotal.ToString("#.00")</span></div>
+                    <a asp-controller="basket" asp-action="cart" class="btn btn-cart">View Cart</a><a href="checkout.html" class="btn btn-cart checkout">Checkout</a>
+                </div>
+            }
+
+
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
 

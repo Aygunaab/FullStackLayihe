@@ -8,23 +8,33 @@ namespace Mioca.Models
 {
     public class RegisterViewModel
     {
-        [Required (ErrorMessage ="Ad və Soyad vacibdir")]
-        [MaxLength(100,ErrorMessage ="Ad və Soyad maximum 100 xarakter olmalıdır")]
-        public string FullName { get; set; }
-        [Required(ErrorMessage ="Username vacibdir")]
-        [MaxLength(ErrorMessage ="Username maximum 20 xarakter olmalıdır")]
+        [Required(ErrorMessage = "Username vacibdir")]
+        [MaxLength( 20,ErrorMessage = "Username maximum 20 xarakter olmalıdır")]
         public string UserName { get; set; }
+
+        [Required(ErrorMessage = "Ad vacibdir")]
+        [MaxLength( 50,ErrorMessage = "Ad maximum 50 xarakter olmalıdır")]
+        public string Name { get; set; }
+
+        [Required(ErrorMessage = "Soyad vacibdir")]
+        [MaxLength(50, ErrorMessage = "Soyad maximum 50 xarakter olmalıdır")]
+        public string Surname { get; set; }
+
         [Required(ErrorMessage = "E-poçt vacibdir")]
         [EmailAddress(ErrorMessage = "Düzgün e-poçt daxil edin")]
+        [MaxLength(250)]
         public string Email { get; set; }
-        [Required (ErrorMessage ="Şifrə vacibdir")]
+
+        [Required(ErrorMessage = "Şifrə vacibdir")]
         [DataType(DataType.Password)]
+        [MaxLength(30)]
         public string Password { get; set; }
+
         [Required(ErrorMessage = "Şifrə təsdiqi vacibdir")]
         [DataType(DataType.Password)]
-        [Compare(nameof(Password),ErrorMessage ="Şifrə və Şifrə təsdiqi eyni olmalıdır")]
+        [Compare(nameof(Password), ErrorMessage = "Şifrə və Şifrə təsdiqi eyni olmalıdır")]
+        [MaxLength(30)]
         public string ConfirmPassword { get; set; }
-        public sbyte Token { get; set; }
 
     }
 }

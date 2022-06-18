@@ -1,0 +1,16 @@
+﻿
+@model IEnumerable<ProductViewModel>
+
+<div class="row relatedProducts">
+
+    @foreach (var item in Model)
+    {
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 height-resize @item.Category.Name">
+            <partial name="Products/_SingleProduct" model="item" />
+
+        </div>
+
+    }
+
+
+</div>

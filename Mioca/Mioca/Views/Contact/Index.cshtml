@@ -1,4 +1,7 @@
-﻿
+﻿@model ContactViewModel
+@using Microsoft.AspNetCore.Identity;
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
 @{
     ViewData["Title"] = "Index";
 }
@@ -9,11 +12,11 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12 text-center">
-                    <h1 class="page-name ">Contact Us</h1>
+                    <h1 class="page-name ">Bizimlə əlaqə</h1>
                     <nav class="d-flex justify-content-center" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Contact</li>
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Ana səhifə</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Əlaqə</li>
                         </ol>
                     </nav>
                 </div>
@@ -26,18 +29,21 @@
             <div class="row">
                 <div class="col-lg-5">
                     <div class="contact-info">
-                        <span class="contact-subtitle">Get In Touch</span>
-                        <h4 class="contact-title">
-                            Visit One Of Our Shop
-                            Contact Us Now
+                        <span class="contact-subtitle" style="text-transform:capitalize">
+                            Ümumi məlumat üçün bizə müraciət et:
+                        </span>
+                        <h4 class="contact-title" style="text-transform:capitalize">
+                            bizimlə
+                            əlaqə
                         </h4>
+                        
                         <div class="contact-card">
                             <div class="icon">
                                 <i class="pe-7s-call"></i>
                             </div>
                             <div class="info-box">
                                 <h5 class="title">Phone:</h5>
-                                <p><a href="tel:0123456789">012 345 67 89</a></p>
+                                <p><a href="tel:>@Model.Contact.Phone">@Model.Contact.Phone</a></p>
                             </div>
                         </div>
                         <div class="contact-card">
@@ -46,7 +52,7 @@
                             </div>
                             <div class="info-box">
                                 <h5 class="title">Email:</h5>
-                                <p><a href="mailto:demo@example.com">demo@example.com</a></p>
+                                <p><a href="mailto:@Model.Contact.Email">@Model.Contact.Email</a></p>
                             </div>
                         </div>
                         <div class="contact-card">
@@ -55,23 +61,19 @@
                             </div>
                             <div class="info-box">
                                 <h5 class="title">Address:</h5>
-                                <p>Your address goes here</p>
+                                <p>@Model.Contact.Address</p>
                             </div>
                         </div>
                         <div class="socials d-flex">
                             <ul class="social">
-                                <li class="m-0">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                                </li>
+
+                                @foreach (var item in Model.Contact.Socials)
+                                {
+                                    <li>
+                                        <a href="@item.Link">@Html.Raw(item.Icon)</a>
+                                    </li>
+                                }
+                              
                             </ul>
                         </div>
                     </div>
@@ -79,25 +81,27 @@
                 <div class="col-lg-7">
                     <div class="contact-form">
                         <div class="contact-content marbot-30">
-                            <h2 class="title">Leave a Message</h2>
+                            <h2 class="title">@Model.Contact.Title</h2>
                             <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod incididunt ut
-                                labore et dolore magna aliqua.
+                                @Html.Raw(Model.Contact.Desc)
                             </p>
                         </div>
-                        <form id="contact-form" action="#" method="post">
+                        <form id="contact-form" asp-controller="contact" asp-action="index" method="post">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input name="name" placeholder="Name*" type="text">
+                                    <input asp-for="Name" class="form-control" id="name1" type="text" placeholder="Your Name:" required>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input name="email" placeholder="Email*" type="email">
+                                    <input asp-for="Surname" class="form-control" id="surname1" type="text" placeholder="Your Surname:" required>
                                 </div>
                                 <div class="col-lg-12">
-                                    <input name="subject" placeholder="Subject*" type="text">
+                                    <input asp-for="Email" class="form-control" id="email1" type="email" placeholder="Your Email:" required>
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea name="message" placeholder="Your Message*"></textarea>
+                                    <input asp-for="Phone" data-mask="(000) 000 00 00" class="form-control" id="phone" type="tel" placeholder="Your Phone:">
+                                </div>
+                                <div class="col-lg-12">
+                                    <textarea asp-for="Message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Your Message"></textarea>
                                     <button class="btn primary-button mt-4" type="submit">Send Message</button>
                                 </div>
                             </div>

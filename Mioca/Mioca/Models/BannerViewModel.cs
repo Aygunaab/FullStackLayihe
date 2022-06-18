@@ -14,6 +14,8 @@ namespace Mioca.Models
         public string ActionText { get; set; }
         public string EndPoint { get; set; }
         public string Image { get; set; }
+        public bool IsTopBanner { get; set; }
+        public bool IsBottomBanner { get; set; }
         public BannerCardWidth CardWidth { get; set; }
     }
 }

@@ -10,7 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EduHome.Services
+namespace Mioca.Services
 {
     public class MailService :IMailService
     {

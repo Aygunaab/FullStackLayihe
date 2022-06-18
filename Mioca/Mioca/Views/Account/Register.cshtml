@@ -1,6 +1,7 @@
-﻿@model RegisterViewModel
+﻿
+@model RegisterViewModel
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "register";
 }
 
 <main>
@@ -9,11 +10,11 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12 text-center">
-                    <h1 class="page-name ">Login & Register</h1>
+                    <h1 class="page-name ">Register</h1>
                     <nav class="d-flex justify-content-center" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Login</li>
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Register</li>
                         </ol>
                     </nav>
                 </div>
@@ -35,9 +36,11 @@
                                 <div class="login-register-form">
                                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <form asp-controller="account" asp-action="register" method="post">
-                                        <input asp-for="FullName" placeholder="Fullname">
-                                        <span class="text-danger" asp-validation-for="FullName"></span>
-                                        <input asp-for="UserName" placeholder="UserName">
+                                        <input asp-for="Name" placeholder="Ad">
+                                        <span class="text-danger" asp-validation-for="Name"></span>
+                                        <input asp-for="Surname" placeholder="Soyad">
+                                        <span class="text-danger" asp-validation-for="Surname"></span>
+                                        <input asp-for="UserName" placeholder="User adı">
                                         <span class="text-danger" asp-validation-for="UserName"></span>
 
                                         <input asp-for="Email" placeholder="Email">
@@ -64,6 +67,3 @@
         </div>
     </section>
 </main>
-
-
-

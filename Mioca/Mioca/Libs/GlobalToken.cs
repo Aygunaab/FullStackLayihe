@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace Mioca.Libs
 {
-    //public class GlobalToken : IActionFilter
-    //{
-    //    public void OnActionExecuted(ActionExecutedContext context)
-    //    {
-           
-    //    }
+    public class GlobalToken : IActionFilter
+    {
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
 
-    //    public void OnActionExecuting(ActionExecutingContext context)
-    //    {
-    //        context.HttpContext.Request.Cookies.TryGetValue("token", out string token);
-    //        if (string.IsNullOrEmpty(token))
-    //        {
-    //            context.HttpContext.Response.Cookies.Append("token", Guid.NewGuid().ToString(), new Microsoft.AspNetCore.Http.CookieOptions
-    //            {
-    //                HttpOnly = true,
-    //                Expires = DateTime.Now.AddYears(1)
-    //            });
-    //        }
-    //    }
-    //}
+        }
+
+        public void OnActionExecuting(ActionExecutingContext context)
+        {
+            context.HttpContext.Request.Cookies.TryGetValue("token", out string token);
+            if (string.IsNullOrEmpty(token))
+            {
+                context.HttpContext.Response.Cookies.Append("token", Guid.NewGuid().ToString(), new Microsoft.AspNetCore.Http.CookieOptions
+                {
+                    HttpOnly = true,
+                    Expires = DateTime.Now.AddYears(1)
+                });
+            }
+        }
+    }
 }

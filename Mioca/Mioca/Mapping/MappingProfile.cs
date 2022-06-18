@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Mioca.Areas.Admin.Models;
 using Mioca.Areas.Admin.Models.Shopping;
 using Mioca.Models;
 using Repository.Models;
@@ -26,18 +27,31 @@ namespace Mioca.Mapping
 
 
 
-            CreateMap<Basket, BasketViewModel>();
-            CreateMap<RegisterViewModel,CustomUser >();
-            CreateMap<LoginViewModel, CustomUser>();
+           
+            CreateMap<RegisterViewModel,User >();
+            CreateMap<LoginViewModel, User>();
             CreateMap<ProductReview, ReviewViewModel>();
-            CreateMap<CustomUser, UserViewModel>();
+            CreateMap<User, UserViewModel>();
             CreateMap<Category, VmCategory>();
             CreateMap<VmCategory, Category>();
+            CreateMap<VmUserNotRegister, User>();
 
+            CreateMap<ProfileViewModel, User>();
 
+            CreateMap<ProductViewModel, Product>();
 
+            //admin view model
+            CreateMap<Product, VmProduct>()
+                      .ForMember(d => d.Photos, opt => opt.MapFrom(src => src.Photos.OrderBy(p => p.OrderBy).Select(p => p.Image)));
 
+            CreateMap<ProductPhoto,VmProductPhotos>();
+            CreateMap<Product,VmProductPost>();
 
+            CreateMap<Category, VmCategory>();
+
+            CreateMap<SliderItem, SliderVm>();
+
+            CreateMap<Banner, BannerVm>();
 
 
 

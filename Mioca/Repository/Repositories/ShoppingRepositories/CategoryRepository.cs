@@ -13,6 +13,9 @@ namespace Repository.Repositories.ShoppingRepositories
         IEnumerable<Category> GetCategories();
         Category CategoryById(int Id);
         IEnumerable<Category> Getcategory();
+        void CreateCategory(Category cat);
+        void UpdateCategory(Category category);
+        void DeleteCategory(Category category);
     }
     public class CategoryRepository : ICategoryRepository
     {
@@ -28,6 +31,20 @@ namespace Repository.Repositories.ShoppingRepositories
             return _context.Categories.Find(Id);
         }
 
+        public void CreateCategory(Category cat)
+        {
+             _context.Categories.Add(cat);
+            _context.SaveChanges();
+
+           
+        }
+
+        public void DeleteCategory(Category category)
+        {
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
+        }
+
         public IEnumerable<Category>GetCategories()
         {
             return _context.Categories.Where(c=>c.Status).ToList();
@@ -37,6 +54,12 @@ namespace Repository.Repositories.ShoppingRepositories
         {
 
             return _context.Categories.ToList();
+        }
+
+        public void UpdateCategory(Category category)
+        {
+            _context.Categories.Update(category);
+             _context.SaveChanges();
         }
     }
 }

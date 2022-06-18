@@ -380,6 +380,11 @@
 		left: auto;
 		right: 168px;
 		bottom: 28px;
+		img{
+			height:270px;
+			width:270px;
+			border-radius:50%;
+		}
 		@media only screen and (min-width: 768px) and (max-width: 991px) {
 			right: 40px;
 			width: 50%;

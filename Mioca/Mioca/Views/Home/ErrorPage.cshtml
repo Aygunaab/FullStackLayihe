@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "ErrorPage";
+}
+
+<main>
+    <!--breadcrumb section start-->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 text-center">
+                    <h1 class="page-name "> 404</h1>
+                    <nav class="d-flex justify-content-center" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Ana səhifə</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">404</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--breadcrumb section end-->
+    <!--404 section start-->
+    <section class="section-style-one notfound-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="page-not-found text-center">
+                        <h2>Oops!</h2>
+                        <p>Səhifə tapılmadı.</p>
+                        <a asp-controller="home" asp-action="index">Ana səhifəyə keç <i class="fa fa-home"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--404 section end-->
+</main>

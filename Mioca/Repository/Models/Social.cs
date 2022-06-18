@@ -17,5 +17,7 @@ namespace Repository.Models
         [MaxLength(200)]
         public string Link { get; set; }
         public ICollection<ProductSocial> Products { get; set; }
+        public ICollection<TeamMemberSocial> TeamMembers { get; set; }
+
     }
 }

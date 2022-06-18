@@ -1,0 +1,270 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model NavViewModel
+@inject UserManager<User> UserManager
+@inject SignInManager<User> SignInManager
+@inject RoleManager<IdentityRole> RoleManager
+
+
+<header id="navbar" class="header" style="background-color: #fff8f4;">
+    <div class="header-nav">
+        <div class="container">
+            <div class="row">
+                <div class="col-auto align-self-center">
+                    <div class="logo">
+                        <a href=""><img src="/assets/images/logo/@Model.Setting.Logo" alt=""></a>
+                    </div>
+                </div>
+                <div class="col align-self-center d-none d-lg-block">
+                    <nav class="main-nav ">
+                        <ul class="nav justify-content-center">
+                            <li class="nav-item">
+                                <a class="nav-link active" asp-controller="home" asp-action="index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="about" asp-action="index">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class=" shop-nav-item user-btn">
+                                    <div class="btn-group">
+                                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+                                           aria-expanded="false">
+                                            Shop
+                                        </a>
+                                        <div class="dropdown-menu">
+                                            <ul class="category">
+                                                <vc:category></vc:category>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="blog" asp-action="index">Blog</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="contact" asp-action="index">Contact</a>
+                            </li>
+
+                        </ul>
+                    </nav>
+                </div>
+                <div class="col col-lg-auto align-self-center pl-0">
+                    <ul class="action d-flex ">
+                        <li>
+                            <div class="search-btn user-btn">
+                                <div class="btn-group">
+                                    <a class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <i class="pe-7s-search"></i>
+                                    </a>
+
+
+                                    <ul class="dropdown-menu" id="search-result" style="height:auto !important;width:auto !important">
+                                        <li>
+                                            <input style="height:40px !important;width:200px !important" id="searchinput" class="form-control mr-sm-2" type="search" placeholder="Search"
+                                                   aria-label="Search">
+                                        </li>
+
+                                    </ul>
+
+
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="user-btn">
+
+                                <div class="btn-group">
+                                    <a class="btn  dropdown-toggle" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <i class="pe-7s-users"></i>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <ul>
+                                            @if (SignInManager.IsSignedIn(User))
+                                            {
+
+                                                <li>
+                                                    <a class="dropdown-item" href="account.html">@UserManager.GetUserName(User)</a>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="account" asp-action="profile">Profilim</a>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="basket" asp-action="checkout">Checkout</a>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+                                                <li>
+                                                    <a class="dropdown-item" asp-controller="account" asp-action="Logout">Logout</a>
+                                                    <hr class="dropdown-divider">
+                                                </li>
+
+                                            }
+                                            else
+                                            {
+
+
+                                                <li>
+                                                    <a class="dropdown-item btn" style="background-color: #eaaa85" asp-controller="account" asp-action="login">Daxil ol/Qeydiyyatdan keç</a>
+                                                    <hr class="dropdown-divider">
+
+                                                </li>
+
+                                            }
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="wishlist user-btn">
+
+                                <div class="btn-group">
+                                    <a class="btn  dropdown-toggle" data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <i class="pe-7s-like "></i>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <ul class="minicart-product">
+                                            <li>
+                                                <a href="product-details.html">
+                                                    <figure><img src="assets/images/product-image/1.jpg" alt="" width="50" height="50"></figure>
+                                                    <strong><span>Hand-Made Garlic Mortar</span>1 x $21.86 <a href="#" class="remove">×</a></strong>
+
+                                                </a>
+                                                <hr class="dropdown-divider">
+                                            </li>
+
+                                            <li>
+                                                <a href="product-details.html">
+                                                    <figure><img src="assets/images/product-image/2.jpg" alt="" width="50" height="50"></figure>
+                                                    <strong><span>Hand-Made Garlic Mortar</span>1 x $21.86 <a href="#" class="remove">×</a></strong>
+
+                                                </a>
+                                                <hr class="dropdown-divider">
+                                            </li>
+
+
+                                        </ul>
+                                        <div class="total-drop">
+                                            <div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
+                                            <a href="cart.html" class="btn btn-cart">View Cart</a><a href="checkout.html" class="btn btn-cart checkout">Checkout</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="shop user-btn">
+
+                                <div class="btn-group">
+                                    <a class="btn  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="pe-7s-shopbag"></i>
+                                        <span class="header-action-num">@Model.Basket.Count()</span>
+                                    </a>
+                                    <div class="dropdown-menu">
+                                        <ul class="minicart-product">
+                                            @if (Model.Basket != null)
+                                            {
+                                                @foreach (var item in Model.Basket)
+                                                {
+                                                    <li>
+                                                        <a href="product-details.html">
+                                                            <figure><img src="~/assets/images/product-image/@item.MainImage" alt="" width="50" height="50"></figure>
+                                                            <strong><span>Hand-Made Garlic Mortar</span>@item.Quantity x @item.Price </strong>
+                                                        </a><strong><a class="remove-basket" data-id="@item.Id" data-price="@item.Price" data-quantity="@item.Quantity" href="#">×</a></strong>
+
+
+                                                        <hr class="dropdown-divider">
+                                                    </li>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <span>Səbətiniz boşdur</span>
+                                            }
+                                        </ul>
+
+                                        @if (Model.Basket != null)
+                                        {
+
+                                            decimal subTotal = 0;
+                                            foreach (var item in Model.Basket)
+                                            {
+                                                subTotal += (item.Price * item.Quantity);
+                                            }
+
+
+                                            <div class="total-drop">
+                                                <div class="clearfix"><strong>Total</strong><span class="subTotal">₼@subTotal.ToString("#.00")</span></div>
+                                                <a asp-controller="basket" asp-action="cart" class="btn btn-cart">View Cart</a><a href="checkout.html" class="btn btn-cart checkout">Checkout</a>
+                                            </div>
+                                        }
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <a class="action-btn  d-lg-none">
+                                <i class="pe-7s-menu" data-bs-toggle="offcanvas"
+                                   data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
+                            </a>
+
+                            <div class="offcanvas mobil-menu offcanvas-start" tabindex="-1" id="offcanvasExample"
+                                 aria-labelledby="offcanvasExampleLabel">
+                                <div class="offcanvas-header">
+
+                                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+                                            aria-label="Close"></button>
+                                </div>
+                                <div class="offcanvas-body">
+
+                                    <div class="inner ">
+
+                                        <div class="offcanvas-menu mb-4">
+                                            <ul>
+                                                <li>
+                                                    <a asp-controller="home" asp-action="index">Home</a>
+                                                </li>
+                                                <li><a asp-controller="about" asp-action="index">About</a></li>
+                                                <li><a asp-controller="shop" asp-action="index">Shop</a></li>
+                                                <li><a asp-controller="blog" asp-action="index">Blog</a></li>
+                                                <li><a asp-controller="contact" asp-action="index">Contact Us</a></li>
+                                            </ul>
+                                        </div>
+                                        <!-- Mobil Menu End -->
+                                        <div class="mobil-social">
+                                            <ul class="d-flex mobil-social-list ">
+                                                <li>
+                                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-google"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-youtube"></i></a>
+                                                </li>
+                                                <li>
+                                                    <a href="#"><i class="fa fa-instagram"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>

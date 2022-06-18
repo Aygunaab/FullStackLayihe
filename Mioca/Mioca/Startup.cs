@@ -10,17 +10,21 @@ using Repository.Repositories.ContentRepositories;
 using Repository.Models;
 using Microsoft.AspNetCore.Identity;
 using Mioca.Settings;
-using EduHome.Services;
+using Mioca.Services;
 using Mioca.Libs;
 using System;
+using Repository.Constants;
+using System.IO;
 
 namespace Mioca
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly IWebHostEnvironment _env;
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            _env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -29,21 +33,22 @@ namespace Mioca
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-          
-            //services.AddMvc(
-            //    config =>
-            //    {
-            //        config.Filters.Add(new GlobalToken());
 
-            //    });
+            services.AddMvc(
+                config =>
+                {
+                    config.Filters.Add(new GlobalToken());
+
+                });
             services.AddDbContext<MiocaDbContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("Default"),
                 x => x.MigrationsAssembly("Repository")));
+            FileConstants.ImagePath = Path.Combine(_env.WebRootPath, "Uploads");
 
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
             });
-            services.AddIdentity<CustomUser, IdentityRole>(options =>
+            services.AddIdentity<User, IdentityRole>(options =>
             {
                 options.Password.RequiredLength = 5;
                 options.User.RequireUniqueEmail = true;
@@ -52,16 +57,15 @@ namespace Mioca
             }).AddEntityFrameworkStores<MiocaDbContext>().AddDefaultTokenProviders();
 
             services.Configure<MailSettings>(Configuration.GetSection("MailSettings"));
+            services.AddTransient<IMailService, Mioca.Services.MailService>();
 
             services.AddAutoMapper(typeof(Startup));
 
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IContentRepository, ContentRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<IBasketRepository, BasketRepository>();
-            services.AddTransient<IMailService, MailService>();
+            services.AddTransient<IAccountRepository, AccountRepository>();        
            
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -83,6 +87,7 @@ namespace Mioca
             app.UseRouting();
             app.UseSession();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

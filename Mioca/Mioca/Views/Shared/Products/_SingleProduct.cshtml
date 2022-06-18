@@ -5,13 +5,13 @@
         <div class="product-item  ">
             <div class="product-image-box">
                 <a asp-controller="ProdDetail" asp-action="index" asp-route-id="@Model.Id"  class="product-img">
-                    <img src="~/assets/images/product-image/@Model.Photos.First()" alt="Product">
+                    <img src="~/Uploads/@Model.Photos.First()" alt="Product">
                 @if (Model.Photos.Count > 0)
-                {<img class="hover-img" src="~/assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">
+                {<img class="hover-img" src="~/Uploads/@Model.Photos.First()" alt="@Model.Name">
                 }
                 else
                 {
-                    <img class="hover-img" src="~/assets/images/product-image/@Model.Photos.First()" alt="@Model.Name">
+                    <img class="hover-img" src="~/Uploads/@Model.Photos.First()" alt="@Model.Name">
                 }
 
 
@@ -30,7 +30,7 @@
 
                 </span>
                 <div class="actions">
-                    <a href="wishlist.html" class="action wishlist" title="Wishlist">
+                    <a  data-id="@Model.Id" data-quantity="1" href="#" class="action wishlist add_to-wish" title="Wishlist">
                         <i class="pe-7s-like"></i>
                     </a>
                     <a href="#" class="action quickview" title="Quick view" data-bs-toggle="modal"
@@ -70,17 +70,9 @@
                         <span class="new">@price.ToString("#.00")</span>
                         <span class="old">@Model.Price.ToString("#.00")₼</span>
                     }
-
-
-
                 </span>
-            </div>
-          
-
-            <a asp-controller="cart" asp-action="AddBasket" asp-route-id="@Model.Id" title="Add To Cart" class="add-to-cart">
-                Add
-                To Cart
-            </a>
+            </div>          
+            <a href="#"  data-id="@Model.Id" title="Add To Cart" class="add-to-cart add_to-cart">Add To Cart</a>
         </div>
 
         <!--Product card end  -->

@@ -1,0 +1,121 @@
+﻿
+@model BannerVm
+@{
+    ViewData["Title"] = "CreateBanner";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Elanı yenilə</h4>
+                        <form class="forms-sample" asp-controller="home" asp-action="BannerUpdate" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Vəziyyəti</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-success me-5">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="true" id="ExampleRadio2" checked="">
+                                            Aktiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-warning">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="false" id="ExampleRadio5" checked="">
+                                            Passiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Ana səhifədəki aşağıdakı elan</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-success me-5">
+                                        <label class="form-check-label" asp-for="IsBottomBanner">
+                                            <input type="radio" class="form-check-input" asp-for="IsBottomBanner" value="true" id="ExampleRadio2" checked="">
+                                            Aktiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-warning">
+                                        <label class="form-check-label" asp-for="IsBottomBanner">
+                                            <input type="radio" class="form-check-input" asp-for="IsBottomBanner" value="false" id="ExampleRadio5" checked="">
+                                            Passiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Ana sehifedeki yuxaridaki elan</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-success me-5">
+                                        <label class="form-check-label" asp-for="IsTopBanner">
+                                            <input type="radio" class="form-check-input" asp-for="IsTopBanner" value="true" id="ExampleRadio2" checked="">
+                                            Aktiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-warning">
+                                        <label class="form-check-label" asp-for="IsTopBanner">
+                                            <input type="radio" class="form-check-input" asp-for="IsTopBanner" value="false" id="ExampleRadio5" checked="">
+                                            Passiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Bannerin ust başlığı</label>
+                                <input asp-for="Title" class="form-control" placeholder="Bannerin ust başlığı">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Bannerin alt başlığı</label>
+                                <input asp-for="SubTitle" class="form-control" placeholder="Bannerin alt başlığı">
+                                <span asp-validation-for="SubTitle" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Kateqoriya</label>
+                                <input asp-for="Category" class="form-control" placeholder="Kateqoriya">
+                                <span asp-validation-for="Category" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Bannerin button mətni</label>
+                                <input asp-for="ActionText" class="form-control" placeholder="Bannerin button mətni" />
+                                <span asp-validation-for="ActionText" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Button linki</label>
+                                <input asp-for="EndPoint" class="form-control" placeholder="Button linki" />
+                                <span asp-validation-for="EndPoint" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Slider buttonun adı</label>
+                                <input asp-for="CardWidth" class="form-control" placeholder="Slider buttonun adı" />
+                                <span asp-validation-for="CardWidth" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Əsas şəkil</label>
+                                <input asp-for="ImageFile" accept="image/*" class="form-control" placeholder="Əsas şəkil">
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace Mioca.Areas.Admin.Models.Shopping
         [MaxLength(50,ErrorMessage ="Şöbə adı maximum 50 xarakter olmalıdır")]
         public string Name { get; set; }
         public string Logo { get; set; }
+        public IFormFile LogoFile { get; set; }
     }
 }

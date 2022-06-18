@@ -259,7 +259,11 @@ $( function() {
         $button.parent().find("input").val(newVal);
     });
 
-    //Related Products slide
+
+
+
+
+
 
     $('.relatedProducts').slick({
       infinite: true,
@@ -356,72 +360,12 @@ $( function() {
   });
 
   //Basket
-if ($(".remove-header-basket-item").length) {
-  $(".remove-header-basket-item").click(function (e) {
-      e.preventDefault();
-      $.ajax({
-          url: $(this).attr("href"),
-          type: "get",
 
-          success: function (res)
-          {
-              $(".header-basket").html(res)
-           
-          }
-      });
-  });
-}
-if ($(".remove-header-basket-item").length) {
-  $(document).on("click",".remove-header-basket-item",function (e) {
-    e.preventDefault();
-    let elem = $(this);
-    $.ajax({
-        url: $(this).attr("href"),
-        type: "get",
-       
 
-        success: function (res)
-        {
-            $(".header-basket").html(res);
-          
-            $.toast({
-                heading: 'Məlumat',
-                text: "Məhsul səbətinizdən silindi",
-                icon: 'info',
-                loader:true,
-                bgColor: '#358EC1',
-                loaderBg: '#f7d40d',
-                position:'bottom-right'
-            });
-        }
-    });
-});
-}
 
-if ($(".add-to-cart").length) {
-  $(document).on("click",".add-to-cart",function (e) {
-      e.preventDefault();
-    
-      $.ajax({
-          url: $(this).attr("href"),
-          type: "get",
-          success: function (res) {
-             
-              $(".header-basket").html(res);
-              $.toast({
-                  heading: 'Məlumat',
-                  text: "Məhsul səbətinizə əlavə edildi",
-                  icon: 'success',
-                  loader:true,
-                  bgColor: '#eaaa85',
-                  loaderBg: '#f7d40d',
-                  position: 'bottom-right'
-              });
-              
-          }
-      });
-  });
-}
+
+
+
 
 $(document).on("keyup", "#searchinput", function () {
 
@@ -437,4 +381,149 @@ $(document).on("keyup", "#searchinput", function () {
     })
 
 });
+
+
+
+$(function () {
+    $("#tabs").tabs().addClass("ui-tabs-vertical ui-helper-clearfix");
+    $("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
+});
+
+
+
+
+
+
+
+//add to cart
+
+$(".add_to-cart").on("click", function (e) {
+    e.preventDefault();
+    $.LoadingOverlay("show");
+
+    let id = parseInt($(this).data("id"));
+
+    $.ajax({
+        url: "/basket/addToCart/" + id,
+        type: "get",
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            $.LoadingOverlay("hide");
+            $.toast({
+                heading: 'Məlumat',
+                text: "Məhsul səbətinizə əlavə edildi",
+                icon: 'success',
+                loader: false,
+                bgColor: '#eaaa85',
+                loaderBg: '#f7d40d',
+                position: 'bottom-right'
+            });
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+
+});
+
+$(".remove-basket").on("click", function (e) {
+    e.preventDefault();
+    $.LoadingOverlay("show");
+    let This = this;
+
+    let price = parseFloat($(this).data("price").replace(",", "."))
+    let qunatity = parseFloat($(this).data("quantity").toString().replace(",", "."))
+    let totalPriceRemovedPrd = price * qunatity;
+    let total = parseFloat($("#subTotal").text().slice(1, $("#subTotal").text().length));
+    let newTotal = total - totalPriceRemovedPrd;
+    let finalTotal = 0;
+
+    let id = parseInt($(this).data("id"));
+
+    $.ajax({
+        url: "/basket/removeFromCart/" + id,
+        type: "get",
+        dataType: "json",
+        success: function (response) {
+            console.log(this);
+
+            //Update totals
+            $(".subTotal").text("$" + newTotal.toFixed(2));
+
+            let shipping_method = $("#shipping_method");
+            shipping_method.empty();
+            let li = $("<li></li>");
+
+            if (newTotal < 100) {
+                let label = $("<label></label>");
+                let span = $('<span class="amount">₼7.00</span>');
+                label.append(span);
+                li.append(label);
+                shipping_method.append(li);
+                finalTotal = newTotal + 7;
+            } else {
+                let label = $("<label></label>");
+                let span = $('<span class="amount">Free</span>');
+                label.append(span);
+                li.append(label);
+                shipping_method.append(li);
+                finalTotal = newTotal;
+            }
+
+            $(".finalTotal").text("₼" + finalTotal.toFixed(2));
+            //End of update codes
+
+            This.closest('tr').remove();
+
+            $.LoadingOverlay("hide");
+            $.toast({
+                heading: 'Məlumat',
+                text: "Məhsul səbətinidən silindi",
+                icon: 'success',
+                loader: false,
+                bgColor: '#eaaa85',
+                loaderBg: '#f7d40d',
+                position: 'bottom-right'
+            });
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+});
+
+
+
+//wishlist
+$(".add_to-wish").on("click", function (e) {
+    e.preventDefault();
+    $.LoadingOverlay("show");
+
+    let id = parseInt($(this).data("id"));
+
+    $.ajax({
+        url: "/basket/AddToWish/" + id,
+        type: "get",
+        dataType: "json",
+        success: function (response) {
+            console.log(response);
+            $.LoadingOverlay("hide");
+            $.toast({
+                heading: 'Məlumat',
+                text: "Məhsul wishlistinize əlavə edildi",
+                icon: 'success',
+                loader: false,
+                bgColor: '#eaaa85',
+                loaderBg: '#f7d40d',
+                position: 'bottom-right'
+            });
+        },
+        error: function (response) {
+            console.log(response);
+        }
+    });
+
+});
+
 

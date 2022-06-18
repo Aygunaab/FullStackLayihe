@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Repository.Data
 {
-   public class MiocaDbContext:IdentityDbContext<CustomUser>
+   public class MiocaDbContext:IdentityDbContext<User>
     {
 
         public MiocaDbContext(DbContextOptions<MiocaDbContext> options) : base(options){
@@ -28,8 +28,18 @@ namespace Repository.Data
         public DbSet<SliderItem> Sliders { get; set; }
         public DbSet<Social> Socials { get; set; }
         public DbSet<Banner> Banners { get; set; }
-        public DbSet<Basket> Baskets { get; set; }
-
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Sale> Sales { get; set; }
+        public DbSet<SaleItem> SaleItems { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<ContactMessage> contactMessages { get; set; }
+        public DbSet<ContactSocial> ContactSocials { get; set; }
+        public DbSet<Subscribe> Subscribes { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<WhatClientSays> WhatClientSays { get; set; }
+        public DbSet<OurMission> ourMissions { get; set; }
+        public DbSet<TeamMember> TeamMembers { get; set; }
+        public DbSet<TeamMemberSocial> TeamMemberSocials { get; set; }
 
 
     }

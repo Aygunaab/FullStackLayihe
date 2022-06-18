@@ -41,5 +41,10 @@ namespace Mioca.Controllers
 
             return PartialView("Search/_search",model);
         }
+
+        public IActionResult ErrorPage()
+        {
+            return View();
+        }
     }
 }

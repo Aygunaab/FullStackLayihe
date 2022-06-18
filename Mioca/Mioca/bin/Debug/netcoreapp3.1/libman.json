@@ -20,6 +20,18 @@
       "files": [
         "jquery.validate.unobtrusive.min.js"
       ]
+    },
+    {
+      "library": "ckeditor5@34.1.0",
+      "destination": "wwwroot/lib/ckeditor5/"
+    },
+    {
+      "library": "select2@4.0.13",
+      "destination": "wwwroot/lib/select2/",
+      "files": [
+        "css/select2.min.css",
+        "js/select2.full.min.js"
+      ]
     }
   ]
 }

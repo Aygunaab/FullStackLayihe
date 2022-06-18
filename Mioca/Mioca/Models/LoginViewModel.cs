@@ -17,5 +17,6 @@ namespace Mioca.Models
 
         public bool RememberMe { get; set; }
 
+
     }
 }

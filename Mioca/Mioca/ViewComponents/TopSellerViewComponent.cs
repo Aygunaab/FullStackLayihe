@@ -22,7 +22,7 @@ namespace Mioca.ViewComponents
         }
         public IViewComponentResult Invoke()
         {
-            var products = _product.GetProductBestSeeling(8);
+            var products = _product.GetProductPopularSeeling();
             var model = _mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products);
 
             return View(model);

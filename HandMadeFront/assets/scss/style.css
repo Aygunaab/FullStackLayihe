@@ -1130,6 +1130,12 @@
   bottom: 28px;
 }
 
+.deal-card-inner .deal-image img {
+  height: 270px;
+  width: 270px;
+  border-radius: 50%;
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .deal-card-inner .deal-image {
     right: 40px;
@@ -2801,6 +2807,19 @@
   -webkit-transition: all .3s ease 0s;
   transition: all .3s ease 0s;
   width: 100%;
+  height: 309px;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .product .product-item .product-image-box .product-img img {
+    height: 360px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .product .product-item .product-image-box .product-img img {
+    height: 600px;
+  }
 }
 
 .product .product-item .product-image-box .product-img img.hover-img {
@@ -3445,8 +3464,40 @@
   }
 }
 
+.relatedProducts {
+  margin-left: 30px;
+}
+
 .relatedProducts .product .product-item {
   padding: 18px;
+}
+
+.rating_submit .form-group {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.rating_submit .form-group .rating {
+  display: inline-block;
+  position: relative;
+}
+
+.rating_submit .form-group .rating .rating-input {
+  display: none;
+}
+
+.rating_submit .form-group .rating .rating-input:checked ~ .rating-star {
+  background-position: 0 0;
+}
+
+.rating_submit .form-group .rating .rating-star {
+  cursor: pointer;
+  float: right;
+  display: block;
+  margin-right: 3px;
+  width: 37px;
+  height: 37px;
+  background: url(../images/gif/stars.svg) 0 -38px;
 }
 
 .about-section .about-image-box {
@@ -5673,5 +5724,16 @@ body .shop-nav-item .btn-group .dropdown-menu .category li a img {
 body .shop-nav-item .btn-group .dropdown-menu .category li a span {
   margin-left: 15px;
   font-size: 17px;
+}
+
+body input {
+  background-color: transparent;
+  border: 1px solid #ebebeb;
+  color: #424242;
+  font-size: 14px;
+  margin-bottom: 30px;
+  padding: 0 15px;
+  width: 100%;
+  outline: 0;
 }
 /*# sourceMappingURL=style.css.map */

@@ -12,15 +12,21 @@ namespace Repository.Repositories.ShoppingRepositories
 {
     public interface IProductRepository
     {
-        IEnumerable<Product> GetProductBestSeeling(int limit);
+        IEnumerable<Product> GetProductBestSeeling();
         IEnumerable<Product> GetProductShop(int limit);
         IEnumerable<Product> GetproductsByCategoryId(int categoryId, int skip, int take, ProductListing orderBy);
        int GetProductsCountByCategoryid(int CategoryId);
         Product GetProductByDetailsId(int id);
         IEnumerable<Product> GetFilterbyCategoryid(int categoryId ,decimal? MinPrice, decimal? MaxPrice);
-       IEnumerable<Product> SearchProducts(string searchString);
+        IEnumerable<Product> GetProductSingleBanner();
+        IEnumerable<Product> GetProductPopularSeeling();
+        IEnumerable<Product> GetProductBanner();
+        IEnumerable<Product> SearchProducts(string searchString);
+        IEnumerable<Product> GetProducts();
         IEnumerable<Product> GetProductMaxMinPrice(decimal? MinPrice, decimal? MaxPrice);
         Product GetProductById(int id);
+        Product GetProductId(int? id);
+        void Delete(Product product);
     }
     public  class ProductRepository:IProductRepository
     {
@@ -43,7 +49,7 @@ namespace Repository.Repositories.ShoppingRepositories
             return products;
         }
 
-        public IEnumerable<Product> GetProductBestSeeling(int limit)
+        public IEnumerable<Product> GetProductBestSeeling()
         {
             return _context.Products.Include("Photos")
                                     .Include("Label")
@@ -53,7 +59,6 @@ namespace Repository.Repositories.ShoppingRepositories
                                     .Where(p => p.Status)
                                     .Where(p => p.IsBestSeellers)
                                     .OrderByDescending(p =>p.AddedDate)
-                                    .Take(limit)
                                     .ToList();
         }
 
@@ -143,6 +148,66 @@ namespace Repository.Repositories.ShoppingRepositories
         public IEnumerable<Product> SearchProducts(string searchString)
         {
             return _context.Products.Where(p => p.Name.ToUpper().Contains(searchString.ToUpper())).ToList();
+        }
+
+        public Product GetProductId(int? id)
+        {
+            return _context.Products.Find(id);
+        }
+
+        public IEnumerable<Product> GetProducts()
+        {
+            return _context.Products.Include("Photos")
+                                      .Include("Label")
+                                      .Include("Category")
+                                      .OrderByDescending(p=>p.AddedDate)
+                                      .ToList();
+        }
+
+        public void Delete(Product product)
+        {
+            _context.Products.Remove(product);
+            _context.SaveChangesAsync();
+        }
+
+        public IEnumerable<Product> GetProductBanner()
+        {
+           return _context.Products.Include("Photos")
+                                    .Include("Label")
+                                    .Include("Category")
+                                    .Include("Discounts")
+                                    .Include("Discounts.Discount")
+                                    .Where(p => p.Status)
+                                    .Where(p => p.IsSingleBanner)
+                                    .OrderByDescending(p =>p.AddedDate)                                   
+                                    .ToList();
+        }
+
+        public IEnumerable<Product> GetProductPopularSeeling()
+        {
+            return _context.Products.Include("Photos")
+                                   .Include("Label")
+                                   .Include("Category")
+                                   .Include("Discounts")
+                                   .Include("Discounts.Discount")
+                                   .Where(p => p.Status)
+                                   .Where(p => p.IsPopularCategory)
+                                   .OrderByDescending(p => p.AddedDate)
+                                   .ToList();
+        }
+
+        public IEnumerable<Product> GetProductSingleBanner()
+        {
+            return _context.Products
+                                   
+                                   .Include("Category")
+                                   .Include("Discounts")
+                                   .Include("Discounts.Discount")
+                                   .Where(p => p.Status)
+                                   .Where(p => p.IsSingleBanner)
+                                   .OrderByDescending(p => p.AddedDate)
+                                   .Take(1)
+                                   .ToList();
         }
     }
 }

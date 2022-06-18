@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ProductViewModel>
+
+
+@foreach (var item in Model)
+{
+    <div class="col-12">
+        <div class="deal-card-inner" style="background-image: url(assets/images/deal-img/deal-bg.jpg);">
+            <div class="deal-content">
+                <h3 class="deal-title">
+                    @item.Name
+
+
+                </h3>
+                <span class="deal-price">
+                    @if (item.Discount == null)
+                    {
+                        <span class="new">@Model.FirstOrDefault().Price.ToString("#.00")₼</span>
+                    }
+                    else
+                    {
+                        var price =item.Price - (item.Price * item.Discount.Percentage / 100);
+                        <span class="new">@price.ToString("#.00")</span>
+                        <span class="old" style="text-decoration:line-through">@item.Price.ToString("#.00")₼</span>
+                    }
+                </span>
+                <a href="#" class="btn btn-lg primary-button add_to-cart">Səbətə əlavə et</a>
+            </div>
+            <div class="deal-image">
+                <img class="img-fluid" style="background-color:transparent; border-radius:100%;" src="~/Uploads/@item.MainImage" alt="">
+                <div class="discount">
+
+                    @if (item.Discount == null)
+                    {
+
+
+                    }
+                    else
+                    {
+                        <h3>@item.Discount.Percentage.ToString("#")%</h3>
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

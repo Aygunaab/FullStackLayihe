@@ -1,4 +1,4 @@
-﻿@model IEnumerable<VmCategory>
+﻿@model List<VmCategory>
 @{
     ViewData["Title"] = "Categoriyalar";
    
@@ -39,28 +39,27 @@
                                        {
 
 
-                                    <tr >
+                                    <tr>
                                         <td>
                                             @if (item.Status)
                                             {
                                                 <button type="button" class="btn btn-success btn-rounded btn-fw">Aktiv</button>
                                             }
-                else
-                {
-                                        <button type="button" class="btn btn-warning btn-rounded btn-fw">Passiv</button>
-                }
+                                            else
+                                            {
+                                                <button type="button" class="btn btn-warning btn-rounded btn-fw">Passiv</button>
+                                            }
                                         </td>
                                         <td>
-                                            <img src="~/assets/images/icons/@item.Logo"
-                                                 alt="">
+                                            <img src="~/Uploads/@item.Logo"alt="">
                                         </td>
                                         <td>
                                             @item.Name
                                         </td>
                                         <td class="d-flex justify-content-center">
-                                            <a class="btn btn-outline-primary btn-fw me-2"  asp-controller="category" asp-action="detail">Detail</a>
-                                            <a class="btn btn-outline-warning btn-fw me-2"  asp-controller="category" asp-action="update" asp-route-id="@item.Id">Update</a>
-                                            <a class="btn btn-outline-danger btn-fw"  asp-controller="category" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                                            <a class="btn btn-outline-primary btn-fw me-2" asp-controller="category" asp-action="detail" asp-route-id="@item.Id">Detail</a>
+                                            <a class="btn btn-outline-warning btn-fw me-2" asp-controller="category" asp-action="update" asp-route-id="@item.Id">Update</a>
+                                           <a onclick="return confirm('Are you sure?')" asp-area="admin" asp-controller="category" asp-action="Delete" asp-route-id="@item.Id" class="btn btn-outline-danger btn-fw me-2" title="Delete">Delete</a>
                                         </td>
 
                                     </tr>
