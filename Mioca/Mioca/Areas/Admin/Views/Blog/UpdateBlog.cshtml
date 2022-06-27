@@ -1,0 +1,117 @@
+﻿@model BlogViewModel
+@{
+    ViewData["Title"] = "UpdateBlog";
+}
+@section Css{
+    <link rel="stylesheet" href="~/lib/select2/css/select2.min.css">
+}
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Blogu yenile</h4>
+                        <form asp-controller="blog" asp-action="UpdateBlog" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Vəziyyəti</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-success me-5">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="true" id="ExampleRadio2" checked="checked">
+                                            Aktiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-warning">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="false" id="ExampleRadio5" checked="">
+                                            Passiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Ad</label>
+                                <input asp-for="Title" class="form-control" placeholder="Ad">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Slogandan usteki metn</label>
+                                <textarea asp-for="TextTopQuote" class="form-control" placeholder="Slogandan usteki metn"></textarea>
+                                <span asp-validation-for="TextTopQuote" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Slogandan asagidaki metn</label>
+                                <textarea asp-for="TextBottomQuote" class="form-control" placeholder="Slogandan asagidaki metn"></textarea>
+                                <span asp-validation-for="TextBottomQuote" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Yazarın şüarı</label>
+                                <input asp-for="SloganUser" class="form-control" placeholder="Yazarın şüarı" />
+                                <span asp-validation-for="SloganUser" class="text-danger"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Əsas şəkil</label>
+                                <input asp-for="ImageFile" accept="image/*" class="form-control" placeholder="Əsas şəkil">
+
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+                            <div class="mt-3 mb-3">
+                                <img src="~/Uploads/@Model.Image" height="100" alt="Alternate Text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Məhsulun kategoriyası</label>
+                                <select class="form-control" asp-for="CategoryId">
+                                    @foreach (var cat in Model.Category)
+                                    {
+                                        <option value="@cat.Id">@cat.Name</option>
+                                    }
+                                </select>
+
+                                <span asp-validation-for="CategoryId" class="text-danger"></span>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary mt-4 mb-2">Yenilə</button>
+                            <a asp-controller="blog" asp-action="blog" class="btn btn-light">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/ckeditor5/ckeditor.js"></script>
+    <script src="~/lib/select2/js/select2.full.min.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#TextTopQuote'))
+            .catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#TextBottomQuote'))
+            .catch(error => {
+                console.error(error);
+            });
+        $("#CategoryId").select2({
+            placeholder: "Select categories",
+            theme: "bootstrap5",
+            allowClear: true
+        });
+    </script>
+
+
+}
+

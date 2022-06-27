@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class BasketViewModel:GeneralViewModel
+    public class BasketViewModel
     {
         public int Id { get; set; }
         public string MainImage { get; set; }
@@ -14,6 +14,7 @@ namespace Mioca.Models
         public decimal Quantity { get; set; }
         public decimal Count { get; set; }
         public decimal MaxQuantity { get; set; }
+        public DiscountViewModel Discount { get; set; }
     }
 
    

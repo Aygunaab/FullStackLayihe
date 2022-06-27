@@ -1,38 +1,43 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Mioca.Models;
-using Repository.Data;
 using Repository.Models;
+using Repository.Repositories.ContentRepositories;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace Mioca.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : BaseController
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly MiocaDbContext _context;
+        private readonly IContentRepository _content;
+        private readonly IAccountRepository _account;
 
-        public ContactController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, MiocaDbContext context)
+        public ContactController(UserManager<User> userManager, 
+                                 SignInManager<User> signInManager, 
+ 
+                                 IContentRepository content,
+                                 IAccountRepository account)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
-            _context = context;
+            _content = content;
+            _account = account;
         }
 
         public IActionResult Index(int id)
         {
-            var contact = _context.Contacts.Include(c => c.Socials).ToList();
+
+            var contact = _content.GetContact();
+           
 
             ContactViewModel model = new ContactViewModel()
             {
                Contact=contact.FirstOrDefault(),
+                Setting = _content.Getset(),
 
             };
 
@@ -46,7 +51,7 @@ namespace Mioca.Controllers
             {
                 
                 string userId = _userManager.GetUserId(User);
-                User user = _context.Users.Find(userId);
+                User user = _account.GetUserByid(userId);
 
                 model.Name = user.Name;
                 model.Surname = user.Surname;
@@ -64,15 +69,11 @@ namespace Mioca.Controllers
                     Phone = model.Phone,
                     Message = model.Message
                 };
-
-                _context.contactMessages.Add(message);
-                _context.SaveChanges();
-
-               
-
+                _content.CreateMessage(message);
+                Notify("Mesajınız uğurla göndərildi");
                 return RedirectToAction("index", "home");
             }
-
+            model.Setting = _content.GetSetting().FirstOrDefault();
             return View(model);
         }
 
@@ -84,7 +85,7 @@ namespace Mioca.Controllers
                 return Json(404);
             }
 
-            bool isExist = _context.Subscribes.Any(e => e.Email == email);
+            bool isExist = _content.Subscribe(email);
 
             if (isExist)
             {
@@ -97,8 +98,7 @@ namespace Mioca.Controllers
                 AddedDate = DateTime.Now
             };
 
-            _context.Subscribes.Add(subscribe);
-            _context.SaveChanges();
+            _content.AddSubscribe(subscribe);
 
             return Json(200);
         }

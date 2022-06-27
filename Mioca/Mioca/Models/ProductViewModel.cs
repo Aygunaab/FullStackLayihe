@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class ProductViewModel
+    public class ProductViewModel:BaseViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public DateTime AddedDate { get; set; }
         public decimal? DiscountPrice { get; set; }
-        public int Quantity { get; set; }
-        public int StarCount { get; set; }
+        public decimal Quantity { get; set; }
+        public decimal Count { get; set; } = 1;
+        public byte StarCount { get; set; }
         public string Avability { get; set; }
         public string Text { get; set; }
         public string MainImage { get; set; }

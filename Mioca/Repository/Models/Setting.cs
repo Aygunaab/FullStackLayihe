@@ -22,8 +22,6 @@ namespace Repository.Models
         [Required]
         [MaxLength(50)]
         public string Email { get; set; }
-        [Required]
-        [MaxLength(100)]
-        public string BannerCoverImage { get; set; }
+      
     }
 }

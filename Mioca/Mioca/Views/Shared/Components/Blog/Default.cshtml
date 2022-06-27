@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Blog>
+
+
+@foreach (var item in Model)
+{
+    <div class="col-xl-4 col-lg-4 col-md-6 mb-md-5 mb-sm-5">
+        <div class="blog-cart">
+            <div class="blog-image">
+                <img src="~/Uploads/@item.Image" alt="">
+            </div>
+            <div class="blog-content">
+                <div class="blog-athor-date">
+                    <span> By,<a class="blog-author" href="#"> @item.User.Name @item.User.Surname</a></span>
+                    <span class="blog-date">@item.AddedDate.Date.ToString("dd MMMM yyyy")</span>
+                </div>
+                <h5 class="blog-heading">
+                    <a class="blog-heading-link" href="#">
+                     @item.Title
+                    </a>
+                </h5>
+                <a asp-controller="Blog" asp-action="details" asp-route-id="@item.Id"class="btn primary-button blog-btn"> Read More</a>
+            </div>
+        </div>
+    </div>
+}

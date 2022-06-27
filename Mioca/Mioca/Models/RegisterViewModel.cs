@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class RegisterViewModel
+    public class RegisterViewModel:BaseViewModel
     {
         [Required(ErrorMessage = "Username vacibdir")]
         [MaxLength( 20,ErrorMessage = "Username maximum 20 xarakter olmalıdır")]

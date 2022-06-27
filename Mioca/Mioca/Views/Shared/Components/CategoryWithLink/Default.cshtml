@@ -1,0 +1,12 @@
+﻿
+@model IEnumerable<CategoryViewModel>
+
+@foreach (var item in Model)
+{
+    <li data-filter=".@item.Name">
+        <a asp-controller="shop" asp-action="index" asp-route-id="@item.Id" style="color:black!important;">
+            <img src="~/Uploads/@item.Logo"
+                 alt=""><span>@item.Name</span>
+            </a>
+        </li>
+    }

@@ -27,8 +27,9 @@ namespace Mioca.Areas.Admin.Models
         [StringLength(maximumLength: 500)]
         public string SubText { get; set; }
         public string Image { get; set; }
+        [Required(ErrorMessage = "Boş olmamalıdır")]
         public IFormFile MainImage{ get; set; }
-       
+        [Required(ErrorMessage = "Boş olmamalıdır")]
         public IFormFile[] Images { get; set; }
         public int CategoryId { get; set; }
         public int? LabelId { get; set; }

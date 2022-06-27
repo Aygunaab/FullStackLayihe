@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Mioca.Models;
 using Repository.Data;
 using Repository.Models;
+using Repository.Repositories.ContentRepositories;
 using Repository.Repositories.ShoppingRepositories;
 using System;
 using System.Collections.Generic;
@@ -13,19 +14,24 @@ using System.Threading.Tasks;
 
 namespace Mioca.Controllers
 {
-    public class ProdDetailController : Controller
+    public class ProdDetailController : BaseController
     {
         private readonly IMapper _mapper;
         private readonly IProductRepository _product;
+        private readonly IContentRepository _content;
         private readonly UserManager<User> _usermanager;
-        private readonly MiocaDbContext _context;
+       
 
-        public ProdDetailController(IMapper mapper, IProductRepository product, UserManager<User> usermanager, MiocaDbContext context)
+        public ProdDetailController(IMapper mapper, 
+                                   IProductRepository product,
+                                   IContentRepository content,
+                                   UserManager<User> usermanager)
         {
             _mapper = mapper;
             _product = product;
+            _content = content;
             _usermanager = usermanager;
-            _context = context;
+          
         }
 
         public IActionResult Index(int id)
@@ -37,9 +43,9 @@ namespace Mioca.Controllers
             
             var model = _mapper.Map<Product, ProductViewModel>(products);
 
-          
+            model.Setting = _content.Getset();
             
-            var relatedProducts = _product.GetproductsByCategoryId(products.Category.Id, 0, 10, Repository.Enums.ProductListing.neness);
+            var relatedProducts = _product.GetproductsRelatedByCategoryId(products.Category.Id, 0, 10, Repository.Enums.ProductListing.neness);
             ViewBag.RelatedProducts=_mapper.Map<IEnumerable<Product>,IEnumerable < ProductViewModel >> (relatedProducts);
             return View(model);
         }
@@ -47,7 +53,7 @@ namespace Mioca.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize]
-        public async Task<IActionResult> AddComment(int id, CommentViewModel model)
+        public IActionResult AddComment(int id, CommentViewModel model)
         {
             var products = _product.GetProductByDetailsId(id);
             if (products == null) return NotFound();
@@ -62,8 +68,7 @@ namespace Mioca.Controllers
                 ProductId = id
             };
 
-            await _context.ProductReviews.AddAsync(comment);
-            await _context.SaveChangesAsync();
+            _content.CreateCommentProduct(comment);
 
             return RedirectToAction(nameof(Index), new { id });
         }

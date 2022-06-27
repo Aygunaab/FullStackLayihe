@@ -1,0 +1,66 @@
+﻿
+
+@model FagVm
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">kömək sualı və cavabı yenilə</h4>
+                        <form class="forms-sample" asp-controller="fag" asp-action="update" method="post">
+                            <div class="form-group">
+                                <label>Vəziyyəti</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-success me-5">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="true" id="ExampleRadio2" checked="">
+                                            Aktiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-warning">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="false" id="ExampleRadio5" checked="">
+                                            Passiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Klientin adı soyadı</label>
+                                <input asp-for="Question" class="form-control" placeholder="Sual">
+                                <span asp-validation-for="Question" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Klientin rəyi</label>
+                                <textarea asp-for="Answer" class="form-control" placeholder="Cavab"></textarea>
+                                <span asp-validation-for="Answer" class="text-danger"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Answer'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+}
+
+

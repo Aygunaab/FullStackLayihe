@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class ProfileViewModel
+    public class ProfileViewModel:BaseViewModel
     {
         public string Id { get; set; }
         [MaxLength(50)]
@@ -47,7 +47,6 @@ namespace Mioca.Models
 
         public string Adress { get; set; }
 
-       
         [NotMapped]
         public IFormFile ImageFile { get; set; }
 

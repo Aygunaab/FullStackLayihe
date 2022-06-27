@@ -1,0 +1,111 @@
+﻿@model IEnumerable<WhatClientSaysVm>
+@{
+    ViewData["Title"] = "Comments";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-lg-12 stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Haqqımızda olan rəylər</h4>
+
+                        <div class="table-responsive">
+                            <table id="comment" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            #
+                                        </th>
+                                        <th class="text-center">
+                                            Şəkil
+
+                                        </th>
+                                        <th class="text-center">
+                                            Ad Soyad
+                                        </th>
+                                        <th class="text-center">
+                                            Tarix
+                                        </th>
+                                        <th class="text-center">
+                                            Şirkət
+                                        </th>
+
+                                        <th>
+                                            Vəziyyət
+                                        </th>
+
+
+                                        <th>
+                                            <a asp-area="admin" asp-controller="about" asp-action="CreateComment" class="btn btn-outline-success btn-fw">Create</a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @{ int a = 1;}
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@a</td>
+                                            @if (item.ClientImage != null)
+                                            {
+                                                <td class="py-1">
+                                                    <img style="border-radius: 0; width: 100px; height: auto" src="~/Uploads/@item.ClientImage" alt="image">
+                                                </td>
+                                            }
+                                            else
+                                            {
+                                                <td class="py-1">
+                                                    <img style="border-radius: 0; width: 100px; height: auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqedueT5B6j_TaQ1ajt0BVgtzqZiwEq26cBw&usqp=CAU" alt="image">
+                                                </td>
+                                            }
+
+                                            <td>
+                                                @(item.FullName!= null? item.FullName:"")
+                                            </td>
+                                            <td>
+                                                @(item.AddedDate != null? item.AddedDate.ToString("dd.MM.yyyy") : "")
+                                            </td>
+                                            <td>
+                                                @(item.companyName!= null? item.companyName:"")
+                                            </td>
+
+                                            <td>
+                                                @if (item.Status)
+                                                {
+                                                    <button type="button" class="btn btn-success btn-rounded btn-fw">Aktiv</button>
+                                                }
+                                                else
+                                                {
+                                                    <button type="button" class="btn btn-warning btn-rounded btn-fw">Passiv</button>
+                                                }
+                                            </td>
+
+
+
+                                            <td class="text-center d-grid">
+                                                <a asp-area="admin" asp-controller="about" asp-action="DetailComment" asp-route-id="@item.Id" class="btn btn-success btn-sm mt-2" title="Detail">Detail</a>
+
+                                                <a asp-area="admin" asp-controller="about" asp-action="UpdateComment" asp-route-id="@item.Id" class="btn btn-warning btn-sm mt-2" title="Update">Update</a>
+                                                <a onclick="return confirm('Are you sure?')" asp-area="admin" asp-controller="about" asp-action="DeleteComment" asp-route-id="@item.Id" class="btn btn-danger btn-sm mt-2" title="Delete">Delete</a>
+                                            </td>
+                                        </tr>
+                                        { a++; }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('#comment').DataTable();
+        });
+    </script>
+}

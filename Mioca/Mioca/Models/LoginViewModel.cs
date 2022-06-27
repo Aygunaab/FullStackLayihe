@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class LoginViewModel
+    public class LoginViewModel:BaseViewModel
     {
         [Required]
         public string Login { get; set; }

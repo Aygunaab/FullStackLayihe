@@ -1,4 +1,5 @@
-﻿
+﻿@model BlogVm
+@inject SignInManager<User> SignInManager
 @{
     ViewData["Title"] = "Blog";
 }
@@ -25,199 +26,36 @@
     <section class="section-style-one">
         <div class="container">
             <div class="row">
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/1.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a asp-controller="blog" asp-action="details" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/2.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a href="blog-details.html" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/3.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a href="blog-details.html" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/1.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a href="blog-details.html" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/2.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a href="blog-details.html" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/3.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a href="blog-details.html" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/1.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a href="blog-details.html" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/2.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a href="blog-details.html" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 marbot-50">
-                    <div class="blog-cart">
-                        <div class="blog-image">
-                            <img  src="~/assets/images/blog-image/3.jpg" alt="">
-                        </div>
-                        <div class="blog-content">
-                            <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
-                            </div>
-                            <h5 class="blog-heading">
-                                <a class="blog-heading-link" href="#">
-                                    How to Explain Handmade
-                                    Product to Your Boss
-                                </a>
-                            </h5>
-                            <a href="blog-details.html" class="btn primary-button blog-btn"> Read More</a>
-                        </div>
-                    </div>
-                </div>
+
+              <vc:blog></vc:blog>
+
+                
             </div>
             <div class="pagination justify-content-center mt-0 mb-0">
                 <div class="pages">
                     <ul>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fa fa-angle-left"></i></a>
-                        </li>
-                        <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#"><i class="fa fa-angle-right"></i></a>
-                        </li>
+                        @{
+                            int j = 0;
+                        }
+                        @if (ViewBag.prewPage != 0)
+                        {
+                            <li class="page-item">
+                                <a class="page-link" asp-controller="blog" asp-action="index" asp-all-route-data="@ViewBag.Filter" asp-route-page="@ViewBag.prewPage"><i class="fa fa-angle-left"></i></a>
+                            </li>
+                        }
+                        @for (int i = 1; i <= ViewBag.PageCount; i++)
+                        {
+                            <li class="page-item"><a class="page-link @(ViewBag.ActivePage==i?"active":"")" asp-controller="blog" asp-action="index" asp-all-route-data="@ViewBag.Filter" asp-route-page="@i">@i</a></li>
+                            j = i;
+                        }
+                        @if (ViewBag.nextPage <= j)
+                        {
+                            <li class="page-item">
+                                <a class="page-link"  asp-controller="blog" asp-action="index" asp-all-route-data="@ViewBag.Filter" asp-route-page="@ViewBag.nextPage"><i class="fa fa-angle-right"></i></a>
+                            </li>
+                        }
+
+
                     </ul>
                 </div>
             </div>

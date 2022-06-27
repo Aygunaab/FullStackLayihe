@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class AboutViewModel
+    public class AboutViewModel:BaseViewModel
     {
-        public OurMission Missions { get; set; }
-        public ICollection<TeamMember> TeamMembers { get; set; }
-        public ICollection<WhatClientSays> whatClientSays { get; set; }
-        public ICollection<Brand> Brands { get; set; }
+        public IEnumerable<OurMission> Missions { get; set; }
+        public IEnumerable<TeamMemberViewModel> TeamMembers { get; set; }
+        public IEnumerable<WhatClientSays> whatClientSays { get; set; }
+        public IEnumerable<Brand> Brands { get; set; }
     }
 }

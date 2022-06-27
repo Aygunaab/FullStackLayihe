@@ -15,6 +15,7 @@ using Mioca.Libs;
 using System;
 using Repository.Constants;
 using System.IO;
+using Repository.Repositories.AdminRepositories;
 
 namespace Mioca
 {
@@ -64,8 +65,12 @@ namespace Mioca
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<IContentRepository, ContentRepository>();
             services.AddTransient<IProductRepository, ProductRepository>();
-            services.AddTransient<IAccountRepository, AccountRepository>();        
-           
+            services.AddTransient<IAccountRepository, AccountRepository>();
+            //admin panel repositories
+            services.AddTransient<IAboutRepository, AboutRepository>();
+            services.AddTransient<IAdminContentRepository, AdminContentRepository>();
+            services.AddTransient<IProductAdminRepository, ProductAdminRepository>();
+            services.AddTransient<IBlogRepository, BlogRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

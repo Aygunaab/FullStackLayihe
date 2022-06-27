@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Mioca.Areas.Admin.Models;
+using Mioca.Areas.Admin.Models.About;
 using Mioca.Areas.Admin.Models.Shopping;
 using Mioca.Models;
 using Repository.Models;
@@ -35,11 +36,12 @@ namespace Mioca.Mapping
             CreateMap<Category, VmCategory>();
             CreateMap<VmCategory, Category>();
             CreateMap<VmUserNotRegister, User>();
-
             CreateMap<ProfileViewModel, User>();
-
             CreateMap<ProductViewModel, Product>();
-
+            CreateMap<TeamMember, TeamMemberViewModel>();
+            CreateMap<LabelViewModel, Label>();
+            CreateMap<DiscountViewModel, Discount>();
+            CreateMap<Blog, BlogVm>();
             //admin view model
             CreateMap<Product, VmProduct>()
                       .ForMember(d => d.Photos, opt => opt.MapFrom(src => src.Photos.OrderBy(p => p.OrderBy).Select(p => p.Image)));
@@ -53,9 +55,18 @@ namespace Mioca.Mapping
 
             CreateMap<Banner, BannerVm>();
 
+            CreateMap<OurMission, OurMissionVm>();
 
-
-
+            CreateMap<TeamMember, TeamMemberVm>();
+            CreateMap<WhatClientSays, WhatClientSaysVm>();
+            CreateMap<Brand, BrandVm>();
+            CreateMap<Fag, FagVm>();
+            CreateMap<BlogCategory, BlogCategoryViewModel>();        
+            CreateMap<Sale, SaleViewmodel>();
+            CreateMap<SaleItem, SaleItemViewModel>();
+            CreateMap<Tax, TaxVievModel>();
+            CreateMap<Setting, SettingViewModel>();
+            CreateMap<Blog, BlogGetViewModel>();
         }
 
     }

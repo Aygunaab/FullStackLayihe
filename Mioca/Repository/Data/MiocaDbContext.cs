@@ -40,7 +40,14 @@ namespace Repository.Data
         public DbSet<OurMission> ourMissions { get; set; }
         public DbSet<TeamMember> TeamMembers { get; set; }
         public DbSet<TeamMemberSocial> TeamMemberSocials { get; set; }
-
-
+        public DbSet<Fag> Fags { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        public DbSet<BlogCategory> BlogCategorys { get; set; }
+        public DbSet<BlogTag> BlogTags { get; set; }
+        public DbSet<TagToBlog> TagToBlogs { get; set; }
+        public DbSet<SavedBlog> SavedBlogs { get; set; }
+        public DbSet<BlogComment> BlogComments { get; set; }
+        public DbSet<Tax> Taxs { get; set; }
+        public DbSet<BlogSocial> BlogSocials { get; set; }
     }
 }

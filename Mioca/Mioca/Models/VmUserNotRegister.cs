@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Repository.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class VmUserNotRegister
+    public class VmUserNotRegister:BaseViewModel
     {
         [MaxLength(20)]
         public string Name { get; set; }
@@ -17,7 +18,7 @@ namespace Mioca.Models
         [MaxLength(20)]
         public string Phone { get; set; }
         [Required]
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
         [MaxLength(250)]
         public string State { get; set; }
         [MaxLength(500)]
@@ -53,6 +54,7 @@ namespace Mioca.Models
         public decimal ShippingPrice { get;  set; }
         public int TypeId { get; internal set; }
         public int Quantity { get; internal set; }
-     
+        public Tax Tax { get; set; }
+
     }
 }

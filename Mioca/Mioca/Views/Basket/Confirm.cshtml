@@ -13,7 +13,7 @@
                     <h1 class="page-name ">Thank You</h1>
                     <nav class="d-flex justify-content-center" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">Thank You</li>
                         </ol>
                     </nav>
@@ -34,7 +34,7 @@
                             email shortly.
                         </p>
                         <div class="thank-btn">
-                            <a href="shop.html" class="shop-button" title="Go To Shop">Continue Shopping </a>
+                            <a asp-controller="shop" asp-action="index" asp-route-id="1" class="shop-button" title="Go To Shop">Continue Shopping </a>
                         </div>
                     </div>
                 </div>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class ChangePasswordViewModel
+    public class ChangePasswordViewModel:BaseViewModel
     {
         [Required, DataType(DataType.Password), MaxLength(15)]
         public string OldPassword { get; set; }

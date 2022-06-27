@@ -18,6 +18,7 @@ namespace Repository.Models
         public string Link { get; set; }
         public ICollection<ProductSocial> Products { get; set; }
         public ICollection<TeamMemberSocial> TeamMembers { get; set; }
+        public ICollection<BlogSocial> Blogs { get; set; }
 
     }
 }

@@ -2,6 +2,9 @@
 @inject UserManager<User> UserManager
 @inject SignInManager<User> SignInManager
 @inject RoleManager<IdentityRole> RoleManager
+@model BaseViewModel
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,19 +18,24 @@
     <link rel="stylesheet" href="~/assets/plugins/Slick/css/slick-theme.css">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="~/lib/jquery-toast-plugin/jquery.toast.min.css">
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
     <link rel="stylesheet" href="~/assets/scss/style.css">
+
     @RenderSection("Css", required: false)
     <title>@ViewData["Title"]</title>
 </head>
 
 <body>
+
     <header id="navbar" class="header" style="background-color: #fff8f4;">
         <div class="header-nav">
             <div class="container">
                 <div class="row">
                     <div class="col-auto align-self-center">
                         <div class="logo">
-                            <a href=""><img src="/assets/images/logo/logo.png" alt=""></a>
+                            <a href=""><img src="/Uploads/@Model.Setting.Logo" alt=""></a>
                         </div>
                     </div>
                     <div class="col align-self-center d-none d-lg-block">
@@ -48,7 +56,7 @@
                                             </a>
                                             <div class="dropdown-menu">
                                                 <ul class="category">
-                                                    <vc:category></vc:category>
+                                                <vc:category-with-link></vc:category-with-link>
                                                 </ul>
                                             </div>
                                         </div>
@@ -137,38 +145,29 @@
                                 </div>
                             </li>
                             <li>
-                                <div class="wishlist user-btn">
+                                <div class="wishlist shop user-btn">
 
                                     <div class="btn-group">
                                         <a class="btn  dropdown-toggle" data-bs-toggle="dropdown"
                                            aria-expanded="false">
                                             <i class="pe-7s-like "></i>
+                                            <span class="header-action-num wishlist_count">0</span>
                                         </a>
                                         <div class="dropdown-menu">
-                                            <ul class="minicart-product">
+
+                                            @*<ul class="minicart-product">
                                                 <li>
                                                     <a href="product-details.html">
-                                                        <figure><img src="assets/images/product-image/1.jpg" alt="" width="50" height="50"></figure>
-                                                        <strong><span>Hand-Made Garlic Mortar</span>1 x $21.86 <a href="#" class="remove">×</a></strong>
+                                                        <figure><img class="wishlist_image" src="~/Uploads/" alt="" width="50" height="50"></figure>
+                                                        <strong><span clss="wishlist_name"></span> $21.86</strong>
 
                                                     </a>
                                                     <hr class="dropdown-divider">
                                                 </li>
-
-                                                <li>
-                                                    <a href="product-details.html">
-                                                        <figure><img src="assets/images/product-image/2.jpg" alt="" width="50" height="50"></figure>
-                                                        <strong><span>Hand-Made Garlic Mortar</span>1 x $21.86 <a href="#" class="remove">×</a></strong>
-
-                                                    </a>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-
-
-                                            </ul>
+                                            </ul>*@
                                             <div class="total-drop">
-                                                <div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
-                                                <a href="cart.html" class="btn btn-cart">View Cart</a><a href="checkout.html" class="btn btn-cart checkout">Checkout</a>
+
+                                                <a asp-controller="basket" asp-action="wish" class="btn btn-cart">Favoriləri gör</a>
                                             </div>
                                         </div>
                                     </div>
@@ -178,51 +177,18 @@
                                 <div class="shop user-btn">
 
                                     <div class="btn-group">
-                                        <a class="btn  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a class="btn  dropdown-toggle cart-count" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="pe-7s-shopbag"></i>
-                                            <span class="header-action-num"></span>
+                                            <span class="header-action-num">0</span>
                                         </a>
-                                        @*<div class="dropdown-menu">
-                                            <ul class="minicart-product">
-                                                @if (Model.Basket != null)
-                                                {
-                                                    @foreach (var item in Model.Basket)
-                                                    {
-                                                        <li>
-                                                            <a href="product-details.html">
-                                                                <figure><img src="~/assets/images/product-image/@item.MainImage" alt="" width="50" height="50"></figure>
-                                                                <strong><span>Hand-Made Garlic Mortar</span>@item.Quantity x @item.Price </strong>
-                                                            </a><strong><a class="remove-basket" data-id="@item.Id" data-price="@item.Price" data-quantity="@item.Quantity" href="#">×</a></strong>
+                                        <div class="dropdown-menu">
 
-
-                                                            <hr class="dropdown-divider">
-                                                        </li>
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    <span>Səbətiniz boşdur</span>
-                                                }
-                                            </ul>
-
-                                            @if (Model.Basket != null)
-                                            {
-
-                                                decimal subTotal = 0;
-                                                foreach (var item in Model.Basket)
-                                                {
-                                                    subTotal += (item.Price * item.Quantity);
-                                                }
-
-
-                                                <div class="total-drop">
-                                                    <div class="clearfix"><strong>Total</strong><span class="subTotal">₼@subTotal.ToString("#.00")</span></div>
-                                                    <a asp-controller="basket" asp-action="cart" class="btn btn-cart">View Cart</a><a href="checkout.html" class="btn btn-cart checkout">Checkout</a>
-                                                </div>
-                                            }
-
-
-                                        </div>*@
+                                            <div class="total-drop">
+                                                @*<div class="clearfix"><strong></strong><span  class="subTotal"></span></div>*@
+                                                <a asp-controller="basket" asp-action="cart" class="btn btn-cart">View Cart</a>
+                                                <a asp-controller="basket" asp-action="checkout" class="btn btn-cart checkout">Checkout</a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </li>
@@ -255,7 +221,7 @@
                                                 </ul>
                                             </div>
                                             <!-- Mobil Menu End -->
-                                            <div class="mobil-social">
+                                            @*<div class="mobil-social">
                                                 <ul class="d-flex mobil-social-list ">
                                                     <li>
                                                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -273,7 +239,7 @@
                                                         <a href="#"><i class="fa fa-instagram"></i></a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div>*@
                                         </div>
                                     </div>
                                 </div>
@@ -300,8 +266,8 @@
                         </div>
                     </div>
                     <div class="col-lg-6 position-relative martop-sm-40">
-                        <form>
-                            <input type="email" class="form-control" id="inputEmail4"
+                        <form id="subscribe-form" method="post">
+                            <input type="email" class="form-control" id="subscribe-input" aria-describedby="emailHelp"
                                    placeholder="Enter Your Mail Here ...">
                             <button type="submit" class="btn submit-button">Submit</button>
 
@@ -329,9 +295,8 @@
                                                     <a class="footer-link" href="~/#">Delivery information</a>
                                                 </li>
                                                 <li class="li">
-                                                    <a class="footer-link" href="~/#">
-                                                        Privacy
-                                                        Policy
+                                                    <a class="footer-link" asp-controller="fag" asp-action="fag">
+                                                       FAG
                                                     </a>
                                                 </li>
                                                 <li class="li"><a class="footer-link" href="~/#">Sales</a></li>
@@ -357,7 +322,7 @@
                                         <div class="footer-row">
                                             <ul class="align-items-center">
                                                 <li class="li">
-                                                    <a class="footer-link" href="~/account.html">
+                                                    <a class="footer-link" asp-controller="account" asp-action="profile">
                                                         My
                                                         account
                                                     </a>
@@ -411,23 +376,21 @@
                                         <!-- News letter area -->
                                         <p class="mail">
                                             If you have any question.please <br>
-                                            contact us at <a href="~/#">demo@example.com</a>
+                                            contact us at <a href="~/#">@Model.Setting.Email</a>
                                         </p>
                                         <p class="address">
                                             <i class="pe-7s-map-marker"></i> <span>
-                                                Your address goes
-                                                here.
+                                             @Html.Raw(Model.Setting.Adress)
                                                 <br>
-                                                123, Address.
+                                                
                                             </span>
                                         </p>
                                         <p class="phone m-0">
                                             <i class="pe-7s-phone"></i><span>
-                                                <a href="~/tel:0123456789">
-                                                    +
-                                                    0 123
-                                                    456 789
-                                                </a> <br> <a href="~/tel:0123456789">+ 0 123 456 789</a>
+                                                <a href="#">
+                                                    @Model.Setting.Number
+                                                 
+                                                </a> <br> <a href="#">@Model.Setting.Phone</a>
                                             </span>
                                         </p>
 
@@ -467,7 +430,7 @@
         </div>
     </footer>
 
-
+ 
 
     @RenderSection("Modals", required: false)
 
@@ -481,6 +444,13 @@
     <script src="~/lib/jquery-toast-plugin/jquery.toast.min.js"></script>
     <script src="~/assets/plugins/isotope/isotope.min.js"></script>
     <script src="~/assets/js/main.js"></script>
+    <!-- Toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js" integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- Sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    @await Html.PartialAsync("_notificationPartial")
     @RenderSection("Scripts", required: false)
 
 </body>

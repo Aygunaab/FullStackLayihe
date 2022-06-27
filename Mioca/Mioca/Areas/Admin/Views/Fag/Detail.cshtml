@@ -1,0 +1,30 @@
+﻿@model Fag
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Fag details</h1>
+                        <h4 class="card-title">Sual</h4>
+                        <h3 class="card-description">
+                            <mark class="bg-success text-white">@Model.Question</mark>
+                        </h3>
+                        <h4 class="card-title">Cavab</h4>
+                        <h5>
+                            <code>@Model.Answer</code>
+
+                        </h5>
+                        <a asp-area="admin" asp-controller="fag" asp-action="Fag" class="btn btn-success">Geri qayıt</a>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,19 +14,21 @@ namespace Repository.Repositories.ShoppingRepositories
     {
         IEnumerable<Product> GetProductBestSeeling();
         IEnumerable<Product> GetProductShop(int limit);
-        IEnumerable<Product> GetproductsByCategoryId(int categoryId, int skip, int take, ProductListing orderBy);
+        IEnumerable<Product> GetproductsByCategoryId(IEnumerable<Product> product, int skip, int take, ProductListing orderBy);
        int GetProductsCountByCategoryid(int CategoryId);
         Product GetProductByDetailsId(int id);
-        IEnumerable<Product> GetFilterbyCategoryid(int categoryId ,decimal? MinPrice, decimal? MaxPrice);
+        IEnumerable<Product> GetFilterProduct(IEnumerable<Product> product,decimal? MinPrice, decimal? MaxPrice);
         IEnumerable<Product> GetProductSingleBanner();
         IEnumerable<Product> GetProductPopularSeeling();
         IEnumerable<Product> GetProductBanner();
         IEnumerable<Product> SearchProducts(string searchString);
+        IEnumerable<Product> GetProductCategoryid(int id);
         IEnumerable<Product> GetProducts();
-        IEnumerable<Product> GetProductMaxMinPrice(decimal? MinPrice, decimal? MaxPrice);
         Product GetProductById(int id);
+        Product GetProductByIdCheck(int id);
         Product GetProductId(int? id);
         void Delete(Product product);
+        IEnumerable<Product> GetproductsRelatedByCategoryId(int id, int skip, int take, ProductListing neness);
     }
     public  class ProductRepository:IProductRepository
     {
@@ -37,16 +39,13 @@ namespace Repository.Repositories.ShoppingRepositories
             _context = context;
         }
 
-        public IEnumerable<Product> GetFilterbyCategoryid(int categoryId, decimal? MinPrice, decimal? MaxPrice)
+        public IEnumerable<Product> GetFilterProduct(IEnumerable<Product>product,decimal? MinPrice, decimal? MaxPrice)
         {
-            var products = _context.Products.Include("Photos")
-                                      .Include("Label")
-                                      .Include("Discounts")
-                                      .Include("Discounts.Discount")
-                                      .Where(p => (MinPrice != null ? p.Price >= MinPrice : true) && (MaxPrice != null ? p.Price <= MaxPrice : true))
-                                      .Where(p => p.Categoryid == categoryId)
+           
+                 return product
+                        .Where(p => (MinPrice != null ? p.Price >= MinPrice : true) && (MaxPrice != null ? p.Price <= MaxPrice : true))
                                       .Where(p => p.Status);
-            return products;
+            
         }
 
         public IEnumerable<Product> GetProductBestSeeling()
@@ -83,27 +82,18 @@ namespace Repository.Repositories.ShoppingRepositories
         {
             return _context.Products.FirstOrDefault(p => p.Status && p.Id == id);
         }
-
-        public IEnumerable<Product> GetProductMaxMinPrice(decimal? MinPrice, decimal? MaxPrice)
+        public Product GetProductByIdCheck(int id)
         {
-            var filter = _context.Products.Include("Photos")
-                                    .Include("Label")
-                                    .Include("Discounts")
-                                    .Include("Discounts.Discount")
-                                    .Where(p => (MinPrice != null ? p.Price >= MinPrice : true) && (MaxPrice != null ? p.Price <= MaxPrice : true))
-                                    .Where(p => p.Status).ToList();
-                                    
-            return filter;
+            return _context.Products .Include("Discounts")
+                                     .Include("Discounts.Discount")
+                                     .FirstOrDefault(p => p.Status && p.Id == id);
         }
+    
 
-        public IEnumerable<Product> GetproductsByCategoryId(int categoryId, int skip, int take, ProductListing orderBy)
+        public IEnumerable<Product> GetproductsByCategoryId(IEnumerable<Product> product, int skip, int take, ProductListing orderBy)
         {
-            var products = _context.Products.Include("Photos")
-                                    .Include("Label")
-                                    .Include("Discounts")
-                                    .Include("Discounts.Discount")
-                                    .Where(p => p.Categoryid == categoryId)
-                                    .Where(p => p.Status);
+            var products= product
+                            .Where(p => p.Status);
            
             switch (orderBy)
             {
@@ -209,5 +199,46 @@ namespace Repository.Repositories.ShoppingRepositories
                                    .Take(1)
                                    .ToList();
         }
+
+        public IEnumerable<Product> GetproductsRelatedByCategoryId(int categoryId, int skip, int take, ProductListing orderBy)
+        {
+            var products = _context.Products.Include("Photos")
+                                     .Include("Label")
+                                     .Include("Discounts")
+                                     .Include("Discounts.Discount")
+                                     .Where(p => p.Categoryid == categoryId)
+                                     .Where(p => p.Status);
+
+            switch (orderBy)
+            {
+                case ProductListing.neness:
+                    products.OrderByDescending(p => p.AddedDate);
+                    break;
+                case ProductListing.PriceAsc:
+                    products.OrderBy(p => p.Price);
+                    break;
+                case ProductListing.PriceDsc:
+                    products.OrderByDescending(p => p.Price);
+                    break;
+                default:
+                    break;
+            }
+
+
+
+            return products.Skip(skip).Take(take).ToList();
+        }
+
+        public IEnumerable<Product> GetProductCategoryid(int id)
+        {
+            return  _context.Products.Include("Photos")
+                                      .Include("Label")
+                                      .Include("Discounts")
+                                      .Include("Discounts.Discount")
+                                      .Where(p => p.Categoryid == id)
+                                      .ToList();
+        }
+
+       
     }
 }

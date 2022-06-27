@@ -197,7 +197,7 @@ $('.brand-slider').slick({
 
 
 var $grid = $('.shoping-items').isotope({
-  filter: '.fabric', 
+    filter: ':nth-child(-n+8)',
  itemSelector:'.height-resize' ,
  layoutMode: 'fitRows',
   
@@ -239,25 +239,25 @@ $( function() {
 
 
 
-  //Cart Plus Minus Button
-    var CartPlusMinus = $(".cart-plus-minus");
-    CartPlusMinus.prepend('<div class="minus plmin">-</div>');
-    CartPlusMinus.append('<div class="plus plmin">+</div>');
-    $(".plmin").on("click", function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find("input").val();
-        if ($button.text() === "+") {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 1) {
-                var newVal = parseFloat(oldValue) - 1;
-            } else {
-                newVal = 1;
-            }
-        }
-        $button.parent().find("input").val(newVal);
-    });
+  ////Cart Plus Minus Button
+  //  var CartPlusMinus = $(".cart-plus-minus");
+  //  CartPlusMinus.prepend('<div class="minus plmin">-</div>');
+  //  CartPlusMinus.append('<div class="plus plmin">+</div>');
+  //  $(".plmin").on("click", function () {
+  //      var $button = $(this);
+  //      var oldValue = $button.parent().find("input").val();
+  //      if ($button.text() === "+") {
+  //          var newVal = parseFloat(oldValue) + 1;
+  //      } else {
+  //          // Don't allow decrementing below zero
+  //          if (oldValue > 1) {
+  //              var newVal = parseFloat(oldValue) - 1;
+  //          } else {
+  //              newVal = 1;
+  //          }
+  //      }
+  //      $button.parent().find("input").val(newVal);
+  //  });
 
 
 
@@ -389,141 +389,701 @@ $(function () {
     $("#tabs li").removeClass("ui-corner-top").addClass("ui-corner-left");
 });
 
-
-
-
-
-
-
 //add to cart
 
-$(".add_to-cart").on("click", function (e) {
+$(".add_to-cart").click(function (e) {
     e.preventDefault();
-    $.LoadingOverlay("show");
+    //get product name
+    let div = $(this).parent().parent();
+    let name = div.parent("div").find("product-title").children().text();
 
-    let id = parseInt($(this).data("id"));
 
-    $.ajax({
-        url: "/basket/addToCart/" + id,
-        type: "get",
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-            $.LoadingOverlay("hide");
-            $.toast({
-                heading: 'Məlumat',
-                text: "Məhsul səbətinizə əlavə edildi",
-                icon: 'success',
-                loader: false,
-                bgColor: '#eaaa85',
-                loaderBg: '#f7d40d',
-                position: 'bottom-right'
-            });
-        },
-        error: function (response) {
-            console.log(response);
-        }
-    });
+    //Get product type id and quantity
+    var Id = $(this).data("id");
+    var Quantity = $(this).data("quantity");
 
-});
+    //console.log(TypeId);
+    //console.log(Quantity);
 
-$(".remove-basket").on("click", function (e) {
-    e.preventDefault();
-    $.LoadingOverlay("show");
-    let This = this;
+    if (Id == undefined || Quantity == undefined) {
+        toastr.error('This product was not added cart list..', { timeOut: 3000 });
+    }
+    else {
 
-    let price = parseFloat($(this).data("price").replace(",", "."))
-    let qunatity = parseFloat($(this).data("quantity").toString().replace(",", "."))
-    let totalPriceRemovedPrd = price * qunatity;
-    let total = parseFloat($("#subTotal").text().slice(1, $("#subTotal").text().length));
-    let newTotal = total - totalPriceRemovedPrd;
-    let finalTotal = 0;
+        $.ajax({
 
-    let id = parseInt($(this).data("id"));
+            url: "/basket/AddToCart/",
+            type: "get",
+            dataType: "json",
 
-    $.ajax({
-        url: "/basket/removeFromCart/" + id,
-        type: "get",
-        dataType: "json",
-        success: function (response) {
-            console.log(this);
+            data: { Id: Id, quantity: Quantity },
+            success: function (response) {
 
-            //Update totals
-            $(".subTotal").text("$" + newTotal.toFixed(2));
+                if (response != -404) {
 
-            let shipping_method = $("#shipping_method");
-            shipping_method.empty();
-            let li = $("<li></li>");
+                    //cart toast counter
+                    $(".cart-count span").text(response);
 
-            if (newTotal < 100) {
-                let label = $("<label></label>");
-                let span = $('<span class="amount">₼7.00</span>');
-                label.append(span);
-                li.append(label);
-                shipping_method.append(li);
-                finalTotal = newTotal + 7;
-            } else {
-                let label = $("<label></label>");
-                let span = $('<span class="amount">Free</span>');
-                label.append(span);
-                li.append(label);
-                shipping_method.append(li);
-                finalTotal = newTotal;
+                    $(".subTotal").change();
+                   
+
+
+
+                    //if success show 
+                    $.toast({
+                        heading: name,
+                        text: "Səbətə əlavə olundu",
+                        icon: 'success',
+                        loader: false,
+                        bgColor: '#00A663',
+                        loaderBg: '#f7d40d',
+                        position: 'bottom-right'
+                    });
+                }
+                else {
+                    toastr.info('Already exist in the cart', name, { timeOut: 3000 });
+                }
+
+
+            },
+            error: function (response) {
+
+                console.log("error: " + response);
             }
 
-            $(".finalTotal").text("₼" + finalTotal.toFixed(2));
-            //End of update codes
+        });
 
-            This.closest('tr').remove();
+    }
 
-            $.LoadingOverlay("hide");
-            $.toast({
-                heading: 'Məlumat',
-                text: "Məhsul səbətinidən silindi",
-                icon: 'success',
-                loader: false,
-                bgColor: '#eaaa85',
-                loaderBg: '#f7d40d',
-                position: 'bottom-right'
-            });
+});
+//Get add to cart item's count
+$.ajax({
+
+    url: "/basket/GetToCartCount/",
+    type: "get",
+    dataType: "json",
+
+    //data: { typeId: TypeId, quantity: Quantity },
+    success: function (response) {
+
+        //cart toast counter
+        $(".cart-count span").text(response);
+    },
+    error: function (response) {
+
+        console.log("error: " + response);
+    }
+
+});
+
+$(".subTotal").on("change", function (e) {
+    e.preventDefault();
+
+    $.ajax({
+
+        url: "/basket/getToCartSum/",
+        type: "get",
+        dataType: "json",
+
+        //data: { typeId: TypeId, quantity: Quantity },
+        success: function (response) {
+            var sum = response.toFixed(2);
+            //cart toast counter
+            $(".subTotal").text("₼" + sum);
         },
         error: function (response) {
-            console.log(response);
+
+            console.log("error: " + response);
         }
+
     });
+
+
 });
 
 
-
-//wishlist
-$(".add_to-wish").on("click", function (e) {
+$(".remove-basket").click(function (e) {
     e.preventDefault();
-    $.LoadingOverlay("show");
 
-    let id = parseInt($(this).data("id"));
+    var Id = parseInt($(this).data("id"));
 
     $.ajax({
-        url: "/basket/AddToWish/" + id,
+
+        url: "/basket/removeFromCart/",
+        type: "get",
+        dataType: "json",
+
+        data: { id: Id },
+        success: function (response) {
+            console.log(response);
+            if (response == 200) {
+                location.reload();
+            }
+
+        },
+        error: function (response) {
+
+            console.log("error: " + response);
+        }
+
+    });
+
+});
+
+$(".add-to-card-detail").click(function (e) {
+    //
+    var name = $(".prod-name").text();
+
+    var quantity = $(".cart-plus-minus-box").val();
+    var productId = $(this).data("productid");
+
+   
+        $.ajax({
+
+            url: "/basket/AddToCart/",
+            type: "get",
+            dataType: "json",
+
+            data: {Id: productId, quantity: quantity },
+            success: function (response) {
+
+                //location.reload();
+
+                if (response != -404 && response != 404) {
+                    //cart counter
+                    $(".cart-count span").text(response);
+
+
+                    //if success show 
+                    $.toast({
+                        heading: name,
+                        text: "Səbətə əlavə olundu",
+                        icon: 'success',
+                        loader: false,
+                        bgColor: '#00A663',
+                        loaderBg: '#f7d40d',
+                        position: 'bottom-right'
+                    });
+
+                    CalculateAddToCartSum();
+
+                }
+                else {
+                    toastr.error('This product already exist in the cart', { timeOut: 3000 });
+                }
+
+
+
+            },
+            error: function (response) {
+
+                console.log("error: " + response);
+            }
+
+        });
+
+    
+
+});
+
+function CalculateAddToCartSum() {
+    $.ajax({
+
+        url: "/basket/getToCartSum/",
+        type: "get",
+        dataType: "json",
+
+        success: function (response) {
+            var sum = response.toFixed(2);
+            //cart toast counter
+            $(".subTotal").text("$" + sum);
+        },
+        error: function (response) {
+
+            console.log("error: " + response);
+        }
+
+    });
+};
+///Add to cart from Wishlist
+$(".add-cart-wish").click(function (e) {
+    e.preventDefault();
+    //get product name
+    var name = $(this).data("name");
+
+    //Get product type id and quantity
+    var Id = $(this).data("id");
+    var Quantity = 1;
+
+    //this
+    var removeBtn = $(this).parent().find("a.wish-delete-btn");
+
+
+        $.ajax({
+
+            url: "/basket/AddToCart/",
+            type: "get",
+            dataType: "json",
+
+            data: { Id: Id, quantity: Quantity },
+            success: function (response) {
+
+                if (response != -404) {
+                    $(".cart-count span").text(response);
+
+                    $(".subTotal").change();
+
+                    //Remove this wish item from wishlist
+                    removeBtn.click();
+
+
+                    //if success show 
+                    $.toast({
+                        heading: name,
+                        text: "Səbətə əlavə olundu",
+                        icon: 'success',
+                        loader: false,
+                        bgColor: '#00A663',
+                        loaderBg: '#f7d40d',
+                        position: 'bottom-right'
+                    });
+                  
+                }
+                else {
+                    toastr.info('Already exist in the cart', name, { timeOut: 3000 });
+                }
+                //cart toast counter
+
+
+            },
+            error: function (response) {
+
+                console.log("error: " + response);
+            }
+
+        });
+
+    
+
+});
+
+//wishlist
+$(".add_to-wish").click(function () {
+
+    let div= $(this).parent().parent();
+    let name = div.parent("div").find(".product-title").children().text();
+ 
+
+    var TypeId = $(this).data("id");
+
+    if (TypeId == undefined) {
+
+        toastr.error('Bu məhsul Favorilərə əlavə olunmadı ', { timeOut: 3000 });
+    }
+    else {
+
+        $.ajax({
+
+            url: "/basket/AddToWish/",
+            type: "get",
+            dataType: "json",
+
+            data: { typeId: TypeId },
+            success: function (response) {
+
+               
+
+                if (response == -404) {
+
+
+                    toastr.info('Bu məhsul Favorilərdə var', name, { timeOut: 3000 } );
+
+                }
+                else if (response == 404) {
+                    toastr.error('Bu məhsul Favorilərə əlavə olunmadı');
+                }
+                else {
+                    //cart toast counter
+                    $(".wishlist_count").text(response);  
+                    let name = div.parent("div").find(".product-title").children().text();
+               
+                    $.toast({
+                        heading: name,
+                        text: "Favorilərə əlavə olundu",
+                        icon: 'success',
+                        loader: false,
+                        bgColor: '#eaaa85',
+                        loaderBg: '#f7d40d',
+                        position: 'bottom-right'
+                    });
+                  
+                  
+                 
+                }
+
+
+            },
+            error: function (response) {
+
+                console.log("error: " + response);
+            }
+
+        });
+
+    }
+});
+//Get wishlist item's count
+$.ajax({
+
+    url: "/basket/GetToWishCount/",
+    type: "get",
+    dataType: "json",
+
+    //data: { typeId: TypeId, quantity: Quantity },
+    success: function (response) {
+
+        //cart toast counter
+        $(".wishlist_count").text(response);
+    },
+    error: function (response) {
+
+        console.log("error: " + response);
+    }
+
+});
+
+///Add to wishlist Detail 
+$(".add-to-wishlist-detail").click(function (e) {
+   
+    var name = $(".prod-name").text();
+
+    var Id = $(this).data("productid");
+    
+        $.ajax({
+
+            url: "/basket/AddToWish/",
+            type: "get",
+            dataType: "json",
+
+            data: { typeId: Id },
+            success: function (response) {
+
+                //console.log(response);
+                //location.reload();
+
+                //cart counter
+                $(".wishlist_count").text(response);
+                $.toast({
+                    heading: name,
+                    text: "Favorilərə əlavə olundu",
+                    icon: 'success',
+                    loader: false,
+                    bgColor: '#eaaa85',
+                    loaderBg: '#f7d40d',
+                    position: 'bottom-right'
+                });
+              
+
+            },
+            error: function (response) {
+
+                console.log("error: " + response);
+            }
+
+        });
+
+});
+
+//Wishlist delete item
+$(".wish-delete-btn").click(function (e) {
+    e.preventDefault();
+
+    var Id = parseInt($(this).data("id"));
+    var itemBox = $(this).parent().parent();
+
+    $.ajax({
+
+        url: "/basket/RemoveFromWish/",
+        type: "get",
+        dataType: "json",
+
+        data: { id: Id },
+        success: function (response) {
+            if (response == 200) {
+                itemBox.remove();
+                GetWishCount();
+
+            } else {
+                location.reload();
+            }
+
+        },
+        error: function (response) {
+
+            console.log("error: " + response);
+        }
+
+    });
+
+});
+//get wish clunt
+function GetWishCount() {
+    $.ajax({
+
+        url: "/basket/GeetWishCount/",
         type: "get",
         dataType: "json",
         success: function (response) {
-            console.log(response);
-            $.LoadingOverlay("hide");
-            $.toast({
-                heading: 'Məlumat',
-                text: "Məhsul wishlistinize əlavə edildi",
-                icon: 'success',
-                loader: false,
-                bgColor: '#eaaa85',
-                loaderBg: '#f7d40d',
-                position: 'bottom-right'
-            });
+
+            //cart counter
+            $(".wishlist_count").text(response);
         },
         error: function (response) {
-            console.log(response);
+
+            console.log("error: " + response);
         }
+
     });
+
+};
+///subscribe
+$("#subscribe-form").submit(function (e) {
+    e.preventDefault();
+
+    var email = $("#subscribe-input").val();
+
+    var pattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
+
+    if (email == "") {
+        toastr.error('Zəhmət olmasa e-poçt ünvanınızı daxil edin', { timeOut: 3000 });
+    }
+    else if (!pattern.test(email)) {
+        toastr.error('DE-poçt düzgün deyil', { timeOut: 3000 });
+    }
+    else {
+        $.ajax({
+
+            url: "/contact/addSubscribe/",
+            type: "get",
+            dataType: "json",
+
+            data: { email: email },
+            success: function (response) {
+                if (response == 200) {
+                    //success
+                    toastr.success('Artıq bizi izləyirsiniz, Təşəkkür edirik!', { timeOut: 3000 });
+
+                }
+                else if (response == 505) {
+                    //error
+                    toastr.info('Siz artıq bizə üzv olmusunuz', { timeOut: 3000 });
+                }
+                else {
+                    //error
+                    toastr.error('Zəhmət olmasa email ünvanınızı daxil edin.', { timeOut: 3000 });
+                }
+            },
+            error: function (response) {
+
+                console.log("error: " + response);
+            }
+
+        });
+
+    }
 
 });
 
 
+//decrease
+$(".plus").click(function () {
+    var oldValue = parseInt($(this).prev().val());
+    var maxValue = parseInt($(this).data("max"));
+    if (oldValue < maxValue) {
+        var newValue = oldValue + 1;
+        $(this).prev().val(newValue);
+
+        var input = $(this).prev();
+        $(input).change();
+
+    }
+
+});
+
+//increase
+$(".minus").click(function () {
+    var oldValue = parseInt($(this).next().val());
+
+    if (oldValue > 1) {
+        var newValue = oldValue - 1;
+        $(this).next().val(newValue);
+
+        var input = $(this).next();
+        $(input).change();
+    }
+
+});
+
+//Add to cart input's limite
+$(".cart-plus-minus-box").on("keyup", function (e) {
+    e.preventDefault();
+    var inputValue = parseInt($(this).val());
+    var maxValue = parseInt($(this).next().data("max"));
+    if (inputValue > maxValue) {
+        $(this).val(maxValue);
+    }
+    if (inputValue < 0) {
+        $(this).val(1);
+    }
+
+    //add change function
+    $(this).change();
+});
+
+
+$(".cart-plus-minus-box").keypress(function (e) {
+
+    if (e.keyCode == 13) {
+        e.preventDefault();
+        return false;
+    }
+});
+
+
+$(".cart-plus-minus-box").on("change", function (e) {
+    e.preventDefault();
+
+
+    var price = parseFloat($(this).data("price"));
+    var quantity = parseInt($(this).val());
+    var Id = parseInt($(this).data("id"));
+
+
+
+    //total box
+    var oldValue = $(this).parent().parent().next().find("strong");
+
+
+    //for checking empty value
+    var stringValue = $(this).val();
+
+    if (quantity != null && quantity > 0 && stringValue != "") {
+
+        //ajax
+        $.ajax({
+
+            url: "/basket/UpdateCart/",
+            type: "get",
+            dataType: "json",
+
+            data: {
+                id: Id,
+                quantity: quantity
+            },
+            success: function (response) {
+
+                console.log(response);
+
+            },
+            error: function (response) {
+
+                console.log("error: " + response);
+            }
+
+        });
+
+        oldValue.empty();
+        var total = parseFloat(price * quantity).toFixed(2);
+        oldValue.text("$" + total);
+
+        var sum = 0;
+        $('.product-subtotal').each(function () {
+            var prdTotal = parseFloat($(this).children().text().slice(1, $(this).children().text().length));
+            sum += prdTotal;
+        });
+
+        //console.log(sum.toFixed(2));
+          $("#subtotal").text("$" + sum.toFixed(2));
+
+            if (sum < 100) {
+                $("#tax").text("$" + (sum * 18 / 100).toFixed(2));
+                $("#orderTotal").text("$" + (sum + (sum * 18 / 100)).toFixed(2)); 
+            }
+            else {
+                $("#tax").text("$0.00");
+                $("#orderTotal").text("$" + sum.toFixed(2)); 
+                $(".subtotal").text("$" + sum.toFixed(2)); 
+            }
+
+
+    }
+
+});
+
+$(".cart-plus-minus-box").focusout(function (e) {
+    //for checking empty value
+    var stringValue = $(this).val();
+    var intValue = parseInt($(this).val());
+
+    if (stringValue == "") {
+        $(this).val(1);
+        $(this).change();
+    }
+    if (intValue < 1) {
+        $(this).val(1);
+        $(this).change();
+    }
+});
+
+
+$('#selectlist').on('change', function () {
+
+    var countryId = parseInt(this.value);
+
+    //Old Shipping Price
+    var oldText = $("#shipping_price").text();
+    var oldVal = parseFloat(oldText.substr(1));
+
+    //Old Subtotal
+    var subText = $(".checkout_subtotal").text();
+    var subtotal = parseFloat(subText.substr(1));
+
+    $.ajax({
+
+        url: "/basket/getShippPrice/",
+        type: "get",
+        dataType: "json",
+
+        data: { countryId: countryId },
+        success: function (response) {
+
+
+            if (oldText != "Free") {
+
+                var resetSub = subtotal - oldVal;
+                $(".checkout_subtotal").text("$" + resetSub.toFixed(2));
+                subtotal = resetSub;
+            }
+
+
+            if (parseFloat(response) > 0) {
+
+                var price = parseFloat(response);
+                $("#shipping_price").text("$" + price.toFixed(2));
+                var sumSubAndShipping = price + subtotal;
+                $(".checkout_subtotal").text("$" + sumSubAndShipping.toFixed(2));
+
+            } else {
+                $("#shipping_price").text("Free");
+            }
+
+        },
+        error: function (response) {
+
+            console.log("error: " + response);
+        }
+
+    });
+
+
+});

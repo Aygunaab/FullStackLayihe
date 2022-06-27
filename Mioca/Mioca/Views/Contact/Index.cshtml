@@ -89,19 +89,23 @@
                         <form id="contact-form" asp-controller="contact" asp-action="index" method="post">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input asp-for="Name" class="form-control" id="name1" type="text" placeholder="Your Name:" required>
+                                    <input asp-for="Name" class="form-control" id="name1" type="text" placeholder="Your Name:">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                                 <div class="col-lg-6">
-                                    <input asp-for="Surname" class="form-control" id="surname1" type="text" placeholder="Your Surname:" required>
+                                    <input asp-for="Surname" class="form-control" id="surname1" type="text" placeholder="Your Surname:">
+                                    <span asp-validation-for="Surname" class="text-danger"></span>
                                 </div>
                                 <div class="col-lg-12">
-                                    <input asp-for="Email" class="form-control" id="email1" type="email" placeholder="Your Email:" required>
+                                    <input asp-for="Email" class="form-control" id="email1" type="email" placeholder="Your Email:" >
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                                 <div class="col-lg-12">
                                     <input asp-for="Phone" data-mask="(000) 000 00 00" class="form-control" id="phone" type="tel" placeholder="Your Phone:">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea asp-for="Message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Your Message"></textarea>
+                                    <textarea asp-for="Message" cols="40" rows="10" class="wpcf7-form-control wpcf7-textarea" aria-invalid="false" placeholder="Your Message" required></textarea>
+                                    <span asp-validation-for="Message" class="text-danger"></span>
                                     <button class="btn primary-button mt-4" type="submit">Send Message</button>
                                 </div>
                             </div>

@@ -5,10 +5,23 @@
 
     @foreach (var product in Model)
     {
-        <li style="border-top: 1px solid bisque; margin-left:20px;">@product.Name</li>
+        <li>
+            <a asp-controller="proddetail" asp-action="index" asp-route-id="@product.Id">
+                <figure class="d-flex">
+                    <img class="me-3" src="~/Uploads/@product.MainImage" alt="" width="50" height="50">
+                    <div class="d-block">
+                        <span class="d-block" style="color:black">@product.Name.Substring(0, 10)...</span>
+                        <span style="color:black"> @product.Price</span>
+                   </div>
+                </figure>
+               
+
+            </a>
+            <hr class="dropdown-divider">
+            </li>
     }
 }
-            else
-            {
-                <li>Nəticə tapılmadı</li>
-            }
+else
+{
+    <li>Nəticə tapılmadı</li>
+}

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class ContactViewModel
+    public class ContactViewModel:BaseViewModel
     {
         [MaxLength(250)]
         public string Name { get; set; }

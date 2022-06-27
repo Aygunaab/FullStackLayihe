@@ -14,8 +14,8 @@ namespace Mioca.Areas.Admin.Models
         public bool Status { get; set; }
         public decimal Price { get; set; }
         public decimal? DiscountPrice { get; set; }
-        public int Quantity { get; set; }
-        public int StarCount { get; set; }
+        public decimal Quantity { get; set; }
+        public byte StarCount { get; set; }
         public string Text { get; set; }
         public DateTime AddedDate { get; set; }
         public string Description { get; set; }

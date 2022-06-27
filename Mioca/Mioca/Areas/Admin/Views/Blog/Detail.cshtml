@@ -1,0 +1,46 @@
+﻿
+@model Blog
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title">Blog details</h1>
+
+                        <p>
+                            Image:
+                            <img style="width: 300px;" src="~/Uploads/@Model.Image" />
+                        </p>
+                        <h4 class="card-title">Metn</h4>
+                        <h3 class="card-description">
+                            <mark class="bg-success text-white">@Model.Title</mark>
+                        </h3>
+                        <h4 class="card-title">Slogandan usteki Metn</h4>
+                        <h5>
+                            <code>@Model.TextTopQuote</code>
+
+                        </h5>
+                        <h4 class="card-title">Yazarin slogani</h4>
+                        <h5>
+                            <code>@Model.SloganUser</code>
+
+                        </h5>
+                        <h4 class="card-title">Slogandan asagidaki Metn</h4>
+                        <h5>
+                            <code>@Model.TextBottomQuote</code>
+
+                        </h5>
+                        <a asp-area="admin" asp-controller="blog" asp-action="blog" class="btn btn-success">Geri qayıt</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -8891,6 +8891,9 @@ table {
   caption-side: bottom;
   border-collapse: collapse;
 }
+div.container {
+    width: 80%;
+}
 
 caption {
   padding-top: 0.5rem;

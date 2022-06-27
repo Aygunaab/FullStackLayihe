@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Mioca.Areas.Admin.Controllers
 {
     [Area("Admin")]
-   
+    [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private readonly MiocaDbContext _context;

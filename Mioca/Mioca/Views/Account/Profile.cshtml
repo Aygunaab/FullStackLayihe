@@ -27,15 +27,13 @@
     <!--Dashboard section start-->
     <section class="section-style-one dashboard">
         <div class="container">
-
-
             <div id="tabs" class="row">
                 <div class="col-lg-3 col-md-3 col-sm-12">
                     <ul>
                         <li><a href="#dashboard">Dashboard</a></li>
                         <li><a href="#orders">Orders</a></li>
                         <li><a href="#addresses">Addresses</a></li>
-                        <li><a asp-controller="account" asp-action="updateprofile">Account details</a></li>
+                        <li><a href="#details">Account details</a></li>
                         <li><a href="#logout">Logout</a></li>
 
                     </ul>
@@ -44,43 +42,14 @@
                     <div id="dashboard">
                         <h4>Dashboard </h4>
                         <p>
-                            From your account dashboard. you can easily check &amp; view your <a href="#">
+                            From your account dashboard. you can easily check &amp; view your <a asp-controller="account" asp-action="getorder">
                                 recent
                                 orders
                             </a>, manage your <a asp-controller="account" asp-action="UpdateProfile">shipping and billing addresses</a> and <a asp-controller="account" asp-action="ChangePassword">Edit your password</a>
                         </p>
                     </div>
                     <div id="orders">
-                        <h4>Orders</h4>
-                        <div class="table-page table-responsive">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Order</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Total</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>May 10, 2018</td>
-                                        <td><span class="success">Completed</span></td>
-                                        <td>$25.00 for 1 item </td>
-                                        <td><a href="cart.html" class="view">view</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>May 10, 2018</td>
-                                        <td>Processing</td>
-                                        <td>$17.00 for 1 item </td>
-                                        <td><a href="cart.html" class="view">view</a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        <a asp-controller="account" asp-action="getorder" class="primary-button btn" style="background-color:burlywood">Sifarişlər</a>
                     </div>
                     <div id="addresses">
                         <p>The following addresses will be used on the checkout page by default.</p>
@@ -96,8 +65,11 @@
                             <span><strong>Country:</strong>@Model.Country</span>
                         </address>
                     </div>
+                    <div id="details">
+                        <a asp-controller="account" asp-action="UpdateProfile" class="primary-button btn" style="background-color:burlywood">Profili məlumatların yenilə</a>
+                    </div>
                     <div id="logout">
-                        <a asp-controller="account" asp-action="logout" class="primary-button btn" style="background-color:burlywood">Logout</a>
+                        <a asp-controller="account" asp-action="logout" class="primary-button btn" style="background-color:burlywood">Çıxış  et</a>
                     </div>
                 </div>
 

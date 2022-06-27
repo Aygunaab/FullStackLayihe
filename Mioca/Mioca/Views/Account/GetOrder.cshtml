@@ -1,0 +1,80 @@
+﻿@model SaleVm
+@{
+    ViewData["Title"] = "Wish";
+}
+
+<main>
+    <!--Breadcrumb section start-->
+    <section class="breadcrumb-section">
+        <div class="container">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 text-center">
+                    <h1 class="page-name ">Sifarişlərim</h1>
+                    <nav class="d-flex justify-content-center" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a asp-controller="account" asp-action="profile">Profil</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Sifarişlərim</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Breadcrumb section end-->
+    <!--Cart section start-->
+    <section class="section-style-one">
+        <div class="container">
+            <div class="row">
+                <h3 class="cart-page-title">Sifarişləriniz</h3>
+                <div class="col-lg-12 col-md-12  col-12">
+                    <form action="#">
+                        <div class="cart-table-content table-responsive ">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Şəkil</th>
+                                        <th>Qiymət</th>
+                                        <th>Məhsulun adı və sayı</th>
+                                        <th>Sifarişin tarixi</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    @if (Model.SaleItems != null)
+                                    {
+
+                                        @foreach (var sale in Model.Sales.OrderByDescending(o => o.Date))
+                                        {
+                                            @foreach (var item in Model.SaleItems.Where(s => s.SaleId == sale.Id))
+                                            {
+                                                <tr>
+                                                    <td class="product-img">
+                                                        <a asp-controller="proddetail" asp-action="index" asp-route-id="@item.ProductId">
+                                                            <img class="img margin-left-15"
+                                                                 src="~/Uploads/@item.Product.MainImage" alt="@item.Product.Name">
+                                                        </a>
+                                                        
+                                                    </td>
+                                                    <td class="product-price td-style"><span class="amount">@item.Price.ToString("#.00")</span></td>
+                                                    <td class="product-name td-style"><a href="#">@(item.Product.Name + " x " + item.Quantity.ToString("#"))</a></td>
+                                                    <td class="product-name td-style">
+                                                        <strong class="@(item.Sale.Date.AddMinutes(25) > DateTime.Now?"mioca-red-color":"mioca-dark-color")">@(item.Sale.Date.AddMinutes(25) > DateTime.Now?"Recent": item.Sale.Date.ToString("dd.MM.yy (HH:mm)"))</strong>
+                                                    </td>
+                                                  
+                                                </tr>
+                                            }
+                                            }
+                                        }
+                                    </tbody>
+                            </table>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--Cart section end-->
+</main>
+

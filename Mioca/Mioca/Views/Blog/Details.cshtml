@@ -1,6 +1,7 @@
-﻿
+﻿@model BlogCommentViewModel
+@inject SignInManager<User> SignInManager
 @{
-    ViewData["Title"] = " Blog Details";
+    ViewData["Title"] = "Blog Details";
 }
 
 <main>
@@ -9,11 +10,11 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12 text-center">
-                    <h1 class="page-name ">Blog Details</h1>
+                    <h1 class="page-name ">@Model.Blog.Title.Substring(0,20)...</h1>
                     <nav class="d-flex justify-content-center" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Blog Details</li>
+                            <li class="breadcrumb-item"><a asp-controller="blog" asp-action="index">Blog</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">@Model.Blog.Title.Substring(0,20)...</li>
                         </ol>
                     </nav>
                 </div>
@@ -28,239 +29,137 @@
                 <div class="col-xl-9 col-lg-8 col-md-12 ">
                     <div class="blog-post">
                         <div class="blog-post-image">
-                            <img class="img-fluid h-auto"  src="~/assets/images/blog-image/single-blog.jpg" alt="blog">
+                            <img class="img-fluid h-auto" src="~/Uploads/@Model.Blog.Image" alt="blog">
                         </div>
                         <div class="blog-content martop-30">
                             <div class="blog-athor-date">
-                                <span> By,<a class="blog-author" href="#"> June Cha</a></span>
-                                <span class="blog-date">25 May, 2121</span>
+                                <span> By,<a class="blog-author" href="#"> @Model.Blog.User.Name @Model.Blog.User.Surname</a></span>
+                                <span class="blog-date">@Model.Blog.AddedDate.Date.ToString("dd MMMM yyyy")</span>
                             </div>
                             <h4 class="blog-title">
-                                How the 10 Worst Handmade Product Fails of All Time Could Have
-                                Been Prevented
+                               @Model.Blog.Title
                             </h4>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magl aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa Duis aute irure
-                                dolor in reprehe in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                                voluptatem accus doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                                inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                            </p>
-                            <h4 class="title">Lorem ipsum dolor sit amet consectetur. </h4>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magl aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa Duis aute irure
-                                dolor in reprehe in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum.
-                            </p>
+                           
+                            @Html.Raw(Model.Blog.TextTopQuote)
                         </div>
                         <div class="blog-quate-block">
                             <div class="quate-area">
 
                                 <p class="quate-speech">
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut labore
+                                   @Model.Blog.SloganUser
                                 </p>
-                                <img  src="~/assets/images/blog-image/specker.jpg" alt="" class="speecker-img">
+                                <img class="h-100 speecker-img" src="~/uploads/@Model.Blog.User.Image" alt="" >
                             </div>
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magl aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa Duis aute irure
-                                dolor in reprehe in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                                mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit
-                                voluptatem accus doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo
-                                inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-                            </p>
-                            <h3 class="title">Lorem ipsum dolor sit amet consectetur. </h3>
-                            <ul>
-                                <li>
-                                    1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore etdur ur dolore magl aliqua. Ut enim ad minim
-                                    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                    consequa Duis aute irure dolor in reprehe in voluptate velit
-                                </li>
-                                <li>
-                                    2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididunt ut labore etrfuryi dolore magl aliqua. Ut enim ad minim
-                                    veniam, quis nostrud
-                                </li>
-                                <li>
-                                    3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                    tempor incididut ut labore et kifuy
-                                </li>
-                            </ul>
-                            <p class="martop-30">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magl aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequa
-                                Duis aute irure dolor in reprehe in voluptate velit esse cillum dolore eu fugiat
-                                nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-                                officia deserunt mollit anim id est laborum.
-                            </p>
+
+                            @Html.Raw(Model.Blog.TextBottomQuote)
                         </div>
                     </div>
                     <div class="tags-social-area d-md-flex justify-content-between">
                         <div class="tags d-flex">
                             <span class="title"><i class="fa fa-tags"></i></span>
                             <ul class="tag-list">
-                                <li><a href="#">Fashion,</a></li>
-                                <li><a href="#">eCommerce,</a></li>
-                                <li class="m-0"><a href="#">Dress</a></li>
+                                @foreach (var tags in Model.Blog.TagToBlogs)
+                                {
+                                    
+                                        <li><a class="tag" href="#">@tags.Tag.Name</a></li>
+                                       
+                                    
+
+                                }
+
+                              
                             </ul>
                         </div>
                         <div class="socials mb-xs-15 d-flex">
                             <ul class="social">
-                                <li class="m-0">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-pinterest"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-dribbble"></i></a>
-                                </li>
+                                @if (Model.Blog.Socials != null)
+                                {
+                                    @foreach (var item in Model.Blog.Socials)
+                                    {
+                                        <li class="m-0">
+                                            <a href="@item.Link">@Html.Raw(item.Social.Icon)</a>
+                                        </li>
+                                    }
+                                }
+
+                              
                             </ul>
                         </div>
                     </div>
                     <div class="coment-form-area">
                         <div class="comments">
-                            <h2 class="comment-heading">Comments (03)</h2>
+                            <h2 class="comment-heading">Comments (@Model.Blog.Comments.Count())</h2>
                             <div class="review-wrapper">
-                                <div class="review-card">
-                                    <div class="user-img">
-                                        <img  src="~/assets/images/comment-image/1.png" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <div class="review-user-details">
-                                            <div class="d-flex">
-                                                <div class="user-name-data">
-                                                    <h4 class="name">Aaron Nunez </h4>
-                                                    <span class="date">21 July 2021</span>
+                                @foreach (var review in Model.Blog.Comments)
+                                {
+                                    <div class="review-card">
+                                        <div class="user-img">
+                                            <img src="~/Uploads/@review.User.Image" alt="">
+                                        </div>
+                                        <div class="review-content">
+                                            <div class="review-user-details">
+                                                <div class="d-flex">
+                                                    <div class="user-name-data">
+                                                        <h4 class="name">@review.User.UserName @review.User.Surname </h4>
+                                                        <span class="date">@review.AddedDate.ToString("dd MMMM yyyy")</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="user-comment">
+                                                <p>
+                                                    @review.Mesage
+                                                </p>
+                                                <div class="reply">
+                                                    <a asp-controller="blog" asp-action="AddComment" asp-route-id="@Model.Blog.Id"><i class="fa fa-reply-all"></i> Reply</a>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="user-comment">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisi elit, sed do eiusmod
-                                                tempor
-                                                incidid ut labore etl dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis
-                                                nostrud exercitati ullam laboris nisi ut aliquiex ea commodo
-                                                consequat.
-                                            </p>
-                                            <div class="reply">
-                                                <a href="#"><i class="fa fa-reply-all"></i> Reply</a>
-                                            </div>
-                                        </div>
                                     </div>
-                                </div>
-                                <div class="review-card left-review">
-                                    <div class="user-img">
-                                        <img  src="~/assets/images/comment-image/2.png" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <div class="review-user-details">
-                                            <div class="d-flex">
-                                                <div class="user-name-data">
-                                                    <h4 class="name">Fox Mccloud </h4>
-                                                    <span class="date">21 July 2021</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="user-comment">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisi elit, sed do eiusmod
-                                                tempor
-                                                incidid ut labore etl dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis
-                                                nostrud exercitati ullam laboris nisi ut aliquiex ea commodo
-                                                consequat.
-                                            </p>
-                                            <div class="reply">
-                                                <a href="#"><i class="fa fa-reply-all"></i> Reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="review-card">
-                                    <div class="user-img">
-                                        <img  src="~/assets/images/comment-image/1.png" alt="">
-                                    </div>
-                                    <div class="review-content">
-                                        <div class="review-user-details">
-                                            <div class="d-flex">
-                                                <div class="user-name-data">
-                                                    <h4 class="name">Aaron Nunez </h4>
-                                                    <span class="date">21 July 2021</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="user-comment">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipisi elit, sed do eiusmod
-                                                tempor
-                                                incidid ut labore etl dolore magna aliqua. Ut enim ad minim veniam,
-                                                quis
-                                                nostrud exercitati ullam laboris nisi ut aliquiex ea commodo
-                                                consequat.
-                                            </p>
-                                            <div class="reply">
-                                                <a href="#"><i class="fa fa-reply-all"></i> Reply</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                }
+
+                             
                             </div>
                         </div>
-                        <div class="comment-form">
-                            <h2 class="comment-heading">Leave a Comment</h2>
+
+                        @if (SignInManager.IsSignedIn(User))
+                        {
+                            
+                    <div class="comment-form">
+                        <h2 class="comment-heading">Leave a Comment</h2>
+                        <form asp-controller="Blog" asp-action="AddComment" asp-route-id="@Model.Blog.Id" method="post">
                             <div class="form-inner">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-card">
-                                            <input type="text" placeholder="Name *">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-card">
-                                            <input type="email" placeholder="Email *">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-card">
-                                            <input type="email" placeholder="Subject (Optinal)">
-                                        </div>
-                                    </div>
                                     <div class="col-md-12">
                                         <div class="form-card  m-0">
-                                            <textarea placeholder="Message"></textarea>
+                                            <input asp-for="Review.Subject" placeholder="Rəyiniz">
+                                            <span class="text-danger" asp-validation-for="Review.Subject"></span>
+                                        </div>
+                                        <div class="form-card  m-0">
+                                            <textarea asp-for="Review.Mesage" placeholder="Rəyiniz"></textarea>
+                                            <span class="text-danger" asp-validation-for="Review.Mesage"></span>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <button class="btn primary-button martop-30" type="submit">
-                                            Post A
-                                            Comment
+                                           Rəy yaz
                                         </button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </form>
+                    </div>
+                           
+                        }
+
+
+
                     </div>
                 </div>
                 <div class="col-xl-3 col-lg-4  ">
                     <div class="sidebar-right margin-right-20">
                         <!-- Sidebar search item start-->
-                        <div class="sidebar-wrap">
+                        @*<div class="sidebar-wrap">
                             <h3 class="sidebar-title">Search</h3>
                             <div class="search-widget sidebar-widget">
                                 <form action="#">
@@ -268,56 +167,37 @@
                                     <button type="submit"><i class="fa fa-search"></i></button>
                                 </form>
                             </div>
-                        </div>
+                        </div>*@
                         <!-- Sidebar search item end-->
                         <!-- Sidebar category item start -->
                         <div class="sidebar-wrap">
                             <h3 class="sidebar-title">Post Categories</h3>
                             <div class="category-post sidebar-widget">
                                 <ul>
+
                                     <li>
                                         <a href="#" class="active m-0">
                                             <i class="fa fa-angle-right"></i> All
                                             <span>(65)</span>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="">
-                                            <i class="fa fa-angle-right"></i> Computer
-                                            <span>(12)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="">
-                                            <i class="fa fa-angle-right"></i> Covid-19
-                                            <span>(22)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="">
-                                            <i class="fa fa-angle-right"></i> Electronics
-                                            <span>(19)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="">
-                                            <i class="fa fa-angle-right"></i> Frame Sunglasses
-                                            <span>(17)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="">
-                                            <i class="fa fa-angle-right"></i> Furniture
-                                            <span>(7)</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="">
-                                            <i class="fa fa-angle-right"></i> Genuine Leather
-                                            <span>(9)</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                    @foreach (var item in Model.Categories)
+                                    {
+                                        @if (item.Blogs.Count != 0)
+                                        {
+                                            <li>
+                                                <a asp-controller="Blog" asp-action="Index" asp-route-id="@item.Id" class="">
+                                                    <i class="fa fa-angle-right"></i> @item.Name
+                                                    <span>(@item.Blogs.Count())</span>
+                                                </a>
+                                            </li>
+                                            }
+                                        }
+
+
+
+
+                                    </ul>
                             </div>
                         </div>
                         <!-- Sidebar resent post item -->
@@ -325,62 +205,23 @@
                             <h3 class="sidebar-title">Recent Post</h3>
 
                             <div class="recent-post-widget sidebar-widget">
-                                <div class="recent-post d-flex">
-                                    <div class="post-img">
-                                        <a href="blog-details"><img  src="~/assets/images/blog-image/1.jpg" alt=""></a>
+                                @foreach (var item in Model.Blogs)
+                                {
+                                    <div class="recent-post d-flex">
+                                        <div class="post-img">
+                                            <a href="blog-details"><img src="~/Uploads/@item.Image" alt=""></a>
+                                        </div>
+                                        <div class="post-media">
+                                            <span class="date">@item.AddedDate.ToString("dd MMM yyyy")</span>
+                                            <h5>
+                                                <a asp-controller="blog" asp-action="details" asp-route-id="@item.Id">
+                                                   @item.Title.Substring(0,20)
+                                                </a>
+                                            </h5>
+                                        </div>
                                     </div>
-                                    <div class="post-media">
-                                        <span class="date">24 Aug, 2021</span>
-                                        <h5>
-                                            <a href="blog-details.html">
-                                                Contrary to popll
-                                                not simply.
-                                            </a>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="recent-post d-flex">
-                                    <div class="post-img">
-                                        <a href="blog-details"><img  src="~/assets/images/blog-image/2.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-media">
-                                        <span class="date">24 Aug, 2021</span>
-                                        <h5>
-                                            <a href="blog-details.html">
-                                                Contrary to popll
-                                                not simply.
-                                            </a>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="recent-post d-flex">
-                                    <div class="post-img">
-                                        <a href="blog-details"><img  src="~/assets/images/blog-image/3.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-media">
-                                        <span class="date">24 Aug, 2021</span>
-                                        <h5>
-                                            <a href="blog-details.html">
-                                                Contrary to popll
-                                                not simply.
-                                            </a>
-                                        </h5>
-                                    </div>
-                                </div>
-                                <div class="recent-post d-flex">
-                                    <div class="post-img">
-                                        <a href="blog-details"><img  src="~/assets/images/blog-image/1.jpg" alt=""></a>
-                                    </div>
-                                    <div class="post-media">
-                                        <span class="date">24 Aug, 2021</span>
-                                        <h5>
-                                            <a href="blog-details.html">
-                                                Contrary to popll
-                                                not simply.
-                                            </a>
-                                        </h5>
-                                    </div>
-                                </div>
+                                }
+                              
                             </div>
                         </div>
                         <!-- Sidebar tag item  start-->
@@ -402,7 +243,7 @@
                         <div class="sidebar-wrap-image sidebar-wrap p-0 mb-0">
                             <div class="banner-mini-card">
                                 <div class="banner-img">
-                                    <img  src="~/assets/images/banner/3.jpg" alt="">
+                                    <img src="~/assets/images/banner/3.jpg" alt="">
                                 </div>
                                 <div class="banner-content">
                                     <span class="category">Best Seller</span>

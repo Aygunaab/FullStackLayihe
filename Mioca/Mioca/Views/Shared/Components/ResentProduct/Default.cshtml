@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ProductViewModel>
+@foreach (var item in Model)
+{
+    <div class="recent-post d-flex">
+        <div class="post-img">
+            <a href="blog-details"><img src="~/Uploads/@item.MainImage" alt=""></a>
+        </div>
+        <div class="post-media">
+            <span class="date">@item.AddedDate.ToString("dd MMMM,yyyy")</span>
+            <h5>
+                <a asp-controller="proddetail" asp-action="index" asp-route-id="@item.Id">
+                    @item.Name
+                </a>
+            </h5>
+        </div>
+    </div>
+}

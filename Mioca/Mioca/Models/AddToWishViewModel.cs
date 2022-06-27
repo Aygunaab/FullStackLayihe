@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Mioca.Models
 {
-    public class AddToWishViewModel
+    public class AddToWishViewModel:BaseViewModel
     {
         public List<WishViewModel> Products { get; set; }
     }

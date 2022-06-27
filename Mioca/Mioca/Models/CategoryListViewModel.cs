@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace Mioca.Models
 {
     
-    public class CategoryListViewModel
+    public class CategoryListViewModel:BaseViewModel
     {
         public CategoryViewModel Category { get; set; }
         public IEnumerable<ProductViewModel> Products;
+        public IEnumerable<CategoryViewModel> Categ { get; set; }
         public ProductListing OrderBy { get; set; }
         public int Count { get; set; }
         public int Page { get; set; }

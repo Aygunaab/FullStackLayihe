@@ -1,4 +1,4 @@
-﻿@model ICollection<BasketViewModel>
+﻿@model IEnumerable<BasketViewModel>
 <div class="shop user-btn">
 
     <div class="btn-group">
@@ -23,7 +23,7 @@
                     {
                         <li>
                             <a href="product-details.html">
-                                <figure><img src="~/assets/images/product-image/@item.MainImage" alt="" width="50" height="50"></figure>
+                                <figure><img src="~/Uploads/@item.MainImage" alt="" width="50" height="50"></figure>
                                 <strong><span>Hand-Made Garlic Mortar</span>@item.Quantity x @item.Price </strong>
                             </a><strong><a class="remove-basket" data-id="@item.Id" data-price="@item.Price" data-quantity="@item.Quantity" href="#">×</a></strong>
 
@@ -34,7 +34,7 @@
                 }
                 else
                 {
-                    <span>Səbətiniz boşdur</span>
+                    <li><span>Səbətiniz boşdur</span></li>
                 }
             </ul>
 

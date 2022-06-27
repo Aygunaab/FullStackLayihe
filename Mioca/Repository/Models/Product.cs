@@ -42,5 +42,7 @@ namespace Repository.Models
         public ICollection<ProductDiscount> Discounts { get; set; }
         public ICollection<Favorite> Favorites { get; set; }
         public ICollection<ProductSpecsification>Specs{ get; set; }
+        [NotMapped]
+        public Discount Discount { get; set; }
     }
 }

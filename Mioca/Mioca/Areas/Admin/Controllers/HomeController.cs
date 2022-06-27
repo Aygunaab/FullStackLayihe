@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mioca.Areas.Admin.Models;
 using Repository.Constants;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 namespace Mioca.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
 
@@ -27,21 +29,14 @@ namespace Mioca.Areas.Admin.Controllers
             _mapper = mapper;
         }
 
-        public IActionResult Index()
+     
+        #region SliderCrud
+        public IActionResult Slider()
         {
             var sliders = _content.GetSliderItemAdmin();
             var slidermodel = _mapper.Map<IEnumerable<SliderItem>, IEnumerable<SliderVm>>(sliders);
-            var banner = _content.GetBannersAdmin();
-            var Bannermodel = _mapper.Map<IEnumerable<Banner>, IEnumerable<BannerVm>>(banner);
-
-            HomeVm model = new HomeVm
-            {
-               Slider=slidermodel,
-               Banner=Bannermodel
-            };
-            return View(model);
+            return View(slidermodel);
         }
-        #region SliderCrud
         public IActionResult CreateSlider()
         {
 
@@ -157,6 +152,12 @@ namespace Mioca.Areas.Admin.Controllers
         #endregion
 
         #region BannerCrud
+        public IActionResult Banner()
+        {
+            var banner = _content.GetBannersAdmin();
+            var Bannermodel = _mapper.Map<IEnumerable<Banner>, IEnumerable<BannerVm>>(banner);
+            return View(Bannermodel);
+        }
         public IActionResult CreateBanner()
         {
 

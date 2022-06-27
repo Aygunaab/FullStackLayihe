@@ -1,8 +1,12 @@
 ﻿
-@model List<BasketViewModel>
+@model AddToCartVm
 @{
     ViewData["Title"] = "Cart";
-   
+    decimal subtotal = 0;
+    decimal tax = 0;
+    decimal ordertotal = 0;
+
+
 }
 
 <main>
@@ -14,7 +18,7 @@
                     <h1 class="page-name ">Cart</h1>
                     <nav class="d-flex justify-content-center" aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">cart</li>
                         </ol>
                     </nav>
@@ -45,23 +49,25 @@
                                 <tbody>
                                     @if (Model != null)
                                     {
-                                        @foreach (var item in Model)
+                                        @foreach (var item in Model.Products)
                                         {
                                             <tr>
                                                 <td class="product-img">
                                                     <a href="#">
                                                         <img class="img margin-left-15"
-                                                             src="~/assets/images/product-image/@item.MainImage" alt="@item.Name">
+                                                             src="~/Uploads/@item.MainImage" alt="@item.Name">
                                                     </a>
                                                 </td>
                                                 <td class="product-name td-style"><a href="#">@item.Name</a></td>
                                                 <td class="product-price td-style"><span class="amount">@item.Price.ToString("0.00")</span></td>
                                                 <td class="product-quantity td-style">
                                                     <div class="cart-plus-minus">
-                                                        <input type="number"class="cart-plus-minus-box quantityCart" data-price="@item.Price" value="@item.Quantity">
+                                                        <div class="minus plmin">-</div>
+                                                        <input type="number" name="" data-id="@item.Id" data-price="@item.Price"class="cart-plus-minus-box quantityCart"  value="@item.Quantity">
+                                                        <div data-max="@item.MaxQuantity" class="plus plmin">+</div>
                                                     </div>
                                                 </td>
-                                                <td class="product-subtotal td-style">@((item.Price * item.Quantity).ToString("0.00"))</td>
+                                                <td class="product-subtotal td-style"><strong>@((item.Price * item.Quantity).ToString("0.00"))</strong></td>
                                                 <td class="product-remove td-style">
 
                                                     <a class="remove-basket" data-id="@item.Id" data-price="@item.Price" data-quantity="@item.Quantity" href="#"><i class="fa fa-times"></i></a>
@@ -89,52 +95,44 @@
                                     <div class="title-box">
                                         <h4 class="cart-title bg-gray">Cart Total</h4>
                                     </div>
-                                    @{
-                                        decimal subTotal = 0;
-                                        foreach (var item in Model)
+                                    @if (Model.Products.FirstOrDefault() != null)
+                                    {
+
+                                        foreach (var item in Model.Products)
                                         {
-                                            subTotal += item.Price * item.Quantity;
+                                            subtotal += item.Price * item.Quantity;
                                         }
+                                        if (subtotal < Model.Tax.PriceLimit)
+                                        {
+                                            tax = subtotal * Model.Tax.Percent / 100;
+                                            ordertotal = subtotal + tax;
+                                        }
+                                        else
+                                        {
+                                            ordertotal = subtotal;
+                                        }
+
                                     }
 
 
-                                    <h5>Total products <span class="add-prd-total amount subTotal" id="subTotal">₼ @subTotal.ToString("#.00")</span></h5>
+                                    <h5 class="add-prd-total">Total products <strong  id="subtotal">₼ @subtotal.ToString("#.00")</strong></h5>
                                     <div class="total-shipping">
                                         <h5>Total shipping</h5>
                                         <ul id="shipping_method">
-
-                                            @if (subTotal >= 100)
-                                            {
-                                                <li>
-                                                    <label>
-                                                        <span class="amount amountShopping">Free</span>
-                                                    </label>
-                                                </li>
-                                            }
-                                            else
-                                            {
-
-                                                <li>
-                                                    <label>
-                                                        <span class="amount amountShopping">20₼</span>
-                                                    </label>
-                                                </li>
-
-                                            }
+                                            <li>
+                                                <label>Other Tax:</label>
+                                                <label> <strong id="tax">$@(Model.Products.FirstOrDefault() != null? tax.ToString("0.00") :"0.00")</strong> </label>
+                                            </li>
+                                          
 
                                         </ul>
                                     </div>
-                                    @if (subTotal >= 100)
-                                    {
-                                        <h4 class="grand-totall-title amount finalTotal">Grand Total <span>@subTotal.ToString("0.00")₼</span></h4>
+                                   
+                                        <h4 class="grand-totall-title amount finalTotal">Grand Total<strong id="orderTotal">$@(Model.Products.FirstOrDefault() != null ? ordertotal.ToString("0.00"):"0.00")</strong></h4>
 
 
-                                    }
-                                    else
-                                    {
-                                        <h4 class="grand-totall-title amount finalTotal">Grand Total <span>@((subTotal+20).ToString("0.00"))₼</span></h4>
-
-                                    }
+                                    
+                                  
 
                                     <a asp-controller="basket" asp-action="checkout">Proceed to Checkout</a>
                                 </div>

@@ -27,7 +27,7 @@ namespace Repository.Models
         [MaxLength(250)]
         public string Image { get; set; }
         public bool IsActive { get;  set; }
-        public int CountryId { get; set; }
+        public int? CountryId { get; set; }
         [ForeignKey("CountryId")]
         public Country Country { get; set; }
         [MaxLength(500)]
@@ -38,5 +38,6 @@ namespace Repository.Models
         public List<Sale> Sales { get; set; }
         public string Company { get; set; }
         public DateTime AddedDate { get; set; }
+      
     }
 }

@@ -1,11 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Repository.Data;
 using Repository.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repository.Repositories.ContentRepositories
 {
@@ -16,10 +13,13 @@ namespace Repository.Repositories.ContentRepositories
         IEnumerable<Banner> GetBanners();
         IEnumerable<Banner> GetBannersAdmin();
         IEnumerable<OurMission> GetMissions();
+        IEnumerable<Fag>GetFag();
         IEnumerable<TeamMember> GetTeamMembers();
         IEnumerable<WhatClientSays> GetWhatClientSays();
         IEnumerable<Brand> GetBrands();     
         SliderItem GetSliderItemById(int id);
+       IEnumerable<Blog> GetBlog();
+
         //Slider Crud methods
         void CreateSlider(SliderItem slid);
         void DeleteSlider(SliderItem slider);
@@ -28,6 +28,19 @@ namespace Repository.Repositories.ContentRepositories
         Banner GetBannerById(int id);
         void UpdateBanner(Banner banner);
         void DeleteBanner(Banner banner);
+        IEnumerable<Setting> GetSetting();
+        IEnumerable<Contact>GetContact();
+        void CreateMessage(ContactMessage message);
+        Setting Getset();
+        bool Subscribe(string email);
+        void AddSubscribe(Subscribe subscribe);
+        void CreateCommentProduct(ProductReview comment);
+        Country GetUserCountry(int? countryId);
+        IEnumerable<Tax> GetTax();
+        List<Country> getContrys();
+       Blog GetBlogId(int id);
+        void CreateCommentBlog(BlogComment comment);
+    
     }
     public class ContentRepository : IContentRepository
     {
@@ -38,9 +51,33 @@ namespace Repository.Repositories.ContentRepositories
             _context = context;
         }
 
+        public void AddSubscribe(Subscribe subscribe)
+        {
+            _context.Subscribes.Add(subscribe);
+            _context.SaveChanges();
+        }
+
         public void CreateBanner(Banner banner)
         {
             _context.Banners.Add(banner);
+            _context.SaveChanges();
+        }
+
+        public void CreateCommentBlog(BlogComment comment)
+        {
+            _context.BlogComments.Add(comment);
+            _context.SaveChanges();
+        }
+
+        public void CreateCommentProduct(ProductReview comment)
+        {
+             _context.ProductReviews.Add(comment);
+             _context.SaveChanges();
+        }
+
+        public void CreateMessage(ContactMessage message)
+        {
+            _context.contactMessages.Add(message);
             _context.SaveChanges();
         }
 
@@ -81,7 +118,31 @@ namespace Repository.Repositories.ContentRepositories
                                    .ToList();
         }
 
+        public IEnumerable<Blog> GetBlog()
+        {
+            return _context.Blogs
+                .Include("Category")
+                .Include("TagToBlogs")
+                .Include("TagToBlogs.Tag")
+                .Include("User")
+                .Where(b => b.Status)
+                .OrderByDescending(b => b.AddedDate)
+                .Take(3)
+                .ToList();
+        }
 
+     
+
+        public Blog GetBlogId(int id)
+        {
+            return _context.Blogs.Include("Category")
+                                     .Include("Comments")
+                                     .Include("Comments.User")
+                                     .Include("TagToBlogs")
+                                     .Include("TagToBlogs.Tag")
+                                     .Include("User")
+                                     .FirstOrDefault(p => p.Status && p.Id == id);
+        }
 
         public IEnumerable<Brand> GetBrands()
         {
@@ -89,10 +150,43 @@ namespace Repository.Repositories.ContentRepositories
                                 .ToList();
         }
 
+        public IEnumerable<Contact> GetContact()
+        {
+            return _context.Contacts.Include(c => c.Socials).ToList();
+        }
+
+        public List<Country> getContrys()
+        {
+            return _context.Countries.ToList();
+        }
+
+        public IEnumerable<Fag> GetFag()
+        {
+            return _context.Fags.Where(b => b.Status)
+                                .OrderByDescending(m => m.AddedDate)
+                                .Take(30)
+                                .ToList();
+        }
+
         public IEnumerable<OurMission> GetMissions()
         {
             return _context.ourMissions.Where(b => b.Status)
+                                .OrderByDescending(m=>m.AddedDate)
+                                .Take(1)
                                 .ToList();
+        }
+
+        public Setting Getset()
+        {
+            return _context.Settings.FirstOrDefault();
+        }
+
+        public IEnumerable<Setting> GetSetting()
+        {
+            return _context.Settings.Where(s => s.Status)
+                                    .OrderByDescending(s=>s.AddedDate)
+                                    .Take(1)
+                                    .ToList();
         }
 
         public IEnumerable<SliderItem> GetSliderItem()
@@ -113,6 +207,11 @@ namespace Repository.Repositories.ContentRepositories
             return _context.Sliders.Find(id);
         }
 
+        public IEnumerable<Tax> GetTax()
+        {
+            return _context.Taxs.ToList();
+        }
+
         public IEnumerable<TeamMember> GetTeamMembers()
         {
             return _context.TeamMembers.Where(s => s.Status)
@@ -121,10 +220,20 @@ namespace Repository.Repositories.ContentRepositories
                                      .ToList();
         }
 
+        public Country GetUserCountry(int? countryId)
+        {
+           return _context.Countries.Find(countryId);
+        }
+
         public IEnumerable<WhatClientSays> GetWhatClientSays()
         {
             return _context.WhatClientSays.Where(s => s.Status)
                                    .ToList();
+        }
+
+        public bool Subscribe(string email)
+        {
+           return _context.Subscribes.Any(e => e.Email == email);
         }
 
         public void UpdateBanner(Banner banner)
@@ -138,5 +247,7 @@ namespace Repository.Repositories.ContentRepositories
             _context.Sliders.Update(slider);
             _context.SaveChanges();
         }
+
+       
     }
 }

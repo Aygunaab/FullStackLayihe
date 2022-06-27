@@ -1,0 +1,79 @@
+﻿@model OurMissionVm
+@{
+    ViewData["Title"] = "CreateMission";
+}
+
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row justify-content-center">
+            <div class="col-md-8 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Yeni slider yarat</h4>
+                        <form class="forms-sample" asp-controller="about" asp-action="CreateMission" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label>Vəziyyəti</label>
+                                <div class="d-flex">
+                                    <div class="form-check form-check-success me-5">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="true" id="ExampleRadio2" checked="">
+                                            Aktiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                    <div class="form-check form-check-warning">
+                                        <label class="form-check-label" asp-for="Status">
+                                            <input type="radio" class="form-check-input" asp-for="Status" value="false" id="ExampleRadio5" checked="">
+                                            Passiv
+                                            <i class="input-helper"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Başlıq</label>
+                                <input asp-for="Title" class="form-control" placeholder="Başlıq">
+                                <span asp-validation-for="Title" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Haqqımızda</label>
+                                <textarea asp-for="Desc" class="form-control" placeholder="Mətn"></textarea>
+                                <span asp-validation-for="Desc" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Məhsulun qiyməti</label>
+                                <input asp-for="Videolink" class="form-control" placeholder="Məhsulun qiyməti" />
+                                <span asp-validation-for="Videolink" class="text-danger"></span>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Əsas şəkil</label>
+                                <input asp-for="ImageFile" accept="image/*" class="form-control" placeholder="Əsas şəkil">
+                                <span asp-validation-for="ImageFile" class="text-danger"></span>
+                            </div>
+
+
+                            <button type="submit" class="btn btn-primary me-2">Submit</button>
+                            <button class="btn btn-light">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#Desc'))
+            .catch(error => {
+                console.error(error);
+            });    
+    </script>
+}

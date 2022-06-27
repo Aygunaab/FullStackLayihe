@@ -70,7 +70,9 @@
                                 <input asp-for="ImageFile" accept="image/*" class="form-control" placeholder="Əsas şəkil">
                                 <span asp-validation-for="ImageFile" class="text-danger"></span>
                             </div>
-
+                            <div class="mt-3 mb-3">
+                                <img src="~/Uploads/@Model.Image" height="100" alt="Alternate Text" />
+                            </div>
 
                             <button type="submit" class="btn btn-primary me-2">Submit</button>
                             <button class="btn btn-light">Cancel</button>

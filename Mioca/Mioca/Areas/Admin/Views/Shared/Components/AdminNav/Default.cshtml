@@ -15,25 +15,14 @@
         </div>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <ul class="navbar-nav mr-lg-4 w-100">
-            <li class="nav-item nav-search d-none d-lg-block w-100">
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="search">
-                            <i class="mdi mdi-magnify"></i>
-                        </span>
-                    </div>
-                    <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
-                </div>
-            </li>
-        </ul>
+       
         <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown me-1">
+            <!--<li class="nav-item dropdown me-1">
                 <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="~/assets/admin/#" data-bs-toggle="dropdown">
                     <i class="mdi mdi-message-text mx-0"></i>
                     <span class="count"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+                </a>-->
+                @*<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
                     <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                     <a class="dropdown-item">
                         <div class="item-thumbnail">
@@ -74,8 +63,8 @@
                             </p>
                         </div>
                     </a>
-                </div>
-            </li>
+                </div>*@
+            <!--</li>
             <li class="nav-item dropdown me-4">
                 <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="~/assets/admin/#" data-bs-toggle="dropdown">
                     <i class="mdi mdi-bell mx-0"></i>
@@ -123,12 +112,12 @@
                         </div>
                     </a>
                 </div>
-            </li>
+            </li>-->
             <li class="nav-item nav-profile dropdown">
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <a class="nav-link dropdown-toggle" href="~/Uploads/Images/2.jpg" data-bs-toggle="dropdown" id="profileDropdown">
-                        <img src="~/Uploads/Images/@UserManager.Users.FirstOrDefault().Image" alt="profile" />
+                    <a class="nav-link dropdown-toggle" href="~/Uploads/2.jpg" data-bs-toggle="dropdown" id="profileDropdown">
+                        <img src="~/Uploads/@UserManager.Users.FirstOrDefault().Image" alt="profile" />
                         <span class="nav-profile-name">@UserManager.Users.FirstOrDefault().Name @UserManager.Users.FirstOrDefault().Surname</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
@@ -144,10 +133,7 @@
                                 <p>Moderator</p>
                             }
                         </a>
-                        <a class="dropdown-item">
-                            <i class="mdi mdi-settings text-primary"></i>
-                            Settings
-                        </a>
+                       
                         <a asp-controller="user" asp-action="logout" class="dropdown-item">
                             <i class="mdi mdi-logout text-primary"></i>
                             Logout

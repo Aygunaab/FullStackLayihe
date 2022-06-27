@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Mioca.Areas.Admin.Models.Shopping;
 using Repository.Constants;
@@ -15,6 +16,7 @@ using System.Threading.Tasks;
 namespace Mioca.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
       

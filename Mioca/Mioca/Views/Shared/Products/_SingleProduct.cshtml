@@ -30,14 +30,14 @@
 
                 </span>
                 <div class="actions">
-                    <a  data-id="@Model.Id" data-quantity="1" href="#" class="action wishlist add_to-wish" title="Wishlist">
+                    <a data-id="@(Model != null ? Model.Id : 0)" data-quantity="1" title="Add to wishlist" class="action add_to-wish">
                         <i class="pe-7s-like"></i>
                     </a>
-                    <a href="#" class="action quickview" title="Quick view" data-bs-toggle="modal"
+                    @*<a href="#" class="action quickview" title="Quick view" data-bs-toggle="modal"
                        data-bs-target="#staticBackdrop"><i class="pe-7s-look"></i></a>
                     <a href="compare.html" class="action compare" title="Compare">
                         <i class="pe-7s-refresh-2"></i>
-                    </a>
+                    </a>*@
                 </div>
             </div>
 
@@ -72,7 +72,7 @@
                     }
                 </span>
             </div>          
-            <a href="#"  data-id="@Model.Id" title="Add To Cart" class="add-to-cart add_to-cart">Add To Cart</a>
+            <a  data-id="@(Model != null ? Model.Id : 0)" data-quantity="1" title="Add to cart" class="add-to-cart add_to-cart">Add To Cart</a>
         </div>
 
         <!--Product card end  -->

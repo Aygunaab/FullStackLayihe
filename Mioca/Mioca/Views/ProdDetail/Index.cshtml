@@ -14,11 +14,11 @@
         <div class="container">
             <div class="row align-items-center justify-content-center">
                 <div class="col-12 text-center">
-                    <h1 class="page-name ">@Model.Category.Name</h1>
+                    <h1 class="page-name ">@Model.Name.Substring(0,10)...</h1>
                     <nav class="d-flex justify-content-center" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a asp-controller="home" asp-action="index">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page"><a asp-controller="shop" asp-action="index" asp-route-id="@Model.Category.Id"></a></li>
+                            <li class="breadcrumb-item active" aria-current="page"><a asp-controller="shop" asp-action="index" asp-route-id="@Model.Category.Id">@Model.Category.Name</a></li>
                         </ol>
                     </nav>
                 </div>
@@ -37,7 +37,7 @@
 
                                 @foreach (var images in Model.Photos)
                                 {
-                                    <img src="~/assets/images/product-image/@images.ToString()" alt="product image">
+                                    <img style="width:600px;height:600px;" src="~/Uploads/@images.ToString()" alt="product image">
                                 }
 
 
@@ -47,7 +47,7 @@
                                 {
                                     <div class="img-item">
                                         <a href="#" data-id="@(i+1)">
-                                            <img src="/assets/images/product-image/@Model.Photos[i]" alt="shop-img">
+                                            <img style="height:120px;" src="/Uploads/@Model.Photos[i]" alt="shop-img">
                                         </a>
                                     </div>
 
@@ -61,7 +61,7 @@
                 </div>
                 <div class="col-lg-6 col-sm-12 col-xs-12">
                     <div class="product-details-content marleft-25">
-                        <h2>@Model.Name</h2>
+                        <h2 class="prod-name">@Model.Name</h2>
                         <div class="pricing-box">
                             <ul class="d-flex">
 
@@ -111,20 +111,18 @@
                         </p>
                         <div class="details-quality">
                             <div class="cart-plus-minus">
-                                <input class="cart-plus-minus-box" type="text" value="@Model.Quantity">
+                                <div class="minus plmin">-</div>
+                                <input class="cart-plus-minus-box" type="number" min="1" max="100" value="1">
                                
                             </div>
                             <div class="details-cart">
-                                <a asp-controller="cart" asp-action="AddBasket" asp-route-id="@Model.Id" class="addcart add_to-cart">
-                                    Add To
-                                    Cart
-                                </a>
+                                <a  data-productid="@Model.Id"class="addcart add-to-card-detail">Add To Cart</a>
                             </div>
                             <div class="details-cart">
-                                <button class="addcart buy-button"> Buy It Now</button>
+                                <a asp-controller="basket" asp-action="checkout" class="addcart buy-button"> Buy It Now</a>
                             </div>
                             <div class="details-wishlist ">
-                                <a href="wishlist.html"><i class="pe-7s-like"></i></a>
+                                <a data-productid="@Model.Id" data-typeid="" class="add-to-wishlist-detail" data-id="0" data-quantity="0" style="cursor: pointer"><i class="pe-7s-like"></i></a>
                             </div>
                         </div>
                         <div class="details-categories-info details-style d-flex">
@@ -188,7 +186,7 @@
                                         {
                                             <div class="review-card">
                                                 <div class="user-img">
-                                                    <img src="~/assets/images/comment-image/@review.User.Image" alt="">
+                                                    <img src="~/Uploads/@review.User.Image" alt="">
                                                 </div>
                                                 <div class="review-content">
                                                     <div class="review-user-details">
